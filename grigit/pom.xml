@@ -1,23 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>kr.re.ec</groupId>
-  <artifactId>grigit</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>kr.re.ec</groupId>
+	<artifactId>grigit</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>grigit</name>
-  <url>http://maven.apache.org</url>
+	<name>grigit</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-<repositories>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<repositories>
+
+		<!-- JGit repository -->
 		<repository>
 			<id>jgit-repository</id>
 			<url>https://repo.eclipse.org/content/groups/releases/</url>
 		</repository>
+
+		<!-- JGraph API new -->
+		<repository>
+			<id>in-project</id>
+			<name>In Project Repo</name>
+			<url>file://${project.basedir}/lib</url>
+		</repository>
+
 	</repositories>
 
 	<dependencies>
@@ -53,12 +63,15 @@
 
 
 		<!-- JGraph API -->
+		<!-- <dependency> <groupId>com.mxgraph</groupId> <artifactId>jgraphx</artifactId> 
+			<version>2.8.2.0</version> </dependency> -->
+
+		<!-- JGraph API new -->
 		<dependency>
 			<groupId>com.mxgraph</groupId>
 			<artifactId>jgraphx</artifactId>
 			<version>2.8.2.0</version>
 		</dependency>
-
 		<!-- JGit Core -->
 		<dependency>
 			<groupId>org.eclipse.jgit</groupId>
