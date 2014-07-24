@@ -1,4 +1,4 @@
-package kr.re.ec.grigit;
+package kr.re.ec;
 
 /**
  * Hello world!
