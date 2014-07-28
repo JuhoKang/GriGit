@@ -15,6 +15,8 @@ public class TestFrame extends JFrame{
 	protected JScrollPane jsp;
 	protected JTextArea talogarea;
 	protected JButton jbgitinit;
+	protected JButton jbgitopen;
+	protected JButton jbgitstatus;
 	protected JTextField jtf;
 	
 	/**
@@ -46,6 +48,8 @@ public class TestFrame extends JFrame{
 		jsp = new JScrollPane(talogarea);
 		
 		jbgitinit = new JButton("Git Init");
+		jbgitopen = new JButton("Git Open");
+		jbgitstatus = new JButton("Git Status");
 		
 		jp = new JPanel();
 				
@@ -55,6 +59,8 @@ public class TestFrame extends JFrame{
 		jp.add(jtf);
 		jp.add(jsp);
 		jp.add(jbgitinit);
+		jp.add(jbgitopen);
+		jp.add(jbgitstatus);
 		
 		this.add(jp);
 		this.setVisible(true);

@@ -3,12 +3,18 @@ package kr.re.ec.git;
 import java.io.File;
 import java.io.IOException;
 
+import kr.re.ec.CurrentRepository;
+
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OpenRepository {
 	
+	
 	private Repository repository;
+	private Logger logger;
 	
 	public Repository getRepository() {
 		return repository;
@@ -21,6 +27,8 @@ public class OpenRepository {
 	}*/
 
 	public OpenRepository(String repositorydirectory) {
+		
+		logger = LoggerFactory.getLogger(OpenRepository.class);
 		
 		try {
 			core(repositorydirectory);
@@ -42,8 +50,16 @@ public class OpenRepository {
 	    System.out.println("Having repository: " + repository.getDirectory());
 	    
 	    this.repository = repository;
+	    //testing part
+	    
+	    CurrentRepository.setRepository(repository);
+	    
+	    logger.info(repodir);
+	    
+	    
+	    
 	    //should i close or not?
-	    repository.close();
+	    //repository.close();
 		
 	}
 	
