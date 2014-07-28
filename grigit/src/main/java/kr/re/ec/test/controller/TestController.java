@@ -21,12 +21,9 @@ public class TestController extends TestFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == jbgitinit){
-			try {
-				new GitInit();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
+				new GitInit(jtf.getText());
+
 		}
 	}
 

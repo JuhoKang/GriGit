@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import kr.re.ec.grigit.constants.Constants;
 
@@ -14,6 +15,7 @@ public class TestFrame extends JFrame{
 	protected JScrollPane jsp;
 	protected JTextArea talogarea;
 	protected JButton jbgitinit;
+	protected JTextField jtf;
 	
 	/**
 	 * 
@@ -47,6 +49,10 @@ public class TestFrame extends JFrame{
 		
 		jp = new JPanel();
 				
+		
+		jtf = new JTextField(10);
+		
+		jp.add(jtf);
 		jp.add(jsp);
 		jp.add(jbgitinit);
 		
