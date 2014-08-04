@@ -17,6 +17,7 @@ public class TestFrame extends JFrame{
 	protected JButton jbgitinit;
 	protected JButton jbgitopen;
 	protected JButton jbgitstatus;
+	protected JButton jbfilechoose;
 	protected JTextField jtf;
 	
 	/**
@@ -50,6 +51,7 @@ public class TestFrame extends JFrame{
 		jbgitinit = new JButton("Git Init");
 		jbgitopen = new JButton("Git Open");
 		jbgitstatus = new JButton("Git Status");
+		jbfilechoose = new JButton("Choose Button");
 		
 		jp = new JPanel();
 				
@@ -57,10 +59,13 @@ public class TestFrame extends JFrame{
 		jtf = new JTextField(10);
 		
 		jp.add(jtf);
+		
 		jp.add(jsp);
+		
 		jp.add(jbgitinit);
 		jp.add(jbgitopen);
 		jp.add(jbgitstatus);
+		jp.add(jbfilechoose);
 		
 		this.add(jp);
 		this.setVisible(true);
