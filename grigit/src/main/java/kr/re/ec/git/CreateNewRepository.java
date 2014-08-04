@@ -8,19 +8,33 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ */
 public class CreateNewRepository {
 
 	private String result;
 	Logger logger;
 
+	/**
+	 * Method getResult.
+	 * @return String
+	 */
 	public String getResult() {
 		return result;
 	}
 
+	/**
+	 * Method setResult.
+	 * @param result String
+	 */
 	public void setResult(String result) {
 		this.result = result;
 	}
 
+	/**
+	 * Constructor for CreateNewRepository.
+	 * @param reponame String
+	 */
 	public CreateNewRepository(String reponame) {
 
 		logger = LoggerFactory.getLogger(GitInit.class);
@@ -37,6 +51,11 @@ public class CreateNewRepository {
 
 	}
 
+	/**
+	 * Method core.
+	 * @param reponame String
+	 * @throws IOException
+	 */
 	private void core(String reponame) throws IOException {
 
 		// prepare a new folder

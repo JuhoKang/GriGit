@@ -10,12 +10,18 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ */
 public class OpenRepository {
 	
 	
 	private Repository repository;
 	private Logger logger;
 	
+	/**
+	 * Method getRepository.
+	 * @return Repository
+	 */
 	public Repository getRepository() {
 		return repository;
 	}
@@ -26,6 +32,10 @@ public class OpenRepository {
 		this.repository = repository;
 	}*/
 
+	/**
+	 * Constructor for OpenRepository.
+	 * @param repositorydirectory String
+	 */
 	public OpenRepository(String repositorydirectory) {
 		
 		logger = LoggerFactory.getLogger(OpenRepository.class);
@@ -39,6 +49,11 @@ public class OpenRepository {
 		
 	}
 	
+	/**
+	 * Method core.
+	 * @param repodir String
+	 * @throws IOException
+	 */
 	private void core(String repodir) throws IOException{
 		
 		FileRepositoryBuilder builder = new FileRepositoryBuilder();

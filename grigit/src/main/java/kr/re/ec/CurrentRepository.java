@@ -2,6 +2,8 @@ package kr.re.ec;
 
 import org.eclipse.jgit.lib.Repository;
 
+/**
+ */
 public class CurrentRepository {
 
 	// for singleton
@@ -22,16 +24,28 @@ public class CurrentRepository {
 	}
 
 	// for singleton
+	/**
+	 * Method getInstance.
+	 * @return CurrentRepository
+	 */
 	public static CurrentRepository getInstance() {
 		return instance;
 	}
 
 	private Repository repository;
 
+	/**
+	 * Method getRepository.
+	 * @return Repository
+	 */
 	public Repository getRepository() {
 		return repository;
 	}
 
+	/**
+	 * Method setRepository.
+	 * @param repository Repository
+	 */
 	public void setRepository(Repository repository) {
 		this.repository = repository;
 	}

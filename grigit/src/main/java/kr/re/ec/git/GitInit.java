@@ -28,14 +28,26 @@ public class GitInit {
 	private String result;
 	Logger logger;
 	
+	/**
+	 * Method getResult.
+	 * @return String
+	 */
 	public String getResult() {
 		return result;
 	}
 
+	/**
+	 * Method setResult.
+	 * @param result String
+	 */
 	public void setResult(String result) {
 		this.result = result;
 	}
 
+	/**
+	 * Constructor for GitInit.
+	 * @param path String
+	 */
 	public GitInit(String path) {
 		
 		logger = LoggerFactory.getLogger(GitInit.class);
@@ -52,6 +64,12 @@ public class GitInit {
 		
 	}
 	
+	/**
+	 * Method core.
+	 * @param path String
+	 * @throws IOException
+	 * @throws GitAPIException
+	 */
 	private void core(String path) throws IOException, GitAPIException{
 
         File dir = new File(path);

@@ -1,5 +1,7 @@
 package kr.re.ec.test.ui;
 
+import java.awt.Button;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,16 +11,26 @@ import javax.swing.JTextField;
 
 import kr.re.ec.grigit.constants.Constants;
 
+/**
+ */
 public class TestFrame extends JFrame{
 	
 	protected JPanel jp;
+	
 	protected JScrollPane jsp;
+	
 	protected JTextArea talogarea;
+	
 	protected JButton jbgitinit;
 	protected JButton jbgitopen;
 	protected JButton jbgitstatus;
 	protected JButton jbfilechoose;
+	protected JButton jbshowallcommits;
+	protected JButton jbgo;
+	
+	
 	protected JTextField jtf;
+	
 	
 	/**
 	 * 
@@ -52,6 +64,8 @@ public class TestFrame extends JFrame{
 		jbgitopen = new JButton("Git Open");
 		jbgitstatus = new JButton("Git Status");
 		jbfilechoose = new JButton("Choose Button");
+		jbshowallcommits = new JButton("Show All Commits");
+		jbgo = new JButton("Go");
 		
 		jp = new JPanel();
 				
@@ -66,6 +80,8 @@ public class TestFrame extends JFrame{
 		jp.add(jbgitopen);
 		jp.add(jbgitstatus);
 		jp.add(jbfilechoose);
+		jp.add(jbshowallcommits);
+		jp.add(jbgo);
 		
 		this.add(jp);
 		this.setVisible(true);

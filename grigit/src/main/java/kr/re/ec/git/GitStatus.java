@@ -10,10 +10,16 @@ import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ */
 public class GitStatus {
 	
 	Logger logger;
 	
+	/**
+	 * Constructor for GitStatus.
+	 * @param repository Repository
+	 */
 	public GitStatus(Repository repository){
 		
 		logger = LoggerFactory.getLogger(GitStatus.class);
@@ -30,6 +36,13 @@ public class GitStatus {
 		
 	}
 	
+	/**
+	 * Method core.
+	 * @param repository Repository
+	 * @return ArrayList<String>
+	 * @throws NoWorkTreeException
+	 * @throws GitAPIException
+	 */
 	private ArrayList<String> core(Repository repository) throws NoWorkTreeException, GitAPIException{
 
 		ArrayList<String> statuslog = new ArrayList<String>();

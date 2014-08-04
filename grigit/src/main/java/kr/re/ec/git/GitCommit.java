@@ -8,12 +8,21 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoFilepatternException;
 import org.eclipse.jgit.lib.Repository;
 
+/**
+ */
 public class GitCommit {
 	
 	public GitCommit(){
 		
 	}
 
+	/**
+	 * Method core.
+	 * @param repository Repository
+	 * @throws IOException
+	 * @throws NoFilepatternException
+	 * @throws GitAPIException
+	 */
 	private void core(Repository repository) throws IOException, NoFilepatternException, GitAPIException{
 		
 		
