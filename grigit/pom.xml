@@ -122,7 +122,10 @@
 			<version>3.4.1.201406201815-r</version>
 		</dependency>
 
+
+        
 		<!-- JGit Command Line Interface -->
+		
 		<dependency>
 			<groupId>org.eclipse.jgit</groupId>
 			<artifactId>org.eclipse.jgit.pgm</artifactId>

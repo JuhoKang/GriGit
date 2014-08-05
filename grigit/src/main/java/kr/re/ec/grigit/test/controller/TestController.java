@@ -6,11 +6,11 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import kr.ec.grigit.git.GitInit;
-import kr.ec.grigit.git.GitShowAllCommits;
-import kr.ec.grigit.git.GitStatus;
-import kr.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.git.GitInit;
+import kr.re.ec.grigit.git.GitShowAllCommits;
+import kr.re.ec.grigit.git.GitStatus;
+import kr.re.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.test.ui.TestFrame;
 
 import org.eclipse.jgit.pgm.Main;
@@ -72,8 +72,8 @@ public class TestController extends TestFrame implements ActionListener{
 			
 		} else if (e.getSource() == jbgo){
 			
-			new org.eclipse.jgit.pgm.Main();
 			Main.main(jtf.getText().split(" "));
+			
 		}
 	}
 	
