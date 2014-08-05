@@ -1,4 +1,4 @@
-package kr.re.ec.test.ui;
+package kr.re.ec.grigit.test.ui;
 
 import java.awt.Button;
 

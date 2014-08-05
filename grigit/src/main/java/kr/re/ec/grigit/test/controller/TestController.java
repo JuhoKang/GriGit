@@ -1,4 +1,4 @@
-package kr.re.ec.test.controller;
+package kr.re.ec.grigit.test.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,12 +6,12 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import kr.re.ec.CurrentRepository;
-import kr.re.ec.git.GitInit;
-import kr.re.ec.git.GitShowAllCommits;
-import kr.re.ec.git.GitStatus;
-import kr.re.ec.git.OpenRepository;
-import kr.re.ec.test.ui.TestFrame;
+import kr.ec.grigit.git.GitInit;
+import kr.ec.grigit.git.GitShowAllCommits;
+import kr.ec.grigit.git.GitStatus;
+import kr.ec.grigit.git.OpenRepository;
+import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.test.ui.TestFrame;
 
 import org.eclipse.jgit.pgm.Main;
 import org.slf4j.Logger;
@@ -50,12 +50,12 @@ public class TestController extends TestFrame implements ActionListener{
 			new GitInit(jtf.getText());
 
 		} else if (e.getSource() == jbgitopen) {
-			
-			new OpenRepository(jtf.getText());
+			File file = chooseFile();
+			new OpenRepository(file);
 			
 		} else if (e.getSource() == jbgitstatus) {
 			
-			logger.info("isBare : "+CurrentRepository.getInstance().getRepository().isBare());
+			//logger.info("isBare : "+CurrentRepository.getInstance().getRepository().isBare());
 			new GitStatus(CurrentRepository.getInstance().getRepository());
 		
 		} else if (e.getSource() == jbfilechoose) {

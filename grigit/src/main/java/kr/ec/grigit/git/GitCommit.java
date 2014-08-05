@@ -1,4 +1,4 @@
-package kr.re.ec.git;
+package kr.ec.grigit.git;
 
 import java.io.File;
 import java.io.IOException;

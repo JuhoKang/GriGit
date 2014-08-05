@@ -1,8 +1,8 @@
-package kr.re.ec.git;
+package kr.ec.grigit.git;
 
 import java.io.IOException;
 
-import kr.re.ec.CurrentRepository;
+import kr.re.ec.grigit.CurrentRepository;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;

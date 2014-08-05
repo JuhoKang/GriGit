@@ -1,10 +1,11 @@
-package kr.re.ec.git;
+package kr.ec.grigit.git;
 
 import java.io.File;
 import java.io.IOException;
 
-import kr.re.ec.CurrentRepository;
+import kr.re.ec.grigit.CurrentRepository;
 
+import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class OpenRepository {
 	 * Constructor for OpenRepository.
 	 * @param repositorydirectory String
 	 */
-	public OpenRepository(String repositorydirectory) {
+	public OpenRepository(File repositorydirectory) {
 		
 		logger = LoggerFactory.getLogger(OpenRepository.class);
 		
@@ -54,10 +55,11 @@ public class OpenRepository {
 	 * @param repodir String
 	 * @throws IOException
 	 */
-	private void core(String repodir) throws IOException{
+	private void core(File repodir) throws IOException{
 		
 		FileRepositoryBuilder builder = new FileRepositoryBuilder();
-	    Repository repository = builder.findGitDir(new File(repodir)) // scan up the file system tree
+	    Repository repository = builder.setGitDir(repodir)
+	    		.findGitDir() // scan up the file system tree
 	            .readEnvironment() // scan environment GIT_* variables
 	            .build();
 	    	    
@@ -68,7 +70,10 @@ public class OpenRepository {
 	    
 	    CurrentRepository.getInstance().setRepository(repository);
 	    
-	    logger.info(repodir);
+	    Ref head = repository.getRef("refs/heads/master");
+        logger.info("Ref of refs/heads/master: " + head);
+	    
+	    logger.info("repo path"+repodir.getName());
 	    
 	    
 	    

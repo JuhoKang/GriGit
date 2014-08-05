@@ -1,6 +1,6 @@
-package kr.re.ec.test;
+package kr.re.ec.grigit.test;
 
-import kr.re.ec.test.controller.TestController;
+import kr.re.ec.grigit.test.controller.TestController;
 
 /**
  */
