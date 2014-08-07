@@ -72,7 +72,12 @@ public class TestController extends TestFrame implements ActionListener{
 			
 		} else if (e.getSource() == jbgo){
 			
-			Main.main(jtf.getText().split(" "));
+			try{
+				Main.main(jtf.getText().split(" "));
+			} catch (Exception E){
+				logger.info(E.getMessage());
+			}
+			
 			
 		}
 	}
