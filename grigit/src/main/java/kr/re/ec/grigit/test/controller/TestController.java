@@ -3,6 +3,8 @@ package kr.re.ec.grigit.test.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
 
@@ -22,6 +24,7 @@ import org.slf4j.LoggerFactory;
 public class TestController extends TestFrame implements ActionListener{
 	
 	Logger logger;
+	String commandhead;
 	
 	public TestController() {
 		// TODO Auto-generated constructor stub
@@ -36,6 +39,8 @@ public class TestController extends TestFrame implements ActionListener{
 		jbfilechoose.addActionListener(this);
 		jbshowallcommits.addActionListener(this);
 		jbgo.addActionListener(this);
+		commandhead = "--git-dir^"+ CurrentRepository.getInstance()
+				.getRepository().getDirectory().getAbsolutePath() + "^";
 	}
 
 	/**
@@ -73,7 +78,17 @@ public class TestController extends TestFrame implements ActionListener{
 		} else if (e.getSource() == jbgo){
 			
 			try{
-				Main.main(jtf.getText().split(" "));
+				ArrayList<String> commandlist = new ArrayList<String>();
+				StringTokenizer st = new StringTokenizer(commandhead,"^");
+				while(st.hasMoreTokens()){
+					commandlist.add(st.nextToken());
+				}
+				st = new StringTokenizer(jtf.getText(), " ");
+				while(st.hasMoreTokens()){
+					commandlist.add(st.nextToken());
+				}
+				String commandheadarr[] = commandlist.toArray(new String[0]);
+				Main.main(commandheadarr);
 			} catch (Exception E){
 				logger.info(E.getMessage());
 			}

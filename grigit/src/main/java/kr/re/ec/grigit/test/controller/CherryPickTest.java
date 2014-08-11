@@ -28,6 +28,8 @@ public class CherryPickTest {
 	
 	public static void main(String[] args) {
 		
+		//acutally this is diff test omg
+		
 		List<DiffEntry> difflist = null;
 		Logger logger = LoggerFactory.getLogger(CherryPickTest.class);
 	

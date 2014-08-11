@@ -13,7 +13,7 @@ import kr.re.ec.grigit.constants.Constants;
 
 /**
  */
-public class TestFrame extends JFrame{
+public abstract class TestFrame extends JFrame{
 	
 	protected JPanel jp;
 	
@@ -49,14 +49,6 @@ public class TestFrame extends JFrame{
 		talogarea = new JTextArea(10,40);
 		talogarea.setEditable(false);
 		talogarea.setText("This is a area for text");
-		talogarea.append(Constants.TextComponents.LINE_BREAK
-							+"wow");
-		talogarea.append("\nwow");
-		talogarea.append("\nwow");
-		talogarea.append("wow");
-		talogarea.append("wow");
-		talogarea.append("wow");
-		talogarea.append("wow");
 				
 		jsp = new JScrollPane(talogarea);
 		

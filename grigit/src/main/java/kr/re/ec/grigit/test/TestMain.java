@@ -1,6 +1,6 @@
 package kr.re.ec.grigit.test;
 
-import kr.re.ec.grigit.test.controller.TestController;
+import kr.re.ec.grigit.test.controller.OpenRepoController;
 
 /**
  */
@@ -12,7 +12,7 @@ public class TestMain {
 	 */
 	public static void main(String[] args) {
 
-		new TestController().init();
+		new OpenRepoController().init();
 		
 	}
 
