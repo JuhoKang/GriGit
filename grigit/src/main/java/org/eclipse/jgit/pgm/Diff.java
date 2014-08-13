@@ -55,6 +55,8 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import kr.re.ec.grigit.util.PrintToArea;
+
 import org.eclipse.jgit.diff.DiffAlgorithm;
 import org.eclipse.jgit.diff.DiffAlgorithm.SupportedAlgorithm;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -72,7 +74,6 @@ import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.eclipse.jgit.treewalk.FileTreeIterator;
 import org.eclipse.jgit.treewalk.filter.TreeFilter;
-import org.eclipse.jgit.util.io.ThrowingPrintWriter;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
@@ -223,7 +224,8 @@ class Diff extends TextBuiltin {
 		}
 	}
 
-	static void nameStatus(ThrowingPrintWriter out, List<DiffEntry> files)
+	/*static void nameStatus(ThrowingPrintWriter out, List<DiffEntry> files)*/
+	static void nameStatus(PrintToArea out, List<DiffEntry> files)
 			throws IOException {
 		for (DiffEntry ent : files) {
 			switch (ent.getChangeType()) {

@@ -7,6 +7,8 @@ import java.security.PrivilegedAction;
 
 import javax.swing.JTextArea;
 
+import kr.re.ec.grigit.test.controller.TestController;
+
 import org.eclipse.jgit.util.SystemReader;
 
 public class PrintToArea extends Writer{
@@ -23,9 +25,9 @@ public class PrintToArea extends Writer{
 	 * @param out
 	 *            the underlying {@link Writer}
 	 */
-	public PrintToArea(Writer out, JTextArea jta) {
+	public PrintToArea(Writer out) {
 		this.out = out;
-		this.jta = jta;
+		this.jta = TestController.getInstance().getTalogarea();
 		LF = AccessController.doPrivileged(new PrivilegedAction<String>() {
 			public String run() {
 				return SystemReader.getInstance().getProperty("line.separator"); //$NON-NLS-1$

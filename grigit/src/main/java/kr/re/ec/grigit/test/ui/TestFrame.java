@@ -79,4 +79,8 @@ public abstract class TestFrame extends JFrame{
 		this.setVisible(true);
 	}
 
+	public JTextArea getTalogarea() {
+		return talogarea;
+	}
+
 }

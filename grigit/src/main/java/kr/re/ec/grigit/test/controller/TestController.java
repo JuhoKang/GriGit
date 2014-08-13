@@ -26,9 +26,32 @@ public class TestController extends TestFrame implements ActionListener{
 	Logger logger;
 	String commandhead;
 	
-	public TestController() {
-		// TODO Auto-generated constructor stub
-	}
+	// for singleton
+		private static TestController instance = null;
+
+		// for singleton
+		static {
+			try {
+				instance = new TestController();
+			} catch (Exception e) {
+				throw new RuntimeException("singleton instance intialize error");
+			}
+		}
+
+		// for singleton
+		private TestController() {
+
+		}
+
+		// for singleton
+		/**
+		 * Method getInstance.
+		 * @return CurrentRepository
+		 */
+		public static TestController getInstance() {
+			return instance;
+		}
+	
 	
 	public void init(){
 		super.init();

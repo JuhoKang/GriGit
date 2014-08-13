@@ -40,7 +40,7 @@ public class OpenRepoController extends OpenRepoFrame implements ActionListener{
 		if (e.getSource() == jbfilechoose){
 			File dir = chooseFile();
 			CurrentRepository.getInstance().setRepository(new OpenRepository(dir).getRepository());
-			new TestController().init();
+			TestController.getInstance().init();
 		}
 		
 	}

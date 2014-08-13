@@ -60,6 +60,8 @@ import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
+import kr.re.ec.grigit.util.PrintToArea;
+
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.pgm.internal.CLIText;
@@ -98,8 +100,8 @@ public abstract class TextBuiltin {
 	 *
 	 * @since 2.2
 	 */
-	protected ThrowingPrintWriter outw;
-
+	//protected ThrowingPrintWriter outw;
+	protected PrintToArea outw;
 	/**
 	 * Stream to output to, typically this is standard output.
 	 *
@@ -173,7 +175,7 @@ public abstract class TextBuiltin {
 			else
 				outbufw = new BufferedWriter(new OutputStreamWriter(outs));
 			out = new PrintWriter(outbufw);
-			outw = new ThrowingPrintWriter(outbufw);
+			outw = new PrintToArea(outbufw);
 			BufferedWriter errbufw;
 			if (outputEncoding != null)
 				errbufw = new BufferedWriter(new OutputStreamWriter(errs,
