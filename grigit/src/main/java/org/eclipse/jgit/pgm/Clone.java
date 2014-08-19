@@ -91,7 +91,8 @@ class Clone extends AbstractFetchCommand {
 	private Repository dst;
 
 	@Override
-	protected final boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public final boolean requiresRepository() {
 		return false;
 	}
 

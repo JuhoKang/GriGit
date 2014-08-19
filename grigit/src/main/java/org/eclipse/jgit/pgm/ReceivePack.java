@@ -59,7 +59,8 @@ class ReceivePack extends TextBuiltin {
 	File dstGitdir;
 
 	@Override
-	protected final boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public final boolean requiresRepository() {
 		return false;
 	}
 

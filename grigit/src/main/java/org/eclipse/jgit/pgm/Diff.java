@@ -170,7 +170,8 @@ class Diff extends TextBuiltin {
 	// END -- Options shared with Log
 
 	@Override
-	protected void init(final Repository repository, final String gitDir) {
+	//changed to public because of PgmMain... it was protected
+	public void init(final Repository repository, final String gitDir) {
 		super.init(repository, gitDir);
 		diffFmt = new DiffFormatter(new BufferedOutputStream(outs));
 	}

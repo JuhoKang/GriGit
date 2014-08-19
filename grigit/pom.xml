@@ -31,13 +31,20 @@
 	</repositories>
 
 	<dependencies>
-
+   
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- JDBC SQlite API -->
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.7.2</version>
 		</dependency>
 
 		<!-- slf4j for logging API -->
@@ -173,156 +180,161 @@
 
 
 	</dependencies>
-	
-	
-    
-    <build>
-    
-    <resources>
-      <resource>
-        <directory>.</directory>
-        <includes>
-          <include>plugin.properties</include>
-          <include>META-INF/services/org.eclipse.jgit.pgm.TextBuiltin</include>
-          <include>about.html</include>
-        </includes>
-      </resource>
-      <resource>
-        <directory>resources/</directory>
-      </resource>
-    </resources>
 
-    <plugins>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifestFile>${bundle-manifest}</manifestFile>
-          </archive>
-        </configuration>
-      </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <finalName>jgit-cli</finalName>
-              <createDependencyReducedPom>false</createDependencyReducedPom>
-              <transformers>
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <manifestEntries>
-                    <Main-Class>org.eclipse.jgit.pgm.Main</Main-Class>
-                    <Implementation-Title>JGit Command Line Interface</Implementation-Title>
-                  </manifestEntries>
-                </transformer>
-              </transformers>
-              <filters>
-                <!-- exclude the signing data for individual jars, ueberjar will be signed again -->
-                <filter>
-                  <artifact>*:*</artifact>
-                  <excludes>
-                    <exclude>META-INF/*.SF</exclude>
-                    <exclude>META-INF/*.DSA</exclude>
-                    <exclude>META-INF/*.RSA</exclude>
-                    <exclude>OSGI-OPT/**</exclude>
-                  </excludes>
-                </filter>
-              </filters>
-              <shadedArtifactAttached>true</shadedArtifactAttached>
-              <shadedClassifierName>shaded</shadedClassifierName> <!-- Any name that makes sense -->
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create_jgit</id>
-            <phase>package</phase>
-            <configuration>
-              <tasks>
-                <concat destfile="${basedir}/target/jgit" force="yes" binary="true">
-                  <fileset file="${basedir}/jgit.sh" />
-                  <fileset file="${basedir}/target/jgit-cli.jar" />
-                </concat>
-                <chmod file="${basedir}/target/jgit" perm="a+x"/>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>translate-source-qualifier</id>
-            <phase>generate-resources</phase>
-            <configuration>
-              <tasks>
-                <copy file="META-INF/SOURCE-MANIFEST.MF" tofile="${source-bundle-manifest}" overwrite="true"/>
-                <replace file="${source-bundle-manifest}">
-                  <replacefilter token=".qualifier" value=".${maven.build.timestamp}"/>
-                </replace>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+	<build>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <inherited>true</inherited>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <archive>
-                <manifestFile>${source-bundle-manifest}</manifestFile>
-              </archive>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+		<resources>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.properties</include>
+					<include>META-INF/services/org.eclipse.jgit.pgm.TextBuiltin</include>
+					<include>about.html</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>resources/</directory>
+			</resource>
+		</resources>
 
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach_jgit</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>${basedir}/target/jgit</file>
-                  <type>sh</type>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-    
-    </build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>${bundle-manifest}</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<finalName>jgit-cli</finalName>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>org.eclipse.jgit.pgm.Main</Main-Class>
+										<Implementation-Title>JGit Command Line Interface</Implementation-Title>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+							<filters>
+								<!-- exclude the signing data for individual jars, ueberjar will 
+									be signed again -->
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>OSGI-OPT/**</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>shaded</shadedClassifierName> <!-- Any name that makes sense -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>create_jgit</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<concat destfile="${basedir}/target/jgit" force="yes"
+									binary="true">
+									<fileset file="${basedir}/jgit.sh" />
+									<fileset file="${basedir}/target/jgit-cli.jar" />
+								</concat>
+								<chmod file="${basedir}/target/jgit" perm="a+x" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>translate-source-qualifier</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<tasks>
+								<copy file="META-INF/SOURCE-MANIFEST.MF" tofile="${source-bundle-manifest}"
+									overwrite="true" />
+								<replace file="${source-bundle-manifest}">
+									<replacefilter token=".qualifier" value=".${maven.build.timestamp}" />
+								</replace>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<inherited>true</inherited>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifestFile>${source-bundle-manifest}</manifestFile>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach_jgit</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>${basedir}/target/jgit</file>
+									<type>sh</type>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
 
 </project>

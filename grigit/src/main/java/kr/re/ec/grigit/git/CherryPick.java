@@ -1,6 +1,5 @@
 package kr.re.ec.grigit.git;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.eclipse.jgit.api.CherryPickCommand;

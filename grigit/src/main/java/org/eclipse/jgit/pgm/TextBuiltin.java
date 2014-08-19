@@ -101,7 +101,8 @@ public abstract class TextBuiltin {
 	 * @since 2.2
 	 */
 	//protected ThrowingPrintWriter outw;
-	protected PrintToArea outw;
+	//changed to public because of PgmMain... it was protected
+	public PrintToArea outw;
 	/**
 	 * Stream to output to, typically this is standard output.
 	 *
@@ -122,7 +123,8 @@ public abstract class TextBuiltin {
 	 *
 	 * @since 3.4
 	 */
-	protected ThrowingPrintWriter errw;
+	//changed to public because of PgmMain... it was protected
+	public ThrowingPrintWriter errw;
 
 	/**
 	 * Error output stream, typically this is standard error.
@@ -145,7 +147,8 @@ public abstract class TextBuiltin {
 	}
 
 	/** @return true if {@link #db}/{@link #getRepository()} is required. */
-	protected boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public boolean requiresRepository() {
 		return true;
 	}
 
@@ -158,7 +161,8 @@ public abstract class TextBuiltin {
 	 *            value of the {@code --git-dir} command line option, if
 	 *            {@code repository} is null.
 	 */
-	protected void init(final Repository repository, final String gitDir) {
+	//changed to public because of PgmMain... it was protected
+	public void init(final Repository repository, final String gitDir) {
 		try {
 			final String outputEncoding = repository != null ? repository
 					.getConfig().getString("i18n", null, "logOutputEncoding") : null; //$NON-NLS-1$ //$NON-NLS-2$

@@ -1,5 +1,7 @@
 package kr.re.ec.grigit;
 
+import kr.re.ec.grigit.ui.controller.MainController;
+
 /**
  * Hello world!
  *
@@ -14,6 +16,6 @@ public class Main
      */
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+       MainController.getInstance().init();
     }
 }

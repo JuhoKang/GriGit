@@ -128,7 +128,8 @@ class DiffAlgorithms extends TextBuiltin {
 	private ThreadMXBean mxBean;
 
 	@Override
-	protected boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public boolean requiresRepository() {
 		return false;
 	}
 

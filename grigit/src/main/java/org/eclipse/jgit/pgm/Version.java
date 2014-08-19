@@ -54,7 +54,8 @@ import java.util.jar.Manifest;
 import org.eclipse.jgit.pgm.internal.CLIText;
 
 @Command(common = true, usage = "usage_DisplayTheVersionOfJgit")
-class Version extends TextBuiltin {
+//changed to public because of PgmMain... it was protected
+public class Version extends TextBuiltin {
 	@Override
 	protected void run() throws Exception {
 		// read the Implementation-Version from Manifest
@@ -74,7 +75,8 @@ class Version extends TextBuiltin {
 	}
 
 	@Override
-	protected final boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public final boolean requiresRepository() {
 		return false;
 	}
 

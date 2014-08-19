@@ -94,7 +94,8 @@ class Daemon extends TextBuiltin {
 	final List<File> directory = new ArrayList<File>();
 
 	@Override
-	protected boolean requiresRepository() {
+	//changed to public because of PgmMain... it was protected
+	public boolean requiresRepository() {
 		return false;
 	}
 

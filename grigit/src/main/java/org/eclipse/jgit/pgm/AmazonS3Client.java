@@ -76,7 +76,9 @@ class AmazonS3Client extends TextBuiltin {
 	private String key;
 
 	@Override
-	protected final boolean requiresRepository() {
+	public
+	//changed to public because of PgmMain... it was protected
+	final boolean requiresRepository() {
 		return false;
 	}
 
