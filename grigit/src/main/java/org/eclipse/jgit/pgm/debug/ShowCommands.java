@@ -46,6 +46,8 @@ package org.eclipse.jgit.pgm.debug;
 import java.io.IOException;
 import java.net.URL;
 
+import kr.re.ec.grigit.util.PrintToArea;
+
 import org.eclipse.jgit.pgm.Command;
 import org.eclipse.jgit.pgm.CommandCatalog;
 import org.eclipse.jgit.pgm.CommandRef;
@@ -85,7 +87,7 @@ class ShowCommands extends TextBuiltin {
 	static enum Format {
 		/** */
 		USAGE {
-			void print(ThrowingPrintWriter err, final CommandRef c) throws IOException {
+			void print(PrintToArea err, final CommandRef c) throws IOException {
 				String usage = c.getUsage();
 				if (usage != null && usage.length() > 0)
 					err.print(CLIText.get().resourceBundle().getString(usage));
@@ -94,14 +96,14 @@ class ShowCommands extends TextBuiltin {
 
 		/** */
 		CLASSES {
-			void print(ThrowingPrintWriter err, final CommandRef c) throws IOException {
+			void print(PrintToArea err, final CommandRef c) throws IOException {
 				err.print(c.getImplementationClassName());
 			}
 		},
 
 		/** */
 		URLS {
-			void print(ThrowingPrintWriter err, final CommandRef c) throws IOException {
+			void print(PrintToArea err, final CommandRef c) throws IOException {
 				final ClassLoader ldr = c.getImplementationClassLoader();
 
 				String cn = c.getImplementationClassName();
@@ -121,6 +123,6 @@ class ShowCommands extends TextBuiltin {
 			}
 		};
 
-		abstract void print(ThrowingPrintWriter err, CommandRef c) throws IOException;
+		abstract void print(PrintToArea errw, CommandRef c) throws IOException;
 	}
 }

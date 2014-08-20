@@ -52,6 +52,8 @@ import static java.lang.Character.valueOf;
 import java.io.IOException;
 import java.text.MessageFormat;
 
+import kr.re.ec.grigit.util.PrintToArea;
+
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectReader;
@@ -95,7 +97,7 @@ abstract class AbstractFetchCommand extends TextBuiltin {
 		showRemoteMessages(errw, r.getMessages());
 	}
 
-	static void showRemoteMessages(ThrowingPrintWriter writer, String pkt) throws IOException {
+	static void showRemoteMessages(PrintToArea errw, String pkt) throws IOException {
 		while (0 < pkt.length()) {
 			final int lf = pkt.indexOf('\n');
 			final int cr = pkt.indexOf('\r');
@@ -107,25 +109,25 @@ abstract class AbstractFetchCommand extends TextBuiltin {
 			else if (0 <= cr)
 				s = cr;
 			else {
-				writer.print(MessageFormat.format(CLIText.get().remoteMessage,
+				errw.print(MessageFormat.format(CLIText.get().remoteMessage,
 						pkt));
-				writer.println();
+				errw.println();
 				break;
 			}
 
 			if (pkt.charAt(s) == '\r') {
-				writer.print(MessageFormat.format(CLIText.get().remoteMessage,
+				errw.print(MessageFormat.format(CLIText.get().remoteMessage,
 						pkt.substring(0, s)));
-				writer.print('\r');
+				errw.print('\r');
 			} else {
-				writer.print(MessageFormat.format(CLIText.get().remoteMessage,
+				errw.print(MessageFormat.format(CLIText.get().remoteMessage,
 						pkt.substring(0, s)));
-				writer.println();
+				errw.println();
 			}
 
 			pkt = pkt.substring(s + 1);
 		}
-		writer.flush();
+		errw.flush();
 	}
 
 	private static String longTypeOf(ObjectReader reader,

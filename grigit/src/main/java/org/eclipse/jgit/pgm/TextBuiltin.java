@@ -124,7 +124,7 @@ public abstract class TextBuiltin {
 	 * @since 3.4
 	 */
 	//changed to public because of PgmMain... it was protected
-	public ThrowingPrintWriter errw;
+	public PrintToArea errw;
 
 	/**
 	 * Error output stream, typically this is standard error.
@@ -186,7 +186,7 @@ public abstract class TextBuiltin {
 						outputEncoding));
 			else
 				errbufw = new BufferedWriter(new OutputStreamWriter(errs));
-			errw = new ThrowingPrintWriter(errbufw);
+			errw = new PrintToArea(errbufw);
 		} catch (IOException e) {
 			throw die(CLIText.get().cannotCreateOutputStream);
 		}

@@ -13,13 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import java.awt.Color;
 
 import kr.re.ec.grigit.ui.controller.MenuBarController;
+
 import javax.swing.JScrollPane;
 import javax.swing.DropMode;
 import javax.swing.JLabel;
+import javax.swing.text.StyledDocument;
 
 /**
  * MainFrame class for the Main Window of grigit
@@ -31,10 +34,18 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public abstract class MainFrame extends JFrame{
 	
+	/*
 	public JTextArea getTaLog() {
 		return taLog;
 	}
-
+*/
+	public JTextPane getTpLog() {
+		return tpLog;
+	}
+	public StyledDocument getDoc(){
+		return doc;
+	}
+	
 	protected JButton btnNewButton;
 	protected JButton btnNewButton_1;
 	protected JButton btnNewButton_2;
@@ -42,7 +53,9 @@ public abstract class MainFrame extends JFrame{
 	private JPanel panel;
 	protected JTextField jtfCommandLine;
 	private JScrollPane spLog;
-	private JTextArea taLog;
+	//private JTextArea taLog;
+	protected JTextPane tpLog;
+	protected StyledDocument doc;
 	
 	public MainFrame(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,11 +120,18 @@ public abstract class MainFrame extends JFrame{
 		gbc_spLog.gridy = 0;
 		panel.add(spLog, gbc_spLog);
 		
+		/*
 		taLog = new JTextArea(40,30);
 		taLog.setBackground(Color.BLACK);
 		taLog.setForeground(Color.GREEN);
 		taLog.setEditable(false);
 		spLog.setViewportView(taLog);
+		*/
+		
+		tpLog = new JTextPane();
+		doc = tpLog.getStyledDocument();
+		tpLog.setEditable(false);
+		spLog.setViewportView(tpLog);
 		
 		jtfCommandLine = new JTextField();
 		GridBagConstraints gbc_jtfCommandLine = new GridBagConstraints();
