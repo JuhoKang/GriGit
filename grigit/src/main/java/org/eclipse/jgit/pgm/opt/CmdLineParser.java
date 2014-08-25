@@ -83,7 +83,7 @@ public class CmdLineParser extends org.kohsuke.args4j.CmdLineParser {
 	}
 
 	private final Repository db;
-
+	
 	private RevWalk walk;
 
 	/**

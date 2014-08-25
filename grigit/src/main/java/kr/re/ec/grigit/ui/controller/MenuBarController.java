@@ -42,8 +42,26 @@ public class MenuBarController extends MenuBarFrame{
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = fc.showDialog(this,"Select");
 		File file = fc.getSelectedFile();
+		if(isDotGitDir(file)){
+			file = formToGitDir(file);
+		}
 		logger.info("Opening: " + file.getName());
 		return file;
+	}
+	
+	private boolean isDotGitDir(File file){
+		boolean result = false;
+		String filepath = file.getAbsolutePath();
+		if(filepath.substring(filepath.length()-4).equals(".git") == false){
+			result = true;
+		}
+		
+		return result;
+	}
+	private File formToGitDir(File file){
+		File result;
+		result = new File(file.getAbsolutePath()+"/.git");
+		return result;
 	}
 
 }

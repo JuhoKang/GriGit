@@ -186,12 +186,34 @@ public class PgmMain {
 	}
 
 	private void execute(final String[] argv) throws Exception {
+	/*
+		if (version) {
+			String cmdId = Version.class.getSimpleName().toLowerCase();
+			subcommand = CommandCatalog.get(cmdId).create();
+		}
+		
+		
+		
+		if (cmd.requiresRepository())
+			cmd.init(openGitDir(gitdir), null);
+		else
+			cmd.init(null, gitdir);
+		try {
+			cmd.execute(arguments.toArray(new String[arguments.size()]));
+		} finally {
+			if (cmd.outw != null)
+				cmd.outw.flush();
+			if (cmd.errw != null)
+				cmd.errw.flush();
+		}
+		*/
 		final CmdLineParser clp = new CmdLineParser(this);
 		PrintWriter writer = new PrintWriter(System.err);
 		try {
 			clp.parseArgument(argv);
 		} catch (CmdLineException err) {
 			if (argv.length > 0 && !help && !version) {
+			//	cmd.errw.println(MessageFormat.format(CLIText.get().fatalError, err.getMessage()));
 				writer.println(MessageFormat.format(CLIText.get().fatalError, err.getMessage()));
 				writer.flush();
 			//	System.exit(1);
@@ -200,14 +222,19 @@ public class PgmMain {
 
 		if (argv.length == 0 || help) {
 			final String ex = clp.printExample(ExampleMode.ALL, CLIText.get().resourceBundle());
+		//	cmd.outw.println("jgit" + ex + " command [ARG ...]");
 			writer.println("jgit" + ex + " command [ARG ...]"); //$NON-NLS-1$
 			if (help) {
+			//	cmd.outw.println();
 				writer.println();
 				clp.printUsage(writer, CLIText.get().resourceBundle());
+			//	cmd.outw.println();
 				writer.println();
 			} else if (subcommand == null) {
 				writer.println();
+			//	cmd.outw.println();
 				writer.println(CLIText.get().mostCommonlyUsedCommandsAre);
+			//	cmd.outw.println(CLIText.get().mostCommonlyUsedCommandsAre);
 				final CommandRef[] common = CommandCatalog.common();
 				int width = 0;
 				for (final CommandRef c : common)
@@ -221,10 +248,18 @@ public class PgmMain {
 						writer.print(' ');
 					writer.print(CLIText.get().resourceBundle().getString(c.getUsage()));
 					writer.println();
+			//		cmd.outw.print(' ');
+			//		cmd.outw.print(c.getName());
+			//		for (int i = c.getName().length(); i < width; i++)
+			//			cmd.outw.print(' ');
+			//		cmd.outw.print(CLIText.get().resourceBundle().getString(c.getUsage()));
+			//		cmd.outw.println();
 				}
 				writer.println();
+			//	cmd.outw.println();
 			}
 			writer.flush();
+		//	cmd.outw.flush();
 		//	System.exit(1);
 		}
 
@@ -234,6 +269,7 @@ public class PgmMain {
 		}
 
 		final TextBuiltin cmd = subcommand;
+		
 		if (cmd.requiresRepository())
 			cmd.init(openGitDir(gitdir), null);
 		else

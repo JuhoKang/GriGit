@@ -51,11 +51,13 @@ import static org.eclipse.jgit.lib.Constants.OBJECT_ID_STRING_LENGTH;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import kr.re.ec.grigit.util.PrintToArea;
+import kr.re.ec.grigit.util.SwingOutputStream;
 
 import org.eclipse.jgit.diff.DiffAlgorithm;
 import org.eclipse.jgit.diff.DiffAlgorithm.SupportedAlgorithm;
@@ -173,7 +175,7 @@ class Diff extends TextBuiltin {
 	//changed to public because of PgmMain... it was protected
 	public void init(final Repository repository, final String gitDir) {
 		super.init(repository, gitDir);
-		diffFmt = new DiffFormatter(new BufferedOutputStream(outs));
+		diffFmt = new DiffFormatter(new SwingOutputStream());
 	}
 
 	@Override

@@ -76,11 +76,12 @@ public class MainController extends MainFrame {
 						.getInstance()
 						.getDoc()
 						.insertString(MainController.getInstance().getDoc().getLength(), 
-								"\n No Repository opend", null);
+								"\n No Repository opened", stErr);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					jtfCommandLine.setText("");
 					
 				} else {
 					
@@ -128,8 +129,11 @@ public class MainController extends MainFrame {
 							.toArray(new String[0]);
 					PgmMain.main(commandheadarr);
 
+					
 					jtfCommandLine.setText("");
 				}
+				MainController.getInstance().getTpLog().setCaretPosition(
+						MainController.getInstance().getDoc().getLength());
 			}
 		});
 	}

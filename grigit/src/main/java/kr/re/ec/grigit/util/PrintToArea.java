@@ -6,7 +6,6 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 import javax.swing.JTextArea;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Style;
 
@@ -33,9 +32,7 @@ public class PrintToArea extends Writer{
 	public PrintToArea(Writer out) {
 		this.out = out;
 		doc = MainController.getInstance().getDoc();
-		//this.jta = MainController.getInstance().getTaLog();
 		
-		//System.out.println("I am "+MainController.getInstance().getTaLog().getClass());
 		System.out.println("I am "+MainController.getInstance().getDoc().getClass());
 		LF = AccessController.doPrivileged(new PrivilegedAction<String>() {
 			public String run() {
@@ -45,16 +42,19 @@ public class PrintToArea extends Writer{
 	}
 	@Override
 	public void write(char[] cbuf, int off, int len) throws IOException {
+		System.out.println("write called");
 		out.write(cbuf, off, len);
 	}
 
 	@Override
 	public void flush() throws IOException {
+		System.out.println("flush called");
 		out.flush();
 	}
 
 	@Override
 	public void close() throws IOException {
+		System.out.println("close called");
 		out.close();
 	}
 	
@@ -66,13 +66,15 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void println(String s) throws IOException {
-		//jta.append(s + LF);
+		
+		WriteToPane.getInstance().write(s, null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), s, null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(s + LF);
 	}
 
@@ -82,13 +84,14 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void println() throws IOException {
-		//jta.append(LF);
+		WriteToPane.getInstance().write(LF, null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), LF, null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(LF);
 	}
 
@@ -99,13 +102,14 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void print(char value) throws IOException {
-		//jta.append(String.valueOf(value));
+		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(String.valueOf(value));
 	}
 
@@ -116,13 +120,13 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void print(int value) throws IOException {
-		//jta.append(String.valueOf(value));
-		try {
+		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(String.valueOf(value));
 	}
 
@@ -133,13 +137,14 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void print(long value) throws IOException {
-		//jta.append(String.valueOf(value));
+		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(String.valueOf(value));
 	}
 
@@ -150,13 +155,14 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void print(short value) throws IOException {
-		//jta.append(String.valueOf(value));
+		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(String.valueOf(value));
 	}
 
@@ -169,13 +175,15 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void format(String fmt, Object... args) throws IOException {
-		//jta.append(String.format(fmt, args));
+		
+		WriteToPane.getInstance().write(String.format(fmt, args),null);
+		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.format(fmt, args), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		print(String.format(fmt, args));
 	}
 
@@ -186,13 +194,13 @@ public class PrintToArea extends Writer{
 	 * @throws IOException
 	 */
 	public void print(Object any) throws IOException {
-		//jta.append(String.valueOf(any));
-		try {
+		WriteToPane.getInstance().write(String.valueOf(any),null);
+		/*try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(any), null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		out.write(String.valueOf(any));
 	}
 
