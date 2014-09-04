@@ -63,8 +63,8 @@ public class OpenRepository {
 	            .readEnvironment() // scan environment GIT_* variables
 	            .build();
 	    	    
-	    System.out.println("Having repository: " + repository.getDirectory());
-	    
+	   //System.out.println("Having repository: " + repository.getDirectory());
+	    logger.info("Having repository: " + repository.getDirectory());
 	    this.repository = repository;
 	    //testing part
 	    

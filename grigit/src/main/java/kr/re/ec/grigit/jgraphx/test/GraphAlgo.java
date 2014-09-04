@@ -17,24 +17,30 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mxgraph.layout.mxGraphLayout;
+import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.model.mxICell;
+import com.mxgraph.swing.util.mxMorphing;
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxGraph;
 
-public class HelloMe extends JFrame {
+public class GraphAlgo extends JFrame {
 
 	Logger logger;
+	
+	public GraphAlgo() {
 
-	public HelloMe() {
-
-		super("Hello Me");
-
-		logger = LoggerFactory.getLogger(HelloMe.class);
-
-		mxGraph graph = new mxGraph();
-		graph.setCellsMovable(false);
+		logger = LoggerFactory.getLogger(GraphAlgo.class);
+		
+		final mxGraph graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
 
+		
+		graph.getModel().beginUpdate();
 		try {
 			new OpenRepository(new File("C:/Users/Kang Juho/git/BiBim/.git"));
 			Git git = new Git(CurrentRepository.getInstance().getRepository());
@@ -90,6 +96,7 @@ public class HelloMe extends JFrame {
 				nodeList.add(commitNode);
 				logger.info("added  :" + commitNode.toString());
 			}
+			NodeCommit previous;
 
 			Stack<NodeCommit> nodeStack = new Stack<NodeCommit>();
 			NodeCommit root = nodeList.get(0);
@@ -111,6 +118,16 @@ public class HelloMe extends JFrame {
 					child.Visit();
 					// print
 					//child.setParent(n);
+					/*
+					mxCell edge = new mxCell();
+					edge.setEdge(true);
+					edge.setTarget(child);
+					edge.setParent(n);
+					edge.setVisible(true);
+					*/
+					graph.insertEdge(parent, null, "", n, child);
+					
+					//logger.info("parent is : " + child.getParent() +"|| of :"+child);
 					mxGeometry geo = new mxGeometry();
 					geo.setHeight(n.getGeometry().getHeight());
 					geo.setWidth(n.getGeometry().getWidth());
@@ -149,22 +166,49 @@ public class HelloMe extends JFrame {
 			graph.getModel().endUpdate();
 		}
 
-		mxGraphComponent graphComponent = new mxGraphComponent(graph);
+		GrigitGraphComponent graphComponent = new GrigitGraphComponent(graph);
+		graphComponent.setEnabled(true);
+
+		// define layout
+		mxGraphLayout layout = new mxHierarchicalLayout(graph);
+
+		// layout using morphing
+		
+		 // layout using morphing
+        graph.getModel().beginUpdate();
+        try {
+            layout.execute(graph.getDefaultParent());
+        } finally {
+            mxMorphing morph = new mxMorphing(graphComponent, 20, 1.2, 20);
+
+            morph.addListener(mxEvent.DONE, new mxIEventListener() {
+
+                public void invoke(Object arg0, mxEventObject arg1) {
+                    graph.getModel().endUpdate();
+                    // fitViewport();
+                }
+
+            });
+
+            morph.startAnimation();
+        }
+		
 		getContentPane().add(graphComponent);
 
+		
 	}
 
-	public void main(String[] args) {
+	public void init() {
 
-		HelloMe frame = null;
-		frame = new HelloMe();
+		GraphAlgo frame = null;
+		frame = new GraphAlgo();
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 320);
 		frame.setVisible(true);
 
 	}
-
+	
 	private NodeCommit getUnvisitedChildNode(ArrayList<NodeCommit> list,
 			NodeCommit node) {
 		RevCommit commit = node.getCommit();

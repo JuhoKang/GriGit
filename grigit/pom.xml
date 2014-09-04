@@ -31,6 +31,15 @@
 	</repositories>
 
 	<dependencies>
+	
+	
+		<!-- Google guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
 
 		<!-- JUnit -->
 		<dependency>
@@ -60,14 +69,6 @@
 			<artifactId>slf4j-jdk14</artifactId>
 			<version>1.7.7</version>
 		</dependency>
-
-		<!-- Jlibdiff API -->
-		<dependency>
-			<groupId>jlibdiff</groupId>
-			<artifactId>jlibdiff</artifactId>
-			<version>1.01</version>
-		</dependency>
-
 
 		<!-- JGraph API -->
 		<!-- <dependency> <groupId>com.mxgraph</groupId> <artifactId>jgraphx</artifactId> 
@@ -116,12 +117,13 @@
 		</dependency>
 
 		<!-- JGit Ant Tasks (think we don't need this) -->
+		<!-- 
 		<dependency>
 			<groupId>org.eclipse.jgit</groupId>
 			<artifactId>org.eclipse.jgit.ant</artifactId>
 			<version>3.4.1.201406201815-r</version>
 		</dependency>
-
+ 		-->
 		<!-- JGit Archive Formats -->
 		<dependency>
 			<groupId>org.eclipse.jgit</groupId>
@@ -253,7 +255,7 @@
 			</plugin>
 
 
-
+			 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -293,7 +295,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+ 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
