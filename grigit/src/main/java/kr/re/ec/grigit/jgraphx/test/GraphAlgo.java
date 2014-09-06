@@ -13,7 +13,18 @@ import kr.re.ec.grigit.git.OpenRepository;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
+import org.eclipse.jgit.awtui.CommitGraphPane;
+import org.eclipse.jgit.errors.IncorrectObjectTypeException;
+import org.eclipse.jgit.errors.MissingObjectException;
+import org.eclipse.jgit.pgm.RevWalkTextBuiltin;
+import org.eclipse.jgit.revplot.PlotCommit;
+import org.eclipse.jgit.revplot.PlotCommitList;
+import org.eclipse.jgit.revplot.PlotLane;
+import org.eclipse.jgit.revplot.PlotWalk;
+import org.eclipse.jgit.revwalk.ObjectWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.revwalk.RevSort;
+import org.eclipse.jgit.revwalk.RevWalk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,21 +41,56 @@ import com.mxgraph.view.mxGraph;
 
 public class GraphAlgo extends JFrame {
 
-	Logger logger;
+	RevWalkTextBuiltin rwtb;
 	
+	Logger logger;
+	final CommitGraphPane graphPane;
+	@SuppressWarnings("unchecked")
 	public GraphAlgo() {
 
 		logger = LoggerFactory.getLogger(GraphAlgo.class);
 		
 		final mxGraph graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
-
 		
 		graph.getModel().beginUpdate();
 		try {
 			new OpenRepository(new File("C:/Users/Kang Juho/git/BiBim/.git"));
 			Git git = new Git(CurrentRepository.getInstance().getRepository());
 
+			final PlotWalk walk = new PlotWalk(CurrentRepository.getInstance().getRepository());
+			walk.sort(RevSort.BOUNDARY, true);
+			
+			graphPane = new CommitGraphPane();
+			graphPane.getCommitList().source(walk);
+			try {
+				graphPane.getCommitList().fillTo(Integer.MAX_VALUE);
+			} catch (MissingObjectException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IncorrectObjectTypeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			logger.info(""+graphPane.getCommitList().size());
+			
+			for(int i = 0; i < graphPane.getCommitList().size(); i++){
+				logger.info(""+graphPane.getCommitList().size());
+			}
+			
+			PlotWalk pw = new PlotWalk(CurrentRepository.getInstance().getRepository());
+			
+			pw.sort(RevSort. BOUNDARY, true);
+			
+			for(Object pc : pw){
+				logger.info(""+((PlotCommit<PlotLane>)pc).getFullMessage());
+			}
+			
 			Iterable<RevCommit> commits = null;
 			try {
 				commits = git.log().all().call();
@@ -94,7 +140,7 @@ public class GraphAlgo extends JFrame {
 				NodeCommit commitNode = new NodeCommit();
 				commitNode.setCommit(commit);
 				nodeList.add(commitNode);
-				logger.info("added  :" + commitNode.toString());
+			//	logger.info("added  :" + commitNode.toString());
 			}
 			NodeCommit previous;
 
@@ -106,12 +152,12 @@ public class GraphAlgo extends JFrame {
 			root.setVisible(true);
 			nodeStack.push(root);
 			graph.addCell(root);
-			logger.info("push :" + root);
+			//logger.info("push :" + root);
 
 			while (!nodeStack.isEmpty()) {
 
 				NodeCommit n = (NodeCommit) nodeStack.peek();
-				logger.info("peek :"+n);
+			//	logger.info("peek :"+n);
 				NodeCommit child = getUnvisitedChildNode(nodeList, n);
 
 				if (child != null) {
@@ -141,14 +187,14 @@ public class GraphAlgo extends JFrame {
 					child.setVisible(true);
 					graph.addCell(child);
 					nodeStack.push(child);
-					logger.info("push :" + child + "geo: centerx:"
-							+ child.getGeometry().getX() + "\tcentery:"
-							+ child.getGeometry().getY() + "\twidth:"
-							+ child.getGeometry().getWidth() + "\theight:"
-							+ child.getGeometry().getHeight());
+				//	logger.info("push :" + child + "geo: centerx:"
+				//			+ child.getGeometry().getX() + "\tcentery:"
+				//			+ child.getGeometry().getY() + "\twidth:"
+				//			+ child.getGeometry().getWidth() + "\theight:"
+				//			+ child.getGeometry().getHeight());
 				} else {
 					nodeStack.pop();
-					logger.info("pop");
+				//	logger.info("pop");
 				}
 			}
 

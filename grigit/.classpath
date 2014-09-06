@@ -20,5 +20,15 @@
 	<classpathentry kind="src" path="/org.eclipse.jgit.pgm"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/com.mxgraph/jgraphx/2.8.2.0/jgraphx-2.8.2.0.jar"/>
+	<classpathentry kind="src" path="/org.eclipse.jgit.ui"/>
+	<classpathentry kind="lib" path="C:/Users/Kang Juho/.m2/repository/org/eclipse/jgit/org.eclipse.jgit.ui/3.4.1.201406201815-r/org.eclipse.jgit.ui-3.4.1.201406201815-r.jar" sourcepath="C:/Users/Kang Juho/.m2/repository/org/eclipse/jgit/org.eclipse.jgit.ui/3.4.1.201406201815-r/org.eclipse.jgit.ui-3.4.1.201406201815-r-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.eclipse.jgit"/>
+			<attribute name="maven.artifactId" value="org.eclipse.jgit.ui"/>
+			<attribute name="maven.version" value="3.4.1.201406201815-r"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
