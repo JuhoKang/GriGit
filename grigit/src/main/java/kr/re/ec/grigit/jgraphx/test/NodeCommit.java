@@ -2,13 +2,16 @@ package kr.re.ec.grigit.jgraphx.test;
 
 import java.util.ArrayList;
 
+import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+
+import org.eclipse.jgit.revplot.PlotCommit;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import com.mxgraph.model.mxCell;
 
 public class NodeCommit extends mxCell{
 	
-	private RevCommit commit;
+	private PlotCommit<SwingLane> commit;
 	private int level;
 	private boolean visited = false;
 	
@@ -31,11 +34,11 @@ public class NodeCommit extends mxCell{
 		
 	}
 
-	public RevCommit getCommit() {
+	public PlotCommit<SwingLane> getCommit() {
 		return commit;
 	}
 
-	public void setCommit(RevCommit commit) {
+	public void setCommit(PlotCommit<SwingLane> commit) {
 		this.commit = commit;
 	}
 	

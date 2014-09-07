@@ -82,11 +82,11 @@ public class HelloMe extends JFrame {
 			 * =firstNode.getCommit().getParentCount(); if(count > 1){
 			 * secondNode.setCommit(firstNode.getCommit().getParent(0)); }
 			 */
-
+			
 			ArrayList<NodeCommit> nodeList = new ArrayList<NodeCommit>();
 			for (RevCommit commit : commits) {
 				NodeCommit commitNode = new NodeCommit();
-				commitNode.setCommit(commit);
+		//		commitNode.setCommit(commit);
 				nodeList.add(commitNode);
 				logger.info("added  :" + commitNode.toString());
 			}

@@ -14,25 +14,14 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.awtui.CommitGraphPane;
-import org.eclipse.jgit.errors.IncorrectObjectTypeException;
-import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.pgm.RevWalkTextBuiltin;
-import org.eclipse.jgit.revplot.PlotCommit;
-import org.eclipse.jgit.revplot.PlotCommitList;
-import org.eclipse.jgit.revplot.PlotLane;
-import org.eclipse.jgit.revplot.PlotWalk;
-import org.eclipse.jgit.revwalk.ObjectWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevSort;
-import org.eclipse.jgit.revwalk.RevWalk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mxgraph.layout.mxGraphLayout;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.swing.util.mxMorphing;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -44,7 +33,6 @@ public class GraphAlgo extends JFrame {
 	RevWalkTextBuiltin rwtb;
 	
 	Logger logger;
-	final CommitGraphPane graphPane;
 	@SuppressWarnings("unchecked")
 	public GraphAlgo() {
 
@@ -57,40 +45,7 @@ public class GraphAlgo extends JFrame {
 		try {
 			new OpenRepository(new File("C:/Users/Kang Juho/git/BiBim/.git"));
 			Git git = new Git(CurrentRepository.getInstance().getRepository());
-
-			final PlotWalk walk = new PlotWalk(CurrentRepository.getInstance().getRepository());
-			walk.sort(RevSort.BOUNDARY, true);
-			
-			graphPane = new CommitGraphPane();
-			graphPane.getCommitList().source(walk);
-			try {
-				graphPane.getCommitList().fillTo(Integer.MAX_VALUE);
-			} catch (MissingObjectException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IncorrectObjectTypeException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
-			logger.info(""+graphPane.getCommitList().size());
-			
-			for(int i = 0; i < graphPane.getCommitList().size(); i++){
-				logger.info(""+graphPane.getCommitList().size());
-			}
-			
-			PlotWalk pw = new PlotWalk(CurrentRepository.getInstance().getRepository());
-			
-			pw.sort(RevSort. BOUNDARY, true);
-			
-			for(Object pc : pw){
-				logger.info(""+((PlotCommit<PlotLane>)pc).getFullMessage());
-			}
-			
+		
 			Iterable<RevCommit> commits = null;
 			try {
 				commits = git.log().all().call();
@@ -138,7 +93,7 @@ public class GraphAlgo extends JFrame {
 			ArrayList<NodeCommit> nodeList = new ArrayList<NodeCommit>();
 			for (RevCommit commit : commits) {
 				NodeCommit commitNode = new NodeCommit();
-				commitNode.setCommit(commit);
+//				commitNode.setCommit(commit);
 				nodeList.add(commitNode);
 			//	logger.info("added  :" + commitNode.toString());
 			}

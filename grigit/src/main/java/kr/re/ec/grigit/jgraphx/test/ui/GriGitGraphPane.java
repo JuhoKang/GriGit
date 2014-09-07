@@ -108,7 +108,7 @@ public class GriGitGraphPane extends JTable {
 	 *
 	 * @return the list the caller must populate.
 	 */
-	public PlotCommitList getCommitList() {
+	public SwingCommitList getCommitList() {
 		return allCommits;
 	}
 
