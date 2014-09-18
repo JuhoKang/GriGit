@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.OpenRepository;
+import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;

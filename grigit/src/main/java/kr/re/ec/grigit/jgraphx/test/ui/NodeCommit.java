@@ -1,4 +1,4 @@
-package kr.re.ec.grigit.jgraphx.test;
+package kr.re.ec.grigit.jgraphx.test.ui;
 
 import java.util.ArrayList;
 

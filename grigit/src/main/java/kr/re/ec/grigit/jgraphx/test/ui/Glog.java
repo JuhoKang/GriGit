@@ -55,10 +55,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import kr.re.ec.grigit.jgraphx.test.GrigitGraphComponent;
-import kr.re.ec.grigit.jgraphx.test.NodeCommit;
 import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 
 import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revplot.PlotCommit;
 import org.eclipse.jgit.revplot.PlotWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -92,8 +92,17 @@ public class Glog extends RevWalker {
 
 		final mxGraph graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
-
 		graph.getModel().beginUpdate();
+		graph.setCellsMovable(false);
+		graph.setCellsResizable(false);
+		graph.setCellsCloneable(false);
+		graph.setDropEnabled(false);
+		graph.setDisconnectOnMove(false);
+		graph.setCellsSelectable(true);
+		graph.setCellsEditable(false);
+		graph.setEdgeLabelsMovable(false);
+		graph.setAllowDanglingEdges(false);
+
 		try {
 			ArrayList<NodeCommit> nodeList = new ArrayList<NodeCommit>();
 			for (PlotCommit<SwingLane> commit : graphPane.getCommitList()) {
@@ -111,8 +120,24 @@ public class Glog extends RevWalker {
 						.getLane().getPosition() * 50, 0 + i * 50, 25, 25));
 				node.setValue(node.getCommit().getShortMessage());
 				node.setStyle(getNodeStyle(node));
-
 				graph.addCell(node);
+
+				if (node.getCommit().getRefCount() != 0) {
+					for (int k = 0; k < node.getCommit().getRefCount(); k++) {
+						Ref ref = node.getCommit().getRef(k);
+						NodeRef rnode = new NodeRef();
+						rnode.setRef(ref);
+
+						rnode.setVertex(true);
+						rnode.setVisible(true);
+						rnode.setGeometry(new mxGeometry(100
+								+ node.getCommit().getLane().getPosition() * 50
+								+ 40 + 150 * k, 0 + i * 50 + 10, 100, 15));
+						rnode.setValue(rnode.getRef().getName());
+						graph.addCell(rnode);
+					}
+				}
+
 				int parentCount = node.getCommit().getParentCount();
 				if (parentCount > 0) {
 					for (int j = 0; j < parentCount; j++) {
@@ -137,13 +162,14 @@ public class Glog extends RevWalker {
 										+ ";"
 										+ mxConstants.STYLE_STROKECOLOR
 										+ "="
-										+ getEdgeColor(node, nodeList,node.getChildNode(nodeList, node.getCommit()
-												.getParent(j))) );
+										+ getEdgeColor(node, nodeList, node
+												.getChildNode(nodeList,
+														node.getCommit()
+																.getParent(j))));
 					}
 				}
 
 			}
-
 		} finally {
 			graph.getModel().endUpdate();
 		}
@@ -227,44 +253,31 @@ public class Glog extends RevWalker {
 
 	}
 
-	private String getEdgeColor(NodeCommit node, ArrayList<NodeCommit> nodeList, NodeCommit parent) {
+	private String getEdgeColor(NodeCommit node,
+			ArrayList<NodeCommit> nodeList, NodeCommit parent) {
 		String result = null;
 		int parentCount = node.getCommit().getParentCount();
 		if (parentCount > 1) {
-				if(node.getCommit().getLane().getPosition() == parent.getCommit().getLane().getPosition()){
-			
-					result = String.format(
-							"#%02x%02x%02x",
-							node.getCommit()
-									.getLane().color.getRed(),
-							node.getCommit()
-									.getLane().color.getGreen(),
-							node.getCommit()
-									.getLane().color.getBlue());
-				} else {
-					result =  String.format(
-							"#%02x%02x%02x",
-							parent
-									.getCommit().getLane().color
-									.getRed(),
-							parent
-									.getCommit().getLane().color
-									.getGreen(),
-							parent
-									.getCommit().getLane().color
-									.getBlue());
-					
-				}
-			
-		} else if(parentCount == 1){
-			
-			result = String.format(
-					"#%02x%02x%02x",
-					node.getCommit()
-							.getLane().color.getRed(),
-					node.getCommit()
-							.getLane().color.getGreen(),
-					node.getCommit()
+			if (node.getCommit().getLane().getPosition() == parent.getCommit()
+					.getLane().getPosition()) {
+
+				result = String.format("#%02x%02x%02x", node.getCommit()
+						.getLane().color.getRed(),
+						node.getCommit().getLane().color.getGreen(), node
+								.getCommit().getLane().color.getBlue());
+			} else {
+				result = String.format("#%02x%02x%02x", parent.getCommit()
+						.getLane().color.getRed(),
+						parent.getCommit().getLane().color.getGreen(), parent
+								.getCommit().getLane().color.getBlue());
+
+			}
+
+		} else if (parentCount == 1) {
+
+			result = String.format("#%02x%02x%02x",
+					node.getCommit().getLane().color.getRed(), node.getCommit()
+							.getLane().color.getGreen(), node.getCommit()
 							.getLane().color.getBlue());
 
 		}
