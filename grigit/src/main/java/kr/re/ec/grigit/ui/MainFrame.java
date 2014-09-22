@@ -1,6 +1,7 @@
 package kr.re.ec.grigit.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,18 +12,12 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
-import java.awt.Color;
+import javax.swing.text.StyledDocument;
 
 import kr.re.ec.grigit.ui.controller.MenuBarController;
-
-import javax.swing.JScrollPane;
-import javax.swing.DropMode;
-import javax.swing.JLabel;
-import javax.swing.text.StyledDocument;
 
 /**
  * MainFrame class for the Main Window of grigit
@@ -56,7 +51,16 @@ public abstract class MainFrame extends JFrame{
 	//private JTextArea taLog;
 	protected JTextPane tpLog;
 	protected StyledDocument doc;
+	protected JScrollPane jspPG;
+	protected JPanel jpPaintGit;
 	
+	
+	public JPanel getJpPaintGit() {
+		return jpPaintGit;
+	}
+	public void setJpPaintGit(JPanel jpPaintGit) {
+		this.jpPaintGit = jpPaintGit;
+	}
 	public MainFrame(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -145,8 +149,13 @@ public abstract class MainFrame extends JFrame{
 		panel.add(jtfCommandLine, gbc_jtfCommandLine);
 		jtfCommandLine.setColumns(10);
 		
-		JPanel jpPaintGit = new JPanel();
-		jpview.add(jpPaintGit);
+		jspPG = new JScrollPane();
+		
+		jpPaintGit = new JPanel();
+		//Glog glog = new Glog();
+		//jpPaintGit.add(glog);
+		jspPG.setViewportView(jpPaintGit);
+		jpview.add(jspPG);
 		
 	}
 	

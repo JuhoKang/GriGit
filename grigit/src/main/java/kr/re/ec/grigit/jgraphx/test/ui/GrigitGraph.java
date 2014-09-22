@@ -49,13 +49,18 @@ package kr.re.ec.grigit.jgraphx.test.ui;
 //this is a class tweaked by Juho Kang..
 //was Glog
 
+import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import kr.re.ec.grigit.jgraphx.test.GrigitGraphComponent;
 import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.ui.controller.MainController;
 
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Ref;
@@ -64,25 +69,55 @@ import org.eclipse.jgit.revplot.PlotWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevSort;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.slf4j.LoggerFactory;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
 
-public class Glog extends RevWalker {
-	final JFrame frame;
+public class GrigitGraph extends RevWalker {
+	//final JFrame frame;
+	final JPanel panel;
+
+	public JPanel getPanel() {
+		return panel;
+	}
+	
+	// for singleton
+		private GrigitGraph() {
+			logger = LoggerFactory.getLogger(MainController.class);
+			panel = new JPanel();
+			graphPane = new GriGitGraphPane();
+		}
+
+		// for singleton
+		/**
+		 * Method getInstance.
+		 * 
+		 * @return CurrentRepository
+		 */
+		public static GrigitGraph getInstance() {
+			return SingletonHolder.instance;
+		}
+
+		// for singleton
+		private static class SingletonHolder {
+			private static final GrigitGraph instance = new GrigitGraph();
+		}
 
 	final GriGitGraphPane graphPane;
 
-	public Glog() throws Exception {
+	public void init() throws Exception {
 
-		frame = new JFrame();
+		//frame = new JFrame();
+		
+	//	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//	frame.setVisible(true);
 
-		frame.setVisible(true);
-
-		graphPane = new GriGitGraphPane();
+		
 		super.init();
 		for (int i = 0; i < graphPane.getCommitList().size(); i++) {
 			logger.info(""
@@ -90,7 +125,8 @@ public class Glog extends RevWalker {
 			// logger.info(""+graphPane.getCommitList().get(i).getRef(0));
 		}
 
-		final mxGraph graph = new mxGraph();
+		//final mxGraph graph = new mxGraph();
+		final FoldableGraph graph = new FoldableGraph();
 		Object parent = graph.getDefaultParent();
 		graph.getModel().beginUpdate();
 		graph.setCellsMovable(false);
@@ -120,6 +156,9 @@ public class Glog extends RevWalker {
 						.getLane().getPosition() * 50, 0 + i * 50, 25, 25));
 				node.setValue(node.getCommit().getShortMessage());
 				node.setStyle(getNodeStyle(node));
+				mxCell contentCell = new mxCell();
+				contentCell.setVertex(true);
+				contentCell.setVisible(true);
 				graph.addCell(node);
 
 				if (node.getCommit().getRefCount() != 0) {
@@ -167,14 +206,30 @@ public class Glog extends RevWalker {
 														node.getCommit()
 																.getParent(j))));
 					}
+					
+					
 				}
 
 			}
 		} finally {
 			graph.getModel().endUpdate();
 		}
+		
 
-		GrigitGraphComponent graphComponent = new GrigitGraphComponent(graph);
+		final GrigitGraphComponent graphComponent = new GrigitGraphComponent(graph);
+		graphComponent.getGraphControl().addMouseListener(new MouseAdapter()
+		{
+		
+			public void mouseReleased(MouseEvent e)
+			{
+				Object cell = graphComponent.getCellAt(e.getX(), e.getY());
+				
+				if (cell != null)
+				{
+					System.out.println("cell="+graph.getLabel(cell));
+				}
+			}
+		});
 		graphComponent.setEnabled(true);
 
 		// define layout
@@ -197,8 +252,10 @@ public class Glog extends RevWalker {
 		 * 
 		 * morph.startAnimation(); }
 		 */
-		frame.setSize(400, 320);
-		frame.getContentPane().add(graphComponent);
+		//frame.setSize(400, 320);
+		//frame.getContentPane().add(graphComponent);
+		panel.setLayout(new BorderLayout());
+		panel.add(graphComponent,BorderLayout.CENTER);
 
 	}
 
@@ -207,9 +264,10 @@ public class Glog extends RevWalker {
 		graphPane.getCommitList().source(walk);
 		graphPane.getCommitList().fillTo(Integer.MAX_VALUE);
 
-		frame.setTitle("[" + repoName() + "]"); //$NON-NLS-1$ //$NON-NLS-2$
-		frame.pack();
-		frame.setVisible(true);
+		//frame.setTitle("[" + repoName() + "]"); //$NON-NLS-1$ //$NON-NLS-2$
+		//frame.pack();
+		panel.setVisible(true);
+	//	frame.setVisible(true);
 		return graphPane.getCommitList().size();
 	}
 
@@ -283,4 +341,5 @@ public class Glog extends RevWalker {
 		}
 		return result;
 	}
+
 }

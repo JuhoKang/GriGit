@@ -87,7 +87,7 @@ abstract public class RevWalker{
 	
 	protected Logger logger;
 
-	boolean objects = false;
+	protected boolean objects = false;
 
 	boolean parents = false;
 
@@ -148,7 +148,6 @@ abstract public class RevWalker{
 	public void init() throws Exception {
 		
 		logger = LoggerFactory.getLogger(RevWalker.class);
-		new OpenRepository(new File("C:/Users/Kang Juho/git/BiBim/.git"));
 		
 		db = CurrentRepository.getInstance().getRepository();	
 		

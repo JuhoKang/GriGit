@@ -49,6 +49,16 @@ public class MainController extends MainFrame {
 
 	public void init() {
 		super.init();
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				jpPaintGit.revalidate();
+				jpPaintGit.repaint();
+				
+				
+			}
+		});
 
 		// when you hit ENTER at jtfCommandLine
 		jtfCommandLine.addActionListener(new ActionListener() {
@@ -136,6 +146,8 @@ public class MainController extends MainFrame {
 						MainController.getInstance().getDoc().getLength());
 			}
 		});
+		
+		jpPaintGit.setVisible(true);
 	}
 
 }

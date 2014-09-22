@@ -6,11 +6,12 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import kr.re.ec.grigit.git.OpenRepository;
+import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
+import kr.re.ec.grigit.ui.MenuBarFrame;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import kr.re.ec.grigit.git.OpenRepository;
-import kr.re.ec.grigit.ui.MenuBarFrame;
 
 @SuppressWarnings("serial")
 public class MenuBarController extends MenuBarFrame{
@@ -28,6 +29,15 @@ public class MenuBarController extends MenuBarFrame{
 			public void actionPerformed(ActionEvent e) {
 				File repodir = chooseFile();
 				new OpenRepository(repodir);
+				try {
+					GrigitGraph.getInstance().init();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				MainController.getInstance().getJpPaintGit().add(GrigitGraph.getInstance().getPanel());
+				MainController.getInstance().getJpPaintGit().repaint();
+				MainController.getInstance().getJpPaintGit().revalidate();
 			}
 		});
 		
