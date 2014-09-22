@@ -50,6 +50,10 @@ public abstract class MainFrame extends JFrame{
 	protected JButton btnNewButton_1;
 	protected JButton btnNewButton_2;
 	protected JButton btnNewButton_3;
+	protected JButton btnNewButton_4;
+	protected JButton btnNewButton_5;
+	protected JButton btnNewButton_6;
+	
 	private JPanel panel;
 	protected JTextField jtfCommandLine;
 	private JScrollPane spLog;
@@ -64,38 +68,60 @@ public abstract class MainFrame extends JFrame{
 		JPanel jpToolBar = new JPanel();
 		getContentPane().add(jpToolBar, BorderLayout.NORTH);
 		GridBagLayout gbl_jpToolBar = new GridBagLayout();
-		gbl_jpToolBar.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_jpToolBar.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_jpToolBar.rowHeights = new int[]{0, 0};
-		gbl_jpToolBar.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_jpToolBar.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_jpToolBar.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		jpToolBar.setLayout(gbl_jpToolBar);
 		
-		btnNewButton = new JButton("New button");
+		btnNewButton = new JButton("Clone");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 8);
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 0;
 		jpToolBar.add(btnNewButton, gbc_btnNewButton);
 		
-		btnNewButton_1 = new JButton("New button");
+		btnNewButton_1 = new JButton("Commit");
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 8);
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 0;
 		jpToolBar.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		btnNewButton_2 = new JButton("New button");
+		btnNewButton_2 = new JButton("Checkout");
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 8);
 		gbc_btnNewButton_2.gridx = 2;
 		gbc_btnNewButton_2.gridy = 0;
 		jpToolBar.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		btnNewButton_3 = new JButton("New button");
+		btnNewButton_3 = new JButton("Branch");
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 0, 8);
 		gbc_btnNewButton_3.gridx = 3;
 		gbc_btnNewButton_3.gridy = 0;
 		jpToolBar.add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("Merge");
+		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+		gbc_btnNewButton_4.insets = new Insets(0, 0, 0, 8);
+		gbc_btnNewButton_4.gridx = 4;
+		gbc_btnNewButton_4.gridy = 0;
+		jpToolBar.add(btnNewButton_4, gbc_btnNewButton_4);
+		
+		btnNewButton_5 = new JButton("Rebase");
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 0, 8);
+		gbc_btnNewButton_5.gridx = 5;
+		gbc_btnNewButton_5.gridy = 0;
+		jpToolBar.add(btnNewButton_5, gbc_btnNewButton_5);
+		
+		btnNewButton_6 = new JButton("Cherry-Pick");
+		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
+		gbc_btnNewButton_6.insets = new Insets(0, 0, 0, 8);
+		gbc_btnNewButton_6.gridx = 6;
+		gbc_btnNewButton_6.gridy = 0;
+		jpToolBar.add(btnNewButton_6, gbc_btnNewButton_6);
 		
 		JPanel jpview = new JPanel();
 		getContentPane().add(jpview, BorderLayout.CENTER);
