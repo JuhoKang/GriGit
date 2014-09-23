@@ -50,15 +50,17 @@ package kr.re.ec.grigit.jgraphx.test.ui;
 //was Glog
 
 import java.awt.BorderLayout;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import kr.re.ec.grigit.jgraphx.test.GitController;
 import kr.re.ec.grigit.jgraphx.test.GrigitGraphComponent;
+import kr.re.ec.grigit.jgraphx.test.GrigitmxGraph;
 import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.ui.controller.MainController;
 
@@ -74,59 +76,72 @@ import org.slf4j.LoggerFactory;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraph;
 
 public class GrigitGraph extends RevWalker {
-	//final JFrame frame;
-	final JPanel panel;
+	// final JFrame frame;
+	final protected JPanel panel;
+	protected GriGitGraphPane graphPane;
+	protected GrigitGraphComponent graphComponent;
+	protected GrigitmxGraph graph;
+	
+	public GriGitGraphPane getGraphPane() {
+		return graphPane;
+	}
 
+	
+
+	public GrigitmxGraph getGraph() {
+		return graph;
+	}
+	
 	public JPanel getPanel() {
 		return panel;
 	}
-	
+
 	// for singleton
-		private GrigitGraph() {
-			logger = LoggerFactory.getLogger(MainController.class);
-			panel = new JPanel();
-			graphPane = new GriGitGraphPane();
-		}
+	private GrigitGraph() {
+		logger = LoggerFactory.getLogger(GrigitGraph.class);
+		panel = MainController.getInstance().getJpPaintGit();
+		graphPane = new GriGitGraphPane();
+		graph = new GrigitmxGraph();
+		graphComponent = new GrigitGraphComponent(graph);
+	}
 
-		// for singleton
-		/**
-		 * Method getInstance.
-		 * 
-		 * @return CurrentRepository
-		 */
-		public static GrigitGraph getInstance() {
-			return SingletonHolder.instance;
-		}
+	// for singleton
+	/**
+	 * Method getInstance.
+	 * 
+	 * @return CurrentRepository
+	 */
+	public static GrigitGraph getInstance() {
+		return SingletonHolder.instance;
+	}
 
-		// for singleton
-		private static class SingletonHolder {
-			private static final GrigitGraph instance = new GrigitGraph();
-		}
+	// for singleton
+	private static class SingletonHolder {
+		private static final GrigitGraph instance = new GrigitGraph();
+	}
 
-	final GriGitGraphPane graphPane;
+	
 
 	public void init() throws Exception {
 
-		//frame = new JFrame();
-		
-	//	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// frame = new JFrame();
 
-	//	frame.setVisible(true);
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
+		// frame.setVisible(true);
+
 		super.init();
 		for (int i = 0; i < graphPane.getCommitList().size(); i++) {
-			logger.info(""
-					+ graphPane.getCommitList().get(i).getLane().getPosition());
+		//	logger.info(""
+			//		+ graphPane.getCommitList().get(i).getLane().getPosition());
 			// logger.info(""+graphPane.getCommitList().get(i).getRef(0));
 		}
 
-		//final mxGraph graph = new mxGraph();
-		final FoldableGraph graph = new FoldableGraph();
+		// final mxGraph graph = new mxGraph();
+		// final FoldableGraph graph = new FoldableGraph();
+
 		Object parent = graph.getDefaultParent();
 		graph.getModel().beginUpdate();
 		graph.setCellsMovable(false);
@@ -145,7 +160,7 @@ public class GrigitGraph extends RevWalker {
 				NodeCommit commitNode = new NodeCommit();
 				commitNode.setCommit(commit);
 				nodeList.add(commitNode);
-				logger.info("added  :" + commitNode.toString());
+		//		logger.info("added  :" + commitNode.toString());
 			}
 
 			for (int i = 0; i < nodeList.size(); i++) {
@@ -180,9 +195,9 @@ public class GrigitGraph extends RevWalker {
 				int parentCount = node.getCommit().getParentCount();
 				if (parentCount > 0) {
 					for (int j = 0; j < parentCount; j++) {
-						logger.info("get Parent node : "
-								+ node.getChildNode(nodeList, node.getCommit()
-										.getParent(j)));
+					//	logger.info("get Parent node : "
+				//				+ node.getChildNode(nodeList, node.getCommit()
+				//						.getParent(j)));
 						graph.insertEdge(
 								parent,
 								null,
@@ -206,31 +221,29 @@ public class GrigitGraph extends RevWalker {
 														node.getCommit()
 																.getParent(j))));
 					}
-					
-					
+
 				}
 
 			}
 		} finally {
 			graph.getModel().endUpdate();
 		}
-		
 
-		final GrigitGraphComponent graphComponent = new GrigitGraphComponent(graph);
-		graphComponent.getGraphControl().addMouseListener(new MouseAdapter()
-		{
-		
-			public void mouseReleased(MouseEvent e)
-			{
+		//graphComponent = new GrigitGraphComponent(
+		//		graph);
+
+		graphComponent.setEnabled(true);
+
+		graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
+
+			public void mouseReleased(MouseEvent e) {
 				Object cell = graphComponent.getCellAt(e.getX(), e.getY());
-				
-				if (cell != null)
-				{
-					System.out.println("cell="+graph.getLabel(cell));
+
+				if (cell != null) {
+					System.out.println("cell=" + graph.getLabel(cell));
 				}
 			}
 		});
-		graphComponent.setEnabled(true);
 
 		// define layout
 		// mxGraphLayout layout = new mxHierarchicalLayout(graph);
@@ -252,11 +265,20 @@ public class GrigitGraph extends RevWalker {
 		 * 
 		 * morph.startAnimation(); }
 		 */
-		//frame.setSize(400, 320);
-		//frame.getContentPane().add(graphComponent);
+		// frame.setSize(400, 320);
+		// frame.getContentPane().add(graphComponent);
 		panel.setLayout(new BorderLayout());
-		panel.add(graphComponent,BorderLayout.CENTER);
+		panel.add(graphComponent, BorderLayout.CENTER);
+		Rectangle rec = MainController.getInstance().getBounds();
+		
+		MainController.getInstance().pack();
+		MainController.getInstance().setBounds(rec);
+		panel.setVisible(true);
 
+	}
+
+	public GrigitGraphComponent getGraphComponent() {
+		return graphComponent;
 	}
 
 	@Override
@@ -265,9 +287,9 @@ public class GrigitGraph extends RevWalker {
 		graphPane.getCommitList().fillTo(Integer.MAX_VALUE);
 
 		//frame.setTitle("[" + repoName() + "]"); //$NON-NLS-1$ //$NON-NLS-2$
-		//frame.pack();
+		// frame.pack();
 		panel.setVisible(true);
-	//	frame.setVisible(true);
+		// frame.setVisible(true);
 		return graphPane.getCommitList().size();
 	}
 
@@ -286,18 +308,9 @@ public class GrigitGraph extends RevWalker {
 		return w;
 	}
 
-	private String repoName() {
-		final File gitDir = db.getDirectory();
-		if (gitDir == null)
-			return db.toString();
-		String n = gitDir.getName();
-		if (Constants.DOT_GIT.equals(n))
-			n = gitDir.getParentFile().getName();
-		return n;
-	}
 
 	private String getNodeStyle(NodeCommit node) {
-		logger.info("color rgb = " + node.getCommit().getLane().color.getRGB());
+	//	logger.info("color rgb = " + node.getCommit().getLane().color.getRGB());
 		return mxConstants.STYLE_SHAPE
 				+ "="
 				+ mxConstants.SHAPE_ELLIPSE
@@ -340,6 +353,27 @@ public class GrigitGraph extends RevWalker {
 
 		}
 		return result;
+	}
+	
+	public void repaintAll(){
+		
+		GitController.getInstance().getCommitList().clear();
+		panel.removeAll();
+		logger.info("remove panel");
+		graphPane = new GriGitGraphPane();
+		graph = new GrigitmxGraph();
+		graphComponent = new GrigitGraphComponent(graph);
+		logger.info("new init");
+		try {
+			init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		panel.repaint();
+		logger.info("repaint done");
+		
+		
 	}
 
 }

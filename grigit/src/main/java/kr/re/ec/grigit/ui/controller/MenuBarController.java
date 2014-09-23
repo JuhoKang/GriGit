@@ -35,9 +35,6 @@ public class MenuBarController extends MenuBarFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				MainController.getInstance().getJpPaintGit().add(GrigitGraph.getInstance().getPanel());
-				MainController.getInstance().getJpPaintGit().repaint();
-				MainController.getInstance().getJpPaintGit().revalidate();
 			}
 		});
 		

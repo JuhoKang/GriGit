@@ -19,12 +19,12 @@ public class CheckOut {
 
 	Logger logger;
 
-	public CheckOut(Repository repository, String branchname) {
+	public CheckOut(Repository repository, String name) {
 
 		logger = LoggerFactory.getLogger(CheckOut.class);
 	
 		try {
-			checkoutBranch(repository, branchname);
+			checkoutBranch(repository, name);
 		} catch (RefAlreadyExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,34 +47,7 @@ public class CheckOut {
 
 	}
 
-	public CheckOut(Repository repository, RevCommit startCommit) {
-
-		logger = LoggerFactory.getLogger(CheckOut.class);
-
-		try {
-			checkoutCommit(repository, startCommit);
-		} catch (RefAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RefNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidRefNameException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CheckoutConflictException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public void checkoutBranch(Repository repository, String branchname)
+	private void checkoutBranch(Repository repository, String name)
 			throws RefAlreadyExistsException, RefNotFoundException,
 			InvalidRefNameException, CheckoutConflictException, GitAPIException, IOException {
 
@@ -83,26 +56,12 @@ public class CheckOut {
 		logger.info("before checkout branch : " + repository.getBranch());
 		
 		
-		git.checkout().setName(branchname).call();
+		git.checkout().setName(name).call();
 		
 		logger.info("after checkout branch: " + repository.getBranch());
 
 	}
-
-	public void checkoutCommit(Repository repository, RevCommit startCommit)
-			throws RefAlreadyExistsException, RefNotFoundException,
-			InvalidRefNameException, CheckoutConflictException, GitAPIException, IOException {
-
-		Git git = new Git(repository);
-		
-		logger.info("before checkout branch : " + repository.getBranch());
-		
-		git.checkout().setStartPoint(startCommit).call();
-		
-				
-		logger.info("after checkout branch: " + repository.getBranch());
-	}
-
+	
 	public void checkoutByRelRef() {
 
 	}

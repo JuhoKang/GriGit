@@ -11,6 +11,8 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.jgraphx.test.GitController;
+import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MainFrame;
 import kr.re.ec.grigit.util.PgmMain;
 import kr.re.ec.grigit.util.PrintToArea;
@@ -53,10 +55,9 @@ public class MainController extends MainFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				jpPaintGit.revalidate();
-				jpPaintGit.repaint();
 				
-				
+				GitController.getInstance().checkOut();
+				logger.info("checkout");
 			}
 		});
 
@@ -146,8 +147,6 @@ public class MainController extends MainFrame {
 						MainController.getInstance().getDoc().getLength());
 			}
 		});
-		
-		jpPaintGit.setVisible(true);
 	}
 
 }

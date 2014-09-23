@@ -14,7 +14,6 @@ import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
-import org.eclipse.jgit.awtui.CommitGraphPane;
 import org.eclipse.jgit.pgm.RevWalkTextBuiltin;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
@@ -98,7 +97,6 @@ public class GraphAlgo extends JFrame {
 				nodeList.add(commitNode);
 			//	logger.info("added  :" + commitNode.toString());
 			}
-			NodeCommit previous;
 
 			Stack<NodeCommit> nodeStack = new Stack<NodeCommit>();
 			NodeCommit root = nodeList.get(0);
@@ -224,7 +222,6 @@ public class GraphAlgo extends JFrame {
 				break;
 			}
 		}
-
 		return resultParent;
 	}
 

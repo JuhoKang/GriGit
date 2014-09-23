@@ -38,7 +38,7 @@ public class WriteToPane {
 	public void write(String s, Style style) {
 		update();
 		try {
-			doc.insertString(doc.getLength(), s, null);
+			doc.insertString(doc.getLength(), s, style);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			logger.info("Doc Bad Location Exception");

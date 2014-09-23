@@ -12,6 +12,10 @@ import com.mxgraph.view.mxGraph;
 
 public class GrigitGraphComponent extends mxGraphComponent{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3302976345466800723L;
 	protected GrigitmxGraphHandler graphHandler;
 	protected GrigitmxSelectionCellsHandler selectionCellsHandler;
 	protected GrigitmxConnectionHandler connectionHandler;
@@ -26,7 +30,7 @@ public class GrigitGraphComponent extends mxGraphComponent{
 		setTransferHandler(createTransferHandler());
 	//	panningHandler = createPanningHandler();
 		selectionCellsHandler = createSelectionCellsHandler();
-		connectionHandler = createConnectionHandler();
+	//	connectionHandler = createConnectionHandler();
 		graphHandler = createGraphHandler();
 	}
 	
