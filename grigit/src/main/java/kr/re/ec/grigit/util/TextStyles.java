@@ -11,6 +11,15 @@ import javax.swing.text.StyleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A class that keeps the Styles for TextPane.<br>
+ * Holds some Text Styles<br>
+ * 
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
+
 
 public class TextStyles {
 
@@ -21,7 +30,14 @@ public class TextStyles {
 	private TextStyles() {
 		logger = LoggerFactory.getLogger(TextStyles.class);
 		context = new StyleContext();
+		
+		//Alert
 		ALERT = context.addStyle("alert", null);
+		configureAlertStyle();
+		
+	}
+	
+	protected void configureAlertStyle(){
 		StyleConstants.setForeground(ALERT, Color.red);
 		StyleConstants.setBold(ALERT, true);
 	}

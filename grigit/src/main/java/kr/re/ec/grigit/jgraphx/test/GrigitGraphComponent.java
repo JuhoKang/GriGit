@@ -1,12 +1,7 @@
 package kr.re.ec.grigit.jgraphx.test;
 
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
-import java.awt.Color;
-
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 

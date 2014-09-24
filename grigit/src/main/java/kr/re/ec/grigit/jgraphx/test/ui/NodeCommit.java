@@ -9,8 +9,20 @@ import org.eclipse.jgit.revwalk.RevCommit;
 
 import com.mxgraph.model.mxCell;
 
+/**
+ * A class that extends mxCell.<br>
+ * Holds The Commit itself<br>
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
+
 public class NodeCommit extends mxCell{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PlotCommit<SwingLane> commit;
 	private int level;
 	private String labelString = "";

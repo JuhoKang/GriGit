@@ -9,6 +9,14 @@ import com.mxgraph.swing.handler.mxConnectionHandler;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
 
+/**
+ * A class that extends mxConnectionHandler. currently deprecated
+ * @author Kang Juho
+ * @deprecated
+ * @version 1.0.0
+ * 
+ */
+
 public class GrigitmxConnectionHandler extends mxConnectionHandler {
 
 	public GrigitmxConnectionHandler(mxGraphComponent graphComponent) {
@@ -17,7 +25,7 @@ public class GrigitmxConnectionHandler extends mxConnectionHandler {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("x:" + e.getX() + "y:" + e.getY());
+	//	System.out.println("x:" + e.getX() + "y:" + e.getY());
 
 		mouseDragged(e);
 
@@ -63,8 +71,8 @@ public class GrigitmxConnectionHandler extends mxConnectionHandler {
 		if (source != null && (bounds == null || bounds.contains(e.getPoint()))) {
 			System.out.println("situation 9");
 			// graphComponent.getGraphControl().setCursor(CONNECT_CURSOR);
-			mxCell currentCell = (mxCell) graphComponent.getCellAt(e.getX(),
-					e.getY());
+		//	mxCell currentCell = (mxCell) graphComponent.getCellAt(e.getX(),
+			//		e.getY());
 
 			e.consume();
 		}

@@ -3,41 +3,29 @@
 package kr.re.ec.grigit.jgraphx.test;
 
 import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragGestureEvent;
-import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragSource;
-import java.awt.dnd.DragSourceAdapter;
-import java.awt.dnd.DragSourceDropEvent;
-import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.event.MouseEvent;
-import java.util.TooManyListenersException;
 
-import javax.swing.TransferHandler;
+import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
+import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Node;
-
-import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
-import kr.re.ec.grigit.ui.controller.MainController;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxGraphHandler;
-import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.swing.handler.mxMovePreview;
-import com.mxgraph.swing.util.mxGraphTransferable;
-import com.mxgraph.swing.util.mxSwingConstants;
-import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
-import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraph;
+
+/**
+ * A class that extends mxGraphHandler. extended to change the functions of the graphhandler<br>
+ * serveral overrides blocks events that works on mxGraphHandler
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
 
 public class GrigitmxGraphHandler extends mxGraphHandler{
 	

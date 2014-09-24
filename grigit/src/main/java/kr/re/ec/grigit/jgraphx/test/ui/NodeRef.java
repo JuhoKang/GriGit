@@ -4,6 +4,15 @@ import org.eclipse.jgit.lib.Ref;
 
 import com.mxgraph.model.mxCell;
 
+/**
+ * A class that extends mxCell.<br>
+ * Holds The Ref Object itself.
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
+
+@SuppressWarnings("serial")
 public class NodeRef extends mxCell{
 
 	protected Ref ref;

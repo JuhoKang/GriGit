@@ -53,7 +53,6 @@ import java.awt.BorderLayout;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -64,7 +63,6 @@ import kr.re.ec.grigit.jgraphx.test.GrigitmxGraph;
 import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.ui.controller.MainController;
 
-import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revplot.PlotCommit;
 import org.eclipse.jgit.revplot.PlotWalk;
@@ -76,6 +74,15 @@ import org.slf4j.LoggerFactory;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
+
+
+/**
+ * A class that extends RevWalker.<br>
+ * This is the Class which holds the graph of this program
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
 
 public class GrigitGraph extends RevWalker {
 	// final JFrame frame;

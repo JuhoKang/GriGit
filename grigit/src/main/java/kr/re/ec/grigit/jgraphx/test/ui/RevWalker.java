@@ -43,23 +43,19 @@
 
 package kr.re.ec.grigit.jgraphx.test.ui;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.git.OpenRepository;
 
-import org.eclipse.jgit.diff.DiffConfig;
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.RefDatabase;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.FollowFilter;
 import org.eclipse.jgit.revwalk.ObjectWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevFlag;
@@ -71,12 +67,17 @@ import org.eclipse.jgit.revwalk.filter.AuthorRevFilter;
 import org.eclipse.jgit.revwalk.filter.CommitterRevFilter;
 import org.eclipse.jgit.revwalk.filter.MessageRevFilter;
 import org.eclipse.jgit.revwalk.filter.RevFilter;
-import org.eclipse.jgit.treewalk.filter.AndTreeFilter;
-import org.eclipse.jgit.treewalk.filter.TreeFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//tweaked by Juho Kang deleted the form with the TextBuiltin because i don't need those
+//
+/**
+ * Formally it was org.eclipse.jgit.pgm.RevWalkTextBuiltin
+ * tweaked by Juho Kang<br>
+ * deleted the form with the TextBuiltin because i don't need those
+ * @author Kang Juho
+ * @version 1.0.0
+ */
 abstract public class RevWalker{
 	
 	protected RevWalk walk;

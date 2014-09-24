@@ -43,7 +43,13 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+/*
+ * 
+ */
 package kr.re.ec.grigit.jgraphx.test.ui;
+
+
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -59,6 +65,12 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revplot.AbstractPlotRenderer;
 import org.eclipse.jgit.revplot.PlotCommit;
 
+
+/**
+ * see license
+ * didn't touch a thing
+ * 
+ */
 final class AWTPlotRenderer extends AbstractPlotRenderer<SwingLane, Color>
 		implements Serializable {
 	private static final long serialVersionUID = 1L;

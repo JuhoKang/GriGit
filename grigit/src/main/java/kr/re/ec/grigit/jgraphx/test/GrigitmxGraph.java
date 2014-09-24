@@ -5,11 +5,14 @@ import java.awt.Point;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
+
+/**
+ * A class that extends mxGraph. extended to change the functions of the graph
+ * @author Kang Juho
+ * @version 1.0.0
+ * 
+ */
 
 public class GrigitmxGraph extends mxGraph {
 	
@@ -39,7 +42,14 @@ public class GrigitmxGraph extends mxGraph {
 		return !getModel().isEdge(cell);
 	}*/
 
-	// Overrides method to provide a cell label in the display
+	// 
+	
+	/**
+	 * Overrides method to provide a cell label in the display
+	 * @author Kang Juho
+	 * @version 1.0.0
+	 * 
+	 */
 	public String convertValueToString(Object cell) {
 		if (cell instanceof NodeCommit) {
 			NodeCommit nodeC = (NodeCommit) cell;
@@ -79,6 +89,12 @@ public class GrigitmxGraph extends mxGraph {
 		return super.convertValueToString(cell);
 	}
 
+	/**
+	 * Overrides method to store a cell label in the model
+	 * @author Kang Juho
+	 * @version 1.0.0
+	 * 
+	 */
 	// Overrides method to store a cell label in the model
 	public void cellLabelChanged(Object cell){
 	
