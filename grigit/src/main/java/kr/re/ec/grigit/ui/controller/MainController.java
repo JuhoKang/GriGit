@@ -52,7 +52,7 @@ public class MainController extends MainFrame {
 	public void init() {
 		super.init();
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnCheckout.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
