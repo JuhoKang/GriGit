@@ -75,10 +75,10 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 
-
 /**
  * A class that extends RevWalker.<br>
  * This is the Class which holds the graph of this program
+ * 
  * @author Kang Juho
  * @version 1.0.0
  * 
@@ -90,25 +90,24 @@ public class GrigitGraph extends RevWalker {
 	protected GriGitGraphPane graphPane;
 	protected GrigitGraphComponent graphComponent;
 	protected GrigitmxGraph graph;
-	
+
 	public GriGitGraphPane getGraphPane() {
 		return graphPane;
 	}
 
-	
-
 	public GrigitmxGraph getGraph() {
 		return graph;
 	}
-	
+
 	public JPanel getPanel() {
 		return panel;
 	}
 
 	// for singleton
 	private GrigitGraph() {
-		logger = LoggerFactory.getLogger(GrigitGraph.class);
 		panel = MainController.getInstance().getJpPaintGit();
+		logger = LoggerFactory.getLogger(GrigitGraph.class);
+
 		graphPane = new GriGitGraphPane();
 		graph = new GrigitmxGraph();
 		graphComponent = new GrigitGraphComponent(graph);
@@ -129,9 +128,13 @@ public class GrigitGraph extends RevWalker {
 		private static final GrigitGraph instance = new GrigitGraph();
 	}
 
-	
-
 	public void init() throws Exception {
+
+		logger = LoggerFactory.getLogger(GrigitGraph.class);
+
+		graphPane = new GriGitGraphPane();
+		graph = new GrigitmxGraph();
+		graphComponent = new GrigitGraphComponent(graph);
 
 		// frame = new JFrame();
 
@@ -141,8 +144,8 @@ public class GrigitGraph extends RevWalker {
 
 		super.init();
 		for (int i = 0; i < graphPane.getCommitList().size(); i++) {
-		//	logger.info(""
-			//		+ graphPane.getCommitList().get(i).getLane().getPosition());
+			// logger.info(""
+			// + graphPane.getCommitList().get(i).getLane().getPosition());
 			// logger.info(""+graphPane.getCommitList().get(i).getRef(0));
 		}
 
@@ -167,7 +170,7 @@ public class GrigitGraph extends RevWalker {
 				NodeCommit commitNode = new NodeCommit();
 				commitNode.setCommit(commit);
 				nodeList.add(commitNode);
-		//		logger.info("added  :" + commitNode.toString());
+				// logger.info("added  :" + commitNode.toString());
 			}
 
 			for (int i = 0; i < nodeList.size(); i++) {
@@ -202,9 +205,9 @@ public class GrigitGraph extends RevWalker {
 				int parentCount = node.getCommit().getParentCount();
 				if (parentCount > 0) {
 					for (int j = 0; j < parentCount; j++) {
-					//	logger.info("get Parent node : "
-				//				+ node.getChildNode(nodeList, node.getCommit()
-				//						.getParent(j)));
+						// logger.info("get Parent node : "
+						// + node.getChildNode(nodeList, node.getCommit()
+						// .getParent(j)));
 						graph.insertEdge(
 								parent,
 								null,
@@ -236,8 +239,8 @@ public class GrigitGraph extends RevWalker {
 			graph.getModel().endUpdate();
 		}
 
-		//graphComponent = new GrigitGraphComponent(
-		//		graph);
+		// graphComponent = new GrigitGraphComponent(
+		// graph);
 
 		graphComponent.setEnabled(true);
 
@@ -277,7 +280,7 @@ public class GrigitGraph extends RevWalker {
 		panel.setLayout(new BorderLayout());
 		panel.add(graphComponent, BorderLayout.CENTER);
 		Rectangle rec = MainController.getInstance().getBounds();
-		
+
 		MainController.getInstance().pack();
 		MainController.getInstance().setBounds(rec);
 		panel.setVisible(true);
@@ -315,9 +318,9 @@ public class GrigitGraph extends RevWalker {
 		return w;
 	}
 
-
 	private String getNodeStyle(NodeCommit node) {
-	//	logger.info("color rgb = " + node.getCommit().getLane().color.getRGB());
+		// logger.info("color rgb = " +
+		// node.getCommit().getLane().color.getRGB());
 		return mxConstants.STYLE_SHAPE
 				+ "="
 				+ mxConstants.SHAPE_ELLIPSE
@@ -361,9 +364,9 @@ public class GrigitGraph extends RevWalker {
 		}
 		return result;
 	}
-	
-	public void repaintAll(){
-		
+
+	public void repaintAll() {
+
 		GitController.getInstance().getCommitList().clear();
 		panel.removeAll();
 		logger.info("remove panel");
@@ -379,8 +382,7 @@ public class GrigitGraph extends RevWalker {
 		}
 		panel.repaint();
 		logger.info("repaint done");
-		
-		
+
 	}
 
 }
