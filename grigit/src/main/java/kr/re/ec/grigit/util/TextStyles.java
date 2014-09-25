@@ -28,6 +28,7 @@ public class TextStyles {
 
 	public final Style ALERT;
 	public final Style LOG;
+	public final Style COMMAND;
 	protected Logger logger;
 	protected StyleContext context;
 	
@@ -38,9 +39,10 @@ public class TextStyles {
 		//Alert
 		ALERT = context.addStyle("alert", null);
 		LOG = context.addStyle("log", null);
+		COMMAND = context.addStyle("command", null);
 		configureAlertStyle();
 		configureLogStyle();
-		
+		configureCommandStyle();
 	}
 	
 	protected void configureAlertStyle(){
@@ -50,6 +52,10 @@ public class TextStyles {
 	protected void configureLogStyle(){
 		StyleConstants.setForeground(LOG, Color.blue);
 		StyleConstants.setBold(LOG, true);
+	}
+	protected void configureCommandStyle(){
+		StyleConstants.setForeground(COMMAND, Color.magenta);
+		StyleConstants.setBold(COMMAND, true);
 	}
 	// for singleton
 	/**

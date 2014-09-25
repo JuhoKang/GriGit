@@ -78,11 +78,6 @@ public class MainController extends MainFrame implements ActionListener {
 					 * MainController.getInstance().getTaLog() .append("\n" +
 					 * "No Repository opened");
 					 */
-					Style stErr = MainController.getInstance().getDoc()
-							.addStyle("Error", null);
-					StyleConstants.setBold(stErr, true);
-					StyleConstants.setForeground(stErr, Color.red);
-
 					try {
 						MainController
 								.getInstance()
@@ -90,7 +85,7 @@ public class MainController extends MainFrame implements ActionListener {
 								.insertString(
 										MainController.getInstance().getDoc()
 												.getLength(),
-										"\n No Repository opened", stErr);
+										"\n No Repository opened", TextStyles.getInstance().ALERT);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -108,10 +103,6 @@ public class MainController extends MainFrame implements ActionListener {
 					 * .getRepository().getDirectory() .getAbsolutePath() + "\n"
 					 * + "Command is " + jtfCommandLine.getText());
 					 */
-					Style stCommand = MainController.getInstance().getDoc()
-							.addStyle("Command", null);
-					StyleConstants.setBold(stCommand, true);
-					StyleConstants.setForeground(stCommand, Color.magenta);
 					String currentCommand;
 					currentCommand = "\n"
 							+ "Command at "
@@ -125,7 +116,7 @@ public class MainController extends MainFrame implements ActionListener {
 								.insertString(
 										MainController.getInstance().getDoc()
 												.getLength(), currentCommand,
-										stCommand);
+										TextStyles.getInstance().COMMAND);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
