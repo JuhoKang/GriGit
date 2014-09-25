@@ -3,14 +3,17 @@ package kr.re.ec.grigit.ui.controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import javax.swing.JFileChooser;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.jgraphx.test.GitController;
 import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MainFrame;
@@ -24,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("serial")
-public class MainController extends MainFrame {
+public class MainController extends MainFrame implements ActionListener {
 
 	Logger logger;
 	TextBuiltin tb;
@@ -51,77 +54,73 @@ public class MainController extends MainFrame {
 
 	public void init() {
 		super.init();
-		
+
 		btnCheckout.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				
+
 				GitController.getInstance().checkOut();
 				logger.info("checkout");
 			}
 		});
 
+		btnOpen.addActionListener(this);
 		// when you hit ENTER at jtfCommandLine
 		jtfCommandLine.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				
-
 				logger.info("Enter Pressed");
-
-				
 
 				if (CurrentRepository.getInstance().getRepository() == null) {
 					/*
-					MainController.getInstance().getTaLog()
-							.append("\n" + "No Repository opened");
-							*/
+					 * MainController.getInstance().getTaLog() .append("\n" +
+					 * "No Repository opened");
+					 */
 					Style stErr = MainController.getInstance().getDoc()
 							.addStyle("Error", null);
 					StyleConstants.setBold(stErr, true);
 					StyleConstants.setForeground(stErr, Color.red);
-					
+
 					try {
 						MainController
-						.getInstance()
-						.getDoc()
-						.insertString(MainController.getInstance().getDoc().getLength(), 
-								"\n No Repository opened", stErr);
+								.getInstance()
+								.getDoc()
+								.insertString(
+										MainController.getInstance().getDoc()
+												.getLength(),
+										"\n No Repository opened", stErr);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					jtfCommandLine.setText("");
-					
+
 				} else {
-					
+
 					String commandhead = "--git-dir^"
 							+ CurrentRepository.getInstance().getRepository()
 									.getDirectory().getAbsolutePath() + "^";
 					/*
-					MainController
-					.getInstance()
-					.getTaLog()
-					.append("\n"
-							+ "Command at "
-							+ CurrentRepository.getInstance()
-									.getRepository().getDirectory()
-									.getAbsolutePath() + "\n"
-							+ "Command is " + jtfCommandLine.getText());
-					*/
+					 * MainController .getInstance() .getTaLog() .append("\n" +
+					 * "Command at " + CurrentRepository.getInstance()
+					 * .getRepository().getDirectory() .getAbsolutePath() + "\n"
+					 * + "Command is " + jtfCommandLine.getText());
+					 */
 					String currentCommand;
 					currentCommand = "\n"
 							+ "Command at "
-							+ CurrentRepository.getInstance()
-									.getRepository().getDirectory()
-									.getAbsolutePath() + "\n"
+							+ CurrentRepository.getInstance().getRepository()
+									.getDirectory().getAbsolutePath() + "\n"
 							+ "Command is " + jtfCommandLine.getText();
 					try {
 						MainController
-						.getInstance()
-						.getDoc()
-						.insertString(MainController.getInstance().getDoc().getLength(), currentCommand, null);
+								.getInstance()
+								.getDoc()
+								.insertString(
+										MainController.getInstance().getDoc()
+												.getLength(), currentCommand,
+										null);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -140,13 +139,23 @@ public class MainController extends MainFrame {
 							.toArray(new String[0]);
 					PgmMain.main(commandheadarr);
 
-					
 					jtfCommandLine.setText("");
 				}
-				MainController.getInstance().getTpLog().setCaretPosition(
-						MainController.getInstance().getDoc().getLength());
+				MainController
+						.getInstance()
+						.getTpLog()
+						.setCaretPosition(
+								MainController.getInstance().getDoc()
+										.getLength());
 			}
 		});
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnOpen) {
+			new OpenRepositorySwing(this);
+		}
+
 	}
 
 }

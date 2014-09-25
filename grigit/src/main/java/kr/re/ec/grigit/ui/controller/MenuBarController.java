@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MenuBarFrame;
@@ -13,8 +14,10 @@ import kr.re.ec.grigit.ui.MenuBarFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
+
 @SuppressWarnings("serial")
-public class MenuBarController extends MenuBarFrame{
+public class MenuBarController extends MenuBarFrame implements ActionListener{
 	
 	Logger logger;
 	
@@ -25,50 +28,16 @@ public class MenuBarController extends MenuBarFrame{
 	
 	public void init(){
 		
-		mntmOpenRepo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				File repodir = chooseFile();
-				new OpenRepository(repodir);
-				try {
-					GrigitGraph.getInstance().init();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+		mntmOpenRepo.addActionListener(this);
 		
 	}
-	
-	/**
-	 * Method chooseFile.
-	 * @return File
-	 */
-	public File chooseFile(){
-		final JFileChooser fc = new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int returnVal = fc.showDialog(this,"Select");
-		File file = fc.getSelectedFile();
-		if(isDotGitDir(file)){
-			file = formToGitDir(file);
-		}
-		logger.info("Opening: " + file.getName());
-		return file;
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == mntmOpenRepo){
+			new OpenRepositorySwing(this);
+		}		
 	}
 	
-	private boolean isDotGitDir(File file){
-		boolean result = false;
-		String filepath = file.getAbsolutePath();
-		if(filepath.substring(filepath.length()-4).equals(".git") == false){
-			result = true;
-		}
-		
-		return result;
-	}
-	private File formToGitDir(File file){
-		File result;
-		result = new File(file.getAbsolutePath()+"/.git");
-		return result;
-	}
+	
 
 }

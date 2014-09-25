@@ -23,8 +23,8 @@ import kr.re.ec.grigit.ui.controller.MenuBarController;
 /**
  * MainFrame class for the Main Window of grigit
  * 
- * @version 1.0.0
- * @author Juho Kang
+ * @version 1.0.1
+ * @author Juho Kang, Sunghyeok Park
  */
 
 @SuppressWarnings("serial")

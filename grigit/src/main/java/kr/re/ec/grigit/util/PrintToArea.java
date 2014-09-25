@@ -19,7 +19,6 @@ public class PrintToArea extends Writer{
 	
 	JTextArea jta;
 	Document doc;
-	Style primarystyle;
 	
 	private final String LF;
 
@@ -77,6 +76,18 @@ public class PrintToArea extends Writer{
 		}*/
 		print(s + LF);
 	}
+	public void println(String s,Style style) throws IOException {
+		
+		WriteToPane.getInstance().write(s, style);
+		/*
+		try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), s, null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(s + LF);
+	}
 
 	/**
 	 * Print a platform dependent new line
@@ -112,6 +123,17 @@ public class PrintToArea extends Writer{
 		}*/
 		print(String.valueOf(value));
 	}
+	public void print(char value,Style style) throws IOException {
+		WriteToPane.getInstance().write(String.valueOf(value), style);
+		/*
+		try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(String.valueOf(value));
+	}
 
 	/**
 	 * Print an int as string
@@ -121,6 +143,16 @@ public class PrintToArea extends Writer{
 	 */
 	public void print(int value) throws IOException {
 		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(String.valueOf(value));
+	}
+	public void print(int value,Style style) throws IOException {
+		WriteToPane.getInstance().write(String.valueOf(value), style);
 		/*try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
 		} catch (BadLocationException e) {
@@ -147,7 +179,17 @@ public class PrintToArea extends Writer{
 		}*/
 		print(String.valueOf(value));
 	}
-
+	public void print(long value,Style style) throws IOException {
+		WriteToPane.getInstance().write(String.valueOf(value), style);
+		/*
+		try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(String.valueOf(value));
+	}
 	/**
 	 * Print a short as string
 	 *
@@ -156,6 +198,17 @@ public class PrintToArea extends Writer{
 	 */
 	public void print(short value) throws IOException {
 		WriteToPane.getInstance().write(String.valueOf(value), null);
+		/*
+		try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(String.valueOf(value));
+	}
+	public void print(short value,Style style) throws IOException {
+		WriteToPane.getInstance().write(String.valueOf(value), style);
 		/*
 		try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(value), null);
@@ -186,6 +239,18 @@ public class PrintToArea extends Writer{
 		}*/
 		print(String.format(fmt, args));
 	}
+	public void format(Style style, String fmt, Object... args) throws IOException {
+		
+		WriteToPane.getInstance().write(String.format(fmt, args),style);
+		/*
+		try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.format(fmt, args), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		print(String.format(fmt, args));
+	}
 
 	/**
 	 * Print an object's toString representations
@@ -195,6 +260,16 @@ public class PrintToArea extends Writer{
 	 */
 	public void print(Object any) throws IOException {
 		WriteToPane.getInstance().write(String.valueOf(any),null);
+		/*try {
+			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(any), null);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		out.write(String.valueOf(any));
+	}
+	public void print(Object any,Style style) throws IOException {
+		WriteToPane.getInstance().write(String.valueOf(any),style);
 		/*try {
 			doc.insertString(MainController.getInstance().getDoc().getLength(), String.valueOf(any), null);
 		} catch (BadLocationException e) {

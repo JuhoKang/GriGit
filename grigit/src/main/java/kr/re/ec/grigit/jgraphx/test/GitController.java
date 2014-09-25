@@ -3,9 +3,10 @@ package kr.re.ec.grigit.jgraphx.test;
 import java.util.ArrayList;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.git.CheckOut;
+import kr.re.ec.grigit.git.Checkout;
 import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
+import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
 import kr.re.ec.grigit.ui.controller.MainController;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 public class GitController {
 
 	ArrayList<NodeCommit> commitList;
+	ArrayList<NodeRef> refList;
 
 	Logger logger;
 
@@ -23,6 +25,15 @@ public class GitController {
 	private GitController() {
 		logger = LoggerFactory.getLogger(MainController.class);
 		commitList = new ArrayList<NodeCommit>();
+		refList = new ArrayList<NodeRef>();
+	}
+
+	public ArrayList<NodeRef> getRefList() {
+		return refList;
+	}
+
+	public void setRefList(ArrayList<NodeRef> refList) {
+		this.refList = refList;
 	}
 
 	// for singleton
@@ -50,9 +61,9 @@ public class GitController {
 
 	public int checkOut() {
 		
-		if(!commitList.isEmpty()){
-			if(commitList.size() == 1){
-				new CheckOut(CurrentRepository.getInstance().getRepository(), commitList.get(0).getCommit().getName());
+		if(!(commitList.isEmpty()&&refList.isEmpty())){
+			if(commitList.size() == 1&&refList.isEmpty()){
+				new Checkout(CurrentRepository.getInstance().getRepository(), commitList.get(0).getCommit().getName());
 			//	new AlertDialog("Checkout commit : "+commitList.get(0).getCommit().getName());
 				WriteToPane.getInstance().write("Checkout commit : "+commitList.get(0).getCommit().getName()+"\n", 
 						TextStyles.getInstance().ALERT);
@@ -61,7 +72,18 @@ public class GitController {
 				GrigitGraph.getInstance().repaintAll();
 				logger.info("repaint all end");
 				MainController.getInstance().repaint();
-			} else {
+			} else if(refList.size()==1&&refList.isEmpty()){
+				new Checkout(CurrentRepository.getInstance().getRepository(), refList.get(0).getRef().getName());
+				//	new AlertDialog("Checkout commit : "+commitList.get(0).getCommit().getName());
+					WriteToPane.getInstance().write("Checkout commit : "+commitList.get(0).getCommit().getName()+"\n", 
+							TextStyles.getInstance().ALERT);
+					
+					logger.info("repaint all begin");
+					GrigitGraph.getInstance().repaintAll();
+					logger.info("repaint all end");
+					MainController.getInstance().repaint();
+			}
+			else {
 				WriteToPane.getInstance().write("You should select one commit or a branch\n", 
 						TextStyles.getInstance().ALERT);
 				//new AlertDialog("You should select one commit or a branch");				
@@ -72,13 +94,6 @@ public class GitController {
 					TextStyles.getInstance().ALERT);
 		}
 		
-
-		// for test
-		return 1;
-	}
-
-	public int checkOut(String name) {
-		new CheckOut(CurrentRepository.getInstance().getRepository(), name);
 
 		// for test
 		return 1;

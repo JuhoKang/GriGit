@@ -130,12 +130,6 @@ public class GrigitGraph extends RevWalker {
 
 	public void init() throws Exception {
 
-		logger = LoggerFactory.getLogger(GrigitGraph.class);
-
-		graphPane = new GriGitGraphPane();
-		graph = new GrigitmxGraph();
-		graphComponent = new GrigitGraphComponent(graph);
-
 		// frame = new JFrame();
 
 		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

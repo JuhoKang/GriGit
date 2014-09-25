@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
@@ -62,21 +64,21 @@ public class OpenRepository {
 	    		.findGitDir() // scan up the file system tree
 	            .readEnvironment() // scan environment GIT_* variables
 	            .build();
-	    	    
-	   //System.out.println("Having repository: " + repository.getDirectory());
-	    logger.info("Having repository: " + repository.getDirectory());
-	    this.repository = repository;
-	    //testing part
-	    
-	    CurrentRepository.getInstance().setRepository(repository);
-	    
 	    Ref head = repository.getRef("refs/heads/master");
-        logger.info("Ref of refs/heads/master: " + head);
 	    
-	    logger.info("repo path"+repodir.getName());
-	    
-	    
-	    
+	    if(head != null){
+        	WriteToPane.getInstance().write("This is a Bare repo or not a Repo please open a proper repository\n\n",TextStyles.getInstance().ALERT);
+        } else {
+        	//System.out.println("Having repository: " + repository.getDirectory());
+    	    logger.info("Having repository: " + repository.getDirectory());
+    	    this.repository = repository;
+    	    //testing part
+    	    CurrentRepository.getInstance().setRepository(repository);
+    	        	    
+            logger.info("Ref of refs/heads/master: " + head);
+    	    logger.info("repo path"+repodir.getName());
+        }
+	   
 	    //should i close or not?
 	    //repository.close();
 		
