@@ -128,6 +128,7 @@ public class GrigitGraph extends RevWalker {
 		private static final GrigitGraph instance = new GrigitGraph();
 	}
 
+	@Override
 	public void init() throws Exception {
 
 		// frame = new JFrame();
@@ -240,6 +241,7 @@ public class GrigitGraph extends RevWalker {
 
 		graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseReleased(MouseEvent e) {
 				Object cell = graphComponent.getCellAt(e.getX(), e.getY());
 

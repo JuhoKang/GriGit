@@ -39,14 +39,17 @@ public class GrigitmxGraphHandler extends mxGraphHandler{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void dragOver(DropTargetDragEvent e){
 		
 	}
 	
+	@Override
 	public void mouseDragged(MouseEvent e){
 		
 	}
 	
+	@Override
 	protected void installDragGestureHandler()
 	{/*
 		DragGestureListener dragGestureListener = new DragGestureListener()
@@ -95,6 +98,7 @@ public class GrigitmxGraphHandler extends mxGraphHandler{
 		*/
 	}
 	
+	@Override
 	protected void installDropTargetHandler()
 	{
 		/*
@@ -115,12 +119,14 @@ public class GrigitmxGraphHandler extends mxGraphHandler{
 		*/
 	}
 	
+	@Override
 	protected mxMovePreview createMovePreview()
 	{
 		return null;
 		//return new mxMovePreview(graphComponent);
 	}
 	
+	@Override
 	public void mouseReleased(MouseEvent e)
 	{
 		/*
@@ -331,6 +337,7 @@ ol
 			
 	}
 	
+	@Override
 	public void mouseMoved(MouseEvent e)
 	{
 		Object cell = graphComponent.getCellAt(e.getX(), e.getY());

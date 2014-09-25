@@ -3,7 +3,6 @@ package org.eclipse.jgit.pgm;
 import java.util.ArrayList;
 
 import org.kohsuke.args4j.Argument;
-import org.kohsuke.args4j.Option;
 
 @Command(common = true, usage = "usage_cherry-pick")
 class CherryPick extends TextBuiltin{

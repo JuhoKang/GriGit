@@ -50,6 +50,7 @@ public class GrigitmxGraph extends mxGraph {
 	 * @version 1.0.0
 	 * 
 	 */
+	@Override
 	public String convertValueToString(Object cell) {
 		if (cell instanceof NodeCommit) {
 			NodeCommit nodeC = (NodeCommit) cell;
@@ -117,6 +118,7 @@ public class GrigitmxGraph extends mxGraph {
 		super.cellLabelChanged(cell, newValue, false);
 	}
 	
+	@Override
 	public void cellLabelChanged(Object cell, Object newValue, boolean autoSize) {
 		
 		if(cell instanceof NodeRef){

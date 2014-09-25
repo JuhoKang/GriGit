@@ -28,6 +28,7 @@ public class GrigitGraphComponent extends mxGraphComponent{
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	protected void createHandlers(){
 		setTransferHandler(createTransferHandler());
 	//	panningHandler = createPanningHandler();
@@ -36,11 +37,13 @@ public class GrigitGraphComponent extends mxGraphComponent{
 		graphHandler = createGraphHandler();
 	}
 	
+	@Override
 	protected GrigitmxGraphHandler createGraphHandler()
 	{
 		return new GrigitmxGraphHandler(this);
 	}
 	
+	@Override
 	protected void installResizeHandler(){
 		
 	}

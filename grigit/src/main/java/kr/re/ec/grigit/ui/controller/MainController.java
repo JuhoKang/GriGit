@@ -3,25 +3,17 @@ package kr.re.ec.grigit.ui.controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import javax.swing.JFileChooser;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.jgraphx.test.GitController;
-import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MainFrame;
 import kr.re.ec.grigit.util.PgmMain;
-import kr.re.ec.grigit.util.PrintToArea;
-
-import org.eclipse.jgit.pgm.Die;
-import org.eclipse.jgit.pgm.Main;
 import org.eclipse.jgit.pgm.TextBuiltin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +44,7 @@ public class MainController extends MainFrame implements ActionListener {
 		private static final MainController instance = new MainController();
 	}
 
+	@Override
 	public void init() {
 		super.init();
 
@@ -107,12 +100,16 @@ public class MainController extends MainFrame implements ActionListener {
 					 * .getRepository().getDirectory() .getAbsolutePath() + "\n"
 					 * + "Command is " + jtfCommandLine.getText());
 					 */
+					Style stCommand = MainController.getInstance().getDoc()
+							.addStyle("Command", null);
+					StyleConstants.setBold(stCommand, true);
+					StyleConstants.setForeground(stCommand, Color.magenta);
 					String currentCommand;
 					currentCommand = "\n"
 							+ "Command at "
 							+ CurrentRepository.getInstance().getRepository()
 									.getDirectory().getAbsolutePath() + "\n"
-							+ "Command is " + jtfCommandLine.getText();
+							+ "Command is " + jtfCommandLine.getText() + " ";
 					try {
 						MainController
 								.getInstance()
@@ -120,7 +117,7 @@ public class MainController extends MainFrame implements ActionListener {
 								.insertString(
 										MainController.getInstance().getDoc()
 												.getLength(), currentCommand,
-										null);
+										stCommand);
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -155,7 +152,5 @@ public class MainController extends MainFrame implements ActionListener {
 		if (e.getSource() == btnOpen) {
 			new OpenRepositorySwing(this);
 		}
-
 	}
-
 }

@@ -344,6 +344,7 @@ public class JTableRenderer extends JComponent
 				 * 
 				 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
 				 */
+				@Override
 				protected Transferable createTransferable(JComponent c)
 				{
 					sourceRow = getSelectedRow();
@@ -365,6 +366,7 @@ public class JTableRenderer extends JComponent
 		/**
 		 * 
 		 */
+		@Override
 		public DropTarget getDropTarget()
 		{
 			if (!((mxGraphTransferHandler) graphContainer.getTransferHandler())
@@ -477,6 +479,7 @@ public class JTableRenderer extends JComponent
 					return data.length;
 				}
 
+				@Override
 				public String getColumnName(int col)
 				{
 					return colNames[col];
@@ -487,6 +490,7 @@ public class JTableRenderer extends JComponent
 					return data[row][col];
 				}
 
+				@Override
 				public Class<? extends Object> getColumnClass(int c)
 				{
 					Object value = getValueAt(0, c);
@@ -497,6 +501,7 @@ public class JTableRenderer extends JComponent
 				 * Don't need to implement this method unless your table's
 				 * editable.
 				 */
+				@Override
 				public boolean isCellEditable(int row, int col)
 				{
 					return col == 0;
@@ -506,6 +511,7 @@ public class JTableRenderer extends JComponent
 				 * Don't need to implement this method unless your table's data
 				 * can change.
 				 */
+				@Override
 				public void setValueAt(Object value, int row, int col)
 				{
 					data[row][col] = value;

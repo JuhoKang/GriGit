@@ -65,7 +65,6 @@ import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 import org.eclipse.jgit.awtui.UIText;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.revplot.PlotCommit;
-import org.eclipse.jgit.revplot.PlotCommitList;
 
 /**
  * Draws a commit graph in a JTable.
@@ -182,6 +181,7 @@ public class GriGitGraphPane extends JTable {
 	static class NameCellRender extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public Component getTableCellRendererComponent(final JTable table,
 				final Object value, final boolean isSelected,
 				final boolean hasFocus, final int row, final int column) {
@@ -203,6 +203,7 @@ public class GriGitGraphPane extends JTable {
 		private final DateFormat fmt = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm:ss"); //$NON-NLS-1$
 
+		@Override
 		public Component getTableCellRendererComponent(final JTable table,
 				final Object value, final boolean isSelected,
 				final boolean hasFocus, final int row, final int column) {
@@ -225,6 +226,7 @@ public class GriGitGraphPane extends JTable {
 
 		PlotCommit<SwingLane> commit;
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public Component getTableCellRendererComponent(final JTable table,
 				final Object value, final boolean isSelected,

@@ -3,7 +3,6 @@ package kr.re.ec.grigit.jgraphx.test;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxConnectionHandler;
 import com.mxgraph.util.mxRectangle;
@@ -17,6 +16,7 @@ import com.mxgraph.view.mxCellState;
  * 
  */
 
+@Deprecated
 public class GrigitmxConnectionHandler extends mxConnectionHandler {
 
 	public GrigitmxConnectionHandler(mxGraphComponent graphComponent) {
@@ -24,6 +24,7 @@ public class GrigitmxConnectionHandler extends mxConnectionHandler {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent e) {
 	//	System.out.println("x:" + e.getX() + "y:" + e.getY());
 
@@ -78,6 +79,7 @@ public class GrigitmxConnectionHandler extends mxConnectionHandler {
 		}
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (!e.isConsumed() && graphComponent.isEnabled() && isEnabled()) {
 			System.out.println("drag1");
@@ -112,6 +114,7 @@ public class GrigitmxConnectionHandler extends mxConnectionHandler {
 		}
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.println("press2");
 		if (!graphComponent.isForceMarqueeEvent(e)

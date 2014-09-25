@@ -1,10 +1,7 @@
 package kr.re.ec.grigit.jgraphx.test;
 
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
-
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.swing.handler.mxCellHandler;
 import com.mxgraph.swing.handler.mxSelectionCellsHandler;
 
 
@@ -16,6 +13,7 @@ import com.mxgraph.swing.handler.mxSelectionCellsHandler;
  * 
  */
 
+@Deprecated
 public class GrigitmxSelectionCellsHandler extends mxSelectionCellsHandler{
 
 	public GrigitmxSelectionCellsHandler(mxGraphComponent graphComponent) {
@@ -23,6 +21,7 @@ public class GrigitmxSelectionCellsHandler extends mxSelectionCellsHandler{
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		/*

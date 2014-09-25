@@ -53,7 +53,6 @@ import org.eclipse.jgit.pgm.CommandCatalog;
 import org.eclipse.jgit.pgm.CommandRef;
 import org.eclipse.jgit.pgm.TextBuiltin;
 import org.eclipse.jgit.pgm.internal.CLIText;
-import org.eclipse.jgit.util.io.ThrowingPrintWriter;
 import org.kohsuke.args4j.Option;
 
 @Command(usage = "usage_displayAListOfAllRegisteredJgitCommands")
@@ -87,6 +86,7 @@ class ShowCommands extends TextBuiltin {
 	static enum Format {
 		/** */
 		USAGE {
+			@Override
 			void print(PrintToArea err, final CommandRef c) throws IOException {
 				String usage = c.getUsage();
 				if (usage != null && usage.length() > 0)
@@ -96,6 +96,7 @@ class ShowCommands extends TextBuiltin {
 
 		/** */
 		CLASSES {
+			@Override
 			void print(PrintToArea err, final CommandRef c) throws IOException {
 				err.print(c.getImplementationClassName());
 			}
@@ -103,6 +104,7 @@ class ShowCommands extends TextBuiltin {
 
 		/** */
 		URLS {
+			@Override
 			void print(PrintToArea err, final CommandRef c) throws IOException {
 				final ClassLoader ldr = c.getImplementationClassLoader();
 
