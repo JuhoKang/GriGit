@@ -17,13 +17,17 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Kang Juho
  * @version 1.0.0
+ * *
  * 
+ * Add LOG Style
+ * @author Parker
  */
 
 
 public class TextStyles {
 
 	public final Style ALERT;
+	public final Style LOG;
 	protected Logger logger;
 	protected StyleContext context;
 	
@@ -33,7 +37,9 @@ public class TextStyles {
 		
 		//Alert
 		ALERT = context.addStyle("alert", null);
+		LOG = context.addStyle("log", null);
 		configureAlertStyle();
+		configureLogStyle();
 		
 	}
 	
@@ -41,7 +47,10 @@ public class TextStyles {
 		StyleConstants.setForeground(ALERT, Color.red);
 		StyleConstants.setBold(ALERT, true);
 	}
-
+	protected void configureLogStyle(){
+		StyleConstants.setForeground(LOG, Color.blue);
+		StyleConstants.setBold(LOG, true);
+	}
 	// for singleton
 	/**
 	 * Method getInstance.

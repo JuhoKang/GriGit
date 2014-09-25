@@ -117,7 +117,7 @@ public class MainController extends MainFrame implements ActionListener {
 							+ "Command at "
 							+ CurrentRepository.getInstance().getRepository()
 									.getDirectory().getAbsolutePath() + "\n"
-							+ "Command is " + jtfCommandLine.getText() + " ";
+							+ "Command is " + jtfCommandLine.getText() + "\n";
 					try {
 						MainController
 								.getInstance()

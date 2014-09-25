@@ -56,6 +56,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import kr.re.ec.grigit.util.TextStyles;
+
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.diff.RawText;
 import org.eclipse.jgit.diff.RawTextComparator;
@@ -236,10 +238,13 @@ class Log extends RevWalkTextBuiltin {
 		noteMaps.put(notesRef,
 				NoteMap.read(argWalk.getObjectReader(), notesCommit));
 	}
-
+/**
+ * Add Style in Command name
+ * @author Parker
+ */
 	@Override
 	protected void show(final RevCommit c) throws Exception {
-		outw.print(CLIText.get().commitLabel);
+		outw.print(CLIText.get().commitLabel, TextStyles.getInstance().LOG);
 		outw.print(" "); //$NON-NLS-1$
 		c.getId().copyTo(outbuffer, outw);
 		if (decorate) {
