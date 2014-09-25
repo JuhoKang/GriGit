@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public class Checkout {
 
 	Logger logger;
-
+//change
 	public Checkout(Repository repository, String name) {
 
 		logger = LoggerFactory.getLogger(Checkout.class);
