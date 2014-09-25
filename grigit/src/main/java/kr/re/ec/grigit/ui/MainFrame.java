@@ -49,7 +49,8 @@ public abstract class MainFrame extends JFrame{
 	protected JButton btnMerge;
 	protected JButton btnRebase;
 	protected JButton btnCherry_Pick;
-	
+	protected JButton btnTag;
+	protected JButton btnUser_Setting;
 	private JPanel panel;
 	protected JTextField jtfCommandLine;
 	private JScrollPane spLog;
@@ -73,9 +74,9 @@ public abstract class MainFrame extends JFrame{
 		JPanel jpToolBar = new JPanel();
 		getContentPane().add(jpToolBar, BorderLayout.NORTH);
 		GridBagLayout gbl_jpToolBar = new GridBagLayout();
-		gbl_jpToolBar.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_jpToolBar.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_jpToolBar.rowHeights = new int[]{0, 0};
-		gbl_jpToolBar.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_jpToolBar.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_jpToolBar.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		jpToolBar.setLayout(gbl_jpToolBar);
 		
@@ -88,58 +89,73 @@ public abstract class MainFrame extends JFrame{
 		ImageIcon imgicMerge = new ImageIcon("target/classes/Merge.png");
 		ImageIcon imgicRebase = new ImageIcon("target/classes/Rebase.png");
 		ImageIcon imgicCherry_Pick = new ImageIcon("target/classes/Cherry_Pick.png");
-		
+		ImageIcon imgicTag = new ImageIcon("target/classes/Tag.png");
+		ImageIcon imgicUser_Setting= new ImageIcon("target/classes/UserSetting.png");
 		
 		jpToolBar.setBackground(Color.white);
 		
 		btnOpen = new JButton(imgicOpen);
 		GridBagConstraints gbc_btnOpen= new GridBagConstraints();
-		gbc_btnOpen.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnOpen.insets = new Insets(0, 0, 0, 10);
 		gbc_btnOpen.gridx = 0;
 		gbc_btnOpen.gridy = 0;
 		jpToolBar.add(btnOpen, gbc_btnOpen);
 		
 		btnCommit = new JButton(imgicCommit);
 		GridBagConstraints gbc_btnCommit = new GridBagConstraints();
-		gbc_btnCommit.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnCommit.insets = new Insets(0, 0, 0, 10);
 		gbc_btnCommit.gridx = 1;
 		gbc_btnCommit.gridy = 0;
 		jpToolBar.add(btnCommit, gbc_btnCommit);
 		
 		btnCheckout = new JButton(imgicCheckout);
 		GridBagConstraints gbc_btnCheckout = new GridBagConstraints();
-		gbc_btnCheckout.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnCheckout.insets = new Insets(0, 0, 0, 10);
 		gbc_btnCheckout.gridx = 2;
 		gbc_btnCheckout.gridy = 0;
 		jpToolBar.add(btnCheckout, gbc_btnCheckout);
 		
 		btnBranch = new JButton(imgicBranch);
 		GridBagConstraints gbc_btnBranch = new GridBagConstraints();
-		gbc_btnBranch.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnBranch.insets = new Insets(0, 0, 0, 10);
 		gbc_btnBranch.gridx = 3;
 		gbc_btnBranch.gridy = 0;
 		jpToolBar.add(btnBranch, gbc_btnBranch);
 		
 		btnMerge = new JButton(imgicMerge);
 		GridBagConstraints gbc_btnMerge = new GridBagConstraints();
-		gbc_btnMerge.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnMerge.insets = new Insets(0, 0, 0, 10);
 		gbc_btnMerge.gridx = 4;
 		gbc_btnMerge.gridy = 0;
 		jpToolBar.add(btnMerge, gbc_btnMerge);
 		
 		btnRebase = new JButton(imgicRebase);
 		GridBagConstraints gbc_btnRebase = new GridBagConstraints();
-		gbc_btnRebase.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnRebase.insets = new Insets(0, 0, 0, 10);
 		gbc_btnRebase.gridx = 5;
 		gbc_btnRebase.gridy = 0;
 		jpToolBar.add(btnRebase, gbc_btnRebase);
 		
 		btnCherry_Pick = new JButton(imgicCherry_Pick);
 		GridBagConstraints gbc_btnCherry_Pick = new GridBagConstraints();
-		gbc_btnCherry_Pick.insets = new Insets(0, 0, 0, 8);
+		//gbc_btnCherry_Pick.insets = new Insets(0, 0, 0, 10);
 		gbc_btnCherry_Pick.gridx = 6;
 		gbc_btnCherry_Pick.gridy = 0;
 		jpToolBar.add(btnCherry_Pick, gbc_btnCherry_Pick);
+		
+		btnTag = new JButton(imgicTag);
+		GridBagConstraints gbc_btnTag = new GridBagConstraints();
+		//gbc_btnTag.insets = new Insets(0, 0, 0, 10);
+		gbc_btnTag.gridx = 7;
+		gbc_btnTag.gridy = 0;
+		jpToolBar.add(btnTag, gbc_btnTag);
+		
+		btnUser_Setting = new JButton(imgicUser_Setting);
+		GridBagConstraints gbc_btnUser_Setting = new GridBagConstraints();
+		//gbc_btnUser_Setting.insets = new Insets(0, 0, 0, 10);
+		gbc_btnUser_Setting.gridx = 8;
+		gbc_btnUser_Setting.gridy = 0;
+		jpToolBar.add(btnUser_Setting, gbc_btnUser_Setting);
 		
 		btnOpen.setBackground(Color.white);
 		btnOpen.setBorderPainted(false);
@@ -162,6 +178,12 @@ public abstract class MainFrame extends JFrame{
 		
 		btnCherry_Pick.setBackground(Color.white);
 		btnCherry_Pick.setBorderPainted(false);
+		
+		btnTag.setBackground(Color.white);
+		btnTag.setBorderPainted(false);
+		
+		btnUser_Setting.setBackground(Color.white);
+		btnUser_Setting.setBorderPainted(false);
 		
 		
 		
@@ -187,7 +209,6 @@ public abstract class MainFrame extends JFrame{
 		gbc_spLog.gridx = 0;
 		gbc_spLog.gridy = 0;
 		panel.add(spLog, gbc_spLog);
-		
 		/*
 		taLog = new JTextArea(40,30);
 		taLog.setBackground(Color.BLACK);

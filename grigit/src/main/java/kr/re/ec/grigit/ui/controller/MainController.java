@@ -70,7 +70,7 @@ public class MainController extends MainFrame implements ActionListener {
 		jtfCommandLine.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				//getOrientation
 				logger.info("Enter Pressed");
 
 				if (CurrentRepository.getInstance().getRepository() == null) {
