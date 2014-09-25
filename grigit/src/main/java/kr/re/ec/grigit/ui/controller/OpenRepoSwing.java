@@ -14,12 +14,14 @@ import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 
-public class OpenRepositorySwing {
+public class OpenRepoSwing {
+	
 	Logger logger;
-	public OpenRepositorySwing(Component parent) {
+	
+	OpenRepoSwing(Component parent){
 		
-		logger = LoggerFactory.getLogger(OpenRepositorySwing.class);
-
+		logger = LoggerFactory.getLogger(OpenRepoSwing.class);
+		
 		File repodir = chooseFile(parent);
 		if (CurrentRepository.getInstance().getRepository() == null) {
 			new OpenRepository(repodir);
@@ -32,34 +34,38 @@ public class OpenRepositorySwing {
 		} else {
 			WriteToPane.getInstance().write("Grigit can only open One Repository...\nIf you want to open another Repository please RESTART the program", TextStyles.getInstance().ALERT);
 		}
-
 	}
+	
 
 	public File chooseFile(Component parent) {
 		final JFileChooser fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = fc.showDialog(parent, "Select");
 		File file = fc.getSelectedFile();
-		if (isDotGitDir(file)) {
+		if (!isDotGitDir(file)) {
 			file = formToGitDir(file);
 		}
-		logger.info("Opening: " + file.getName());
+		//logger.info("Opening: " + file.getAbsolutePath());
 		return file;
 	}
 
 	private boolean isDotGitDir(File file) {
 		boolean result = false;
 		String filepath = file.getAbsolutePath();
-		if (filepath.substring(filepath.length() - 4).equals(".git") == false) {
+		//logger.info("haha :"+filepath);
+		//logger.info("shjt:"+filepath.substring(filepath.length() - 4));
+		if ((filepath.substring(filepath.length() - 4).equals(".git"))) {
 			result = true;
+		//	logger.info("has dot");
 		}
-
 		return result;
 	}
 
 	private File formToGitDir(File file) {
 		File result;
+		//logger.info("wow:"+file.getAbsolutePath());
 		result = new File(file.getAbsolutePath() + "/.git");
+		//logger.info("result:"+result.getAbsolutePath());
 		return result;
 	}
 
