@@ -66,7 +66,7 @@ public class OpenRepository {
 	            .build();
 	    Ref head = repository.getRef("refs/heads/master");
 	    
-	    if(head != null){
+	    if(head == null){
         	WriteToPane.getInstance().write("This is a Bare repo or not a Repo please open a proper repository\n\n",TextStyles.getInstance().ALERT);
         } else {
         	//System.out.println("Having repository: " + repository.getDirectory());

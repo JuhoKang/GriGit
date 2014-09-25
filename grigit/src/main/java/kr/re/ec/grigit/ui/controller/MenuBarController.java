@@ -10,6 +10,8 @@ import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.OpenRepository;
 import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MenuBarFrame;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +36,7 @@ public class MenuBarController extends MenuBarFrame implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmOpenRepo){
-			new OpenRepositorySwing(this);
+			new OpenRepoSwing(this);
 		}		
 	}
 	

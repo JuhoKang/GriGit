@@ -361,7 +361,9 @@ public class GrigitGraph extends RevWalker {
 
 	public void repaintAll() {
 
+		
 		GitController.getInstance().getCommitList().clear();
+		GitController.getInstance().getRefList().clear();
 		panel.removeAll();
 		logger.info("remove panel");
 		graphPane = new GriGitGraphPane();

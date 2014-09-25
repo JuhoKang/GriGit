@@ -19,6 +19,8 @@ import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.ui.MainFrame;
 import kr.re.ec.grigit.util.PgmMain;
 import kr.re.ec.grigit.util.PrintToArea;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.pgm.Die;
 import org.eclipse.jgit.pgm.Main;
@@ -153,9 +155,39 @@ public class MainController extends MainFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnOpen) {
-			new OpenRepositorySwing(this);
+			new OpenRepoSwing(this);
 		}
 
+	}
+	
+	public File chooseFile() {
+		final JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = fc.showDialog(this, "Select");
+		File file = fc.getSelectedFile();
+		if (!isDotGitDir(file)) {
+			file = formToGitDir(file);
+		}
+		logger.info("Opening: " + file.getName());
+		return file;
+	}
+
+	private boolean isDotGitDir(File file) {
+		boolean result = false;
+		String filepath = file.getAbsolutePath();
+		logger.info("haha :"+filepath);
+		logger.info("shjt:"+filepath.substring(filepath.length() - 4));
+		if ((filepath.substring(filepath.length() - 4).equals(".git"))) {
+			result = true;
+			logger.info("has dot");
+		}
+		return result;
+	}
+
+	private File formToGitDir(File file) {
+		File result;
+		result = new File(file.getAbsolutePath() + "/.git");
+		return result;
 	}
 
 }
