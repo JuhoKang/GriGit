@@ -15,6 +15,7 @@ import javax.swing.text.StyleConstants;
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.jgraphx.test.GitController;
 import kr.re.ec.grigit.ui.MainFrame;
+import kr.re.ec.grigit.ui.UserSettingDialog;
 import kr.re.ec.grigit.util.PgmMain;
 import kr.re.ec.grigit.util.PrintToArea;
 import kr.re.ec.grigit.util.TextStyles;
@@ -66,6 +67,8 @@ public class MainController extends MainFrame implements ActionListener {
 		});
 
 		btnOpen.addActionListener(this);
+		btnUser_Setting.addActionListener(this);
+		
 		// when you hit ENTER at jtfCommandLine
 		jtfCommandLine.addActionListener(new ActionListener() {
 
@@ -146,10 +149,16 @@ public class MainController extends MainFrame implements ActionListener {
 			}
 		});
 	}
-
+/**
+ * Add event btnUser_Setting and call User setting when hit the button
+ * @author Parker
+ */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnOpen) {
 			new OpenRepoSwing(this);
+		}else if(e.getSource() == btnUser_Setting){
+			new UserSettingController();
 		}
+		
 	}
 }

@@ -21,6 +21,8 @@ import net.miginfocom.swing.MigLayout;
  * @version 1.0.0
  * @author Hyeonseok Ju
  *
+ * Remove Main.
+ * @author Parker
  */
 
 public class UserSettingDialog extends JDialog {
@@ -32,15 +34,6 @@ public class UserSettingDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			UserSettingDialog dialog = new UserSettingDialog();
-			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -58,7 +51,7 @@ public class UserSettingDialog extends JDialog {
 		}
 		{
 			UserNameInput = new JTextField();
-			UserNameInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 13));
+			UserNameInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
 			UserNameInput.setColumns(10);
 			contentPanel.add(UserNameInput, "cell 0 2,growx");
 		}
@@ -69,7 +62,7 @@ public class UserSettingDialog extends JDialog {
 		}
 		{
 			UserEmailInput = new JTextField();
-			UserEmailInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 13));
+			UserEmailInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
 			contentPanel.add(UserEmailInput, "cell 0 6,grow");
 			UserEmailInput.setColumns(10);
 		}

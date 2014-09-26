@@ -19,6 +19,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.StyledDocument;
 
 import kr.re.ec.grigit.ui.controller.MenuBarController;
+import kr.re.ec.grigit.ui.controller.UserSettingController;
 
 /**
  * MainFrame class for the Main Window of grigit
@@ -262,5 +263,8 @@ public abstract class MainFrame extends JFrame{
 		
 		setVisible(true);
 		
+		
+		// Rising UserSetting when client open
+		new UserSettingController();
 	}
 }
