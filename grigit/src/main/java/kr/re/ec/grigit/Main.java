@@ -18,8 +18,5 @@ public class Main
     public static void main( String[] args )
     {
        MainController.getInstance().init();
-
-		// Rising UserSetting when client open
-		UserSettingController.getInstance().init();
     }
 }

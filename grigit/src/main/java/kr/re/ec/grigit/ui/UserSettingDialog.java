@@ -77,7 +77,7 @@ public class UserSettingDialog extends JDialog {
 				btnOk = new JButton("확인");
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
-				getRootPane().setDefaultButton(btnOk);
+				//getRootPane().setDefaultButton(btnOk);
 			}
 			{
 				btnCancel = new JButton("취소");
@@ -85,15 +85,6 @@ public class UserSettingDialog extends JDialog {
 				buttonPane.add(btnCancel);
 				
 			}
-		}
-	}
-	public void init(){
-		try {
-			dialog = new UserSettingDialog();
-			//dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

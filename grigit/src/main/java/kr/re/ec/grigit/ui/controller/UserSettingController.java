@@ -15,39 +15,35 @@ import org.slf4j.LoggerFactory;
  * @author Parker
  *
  */
-public class UserSettingController extends UserSettingDialog implements	ActionListener {
-	@SuppressWarnings("serial")
+@SuppressWarnings("serial")
+public class UserSettingController extends UserSettingDialog implements
+		ActionListener {
+
 	Logger logger;
 
-	private UserSettingController() {
+	public UserSettingController() {
 		logger = LoggerFactory.getLogger(UserSettingController.class);
-		// TODO Auto-generated constructor stub
-	}
-
-	public static UserSettingController getInstance() {
-		return SingletonHolder.instance;
-	}
-
-	// for singleton
-	private static class SingletonHolder {
-		private static final UserSettingController instance = new UserSettingController();
-	}
-	public void init() {
-		super.init();
-
+		this.setModal(true);
+		btnOk.addActionListener(this);
 		btnCancel.addActionListener(this);
-}
+		this.setVisible(true);
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		logger.info("Check actionperforme");
-		String btn = e.getActionCommand();
 		// TODO Auto-generated method stub
-		if (btn.equals("Cancel")
-				//e.getSource() == btnCancel
-		) {
+		if (e.getSource() == btnOk) {	
+
+		} else if (e.getSource() == btnCancel) {
+
 			logger.info("Check button");
-			dialog.setVisible(false);
+			btnCancelActionPerformed(e);
+			// dialog.setVisible(false);
 			logger.info("Check set visible");
 		}
+	}
+
+	private void btnCancelActionPerformed(ActionEvent e) {
+		dispose();
 	}
 }

@@ -19,10 +19,8 @@ public class MenuBarController extends MenuBarFrame implements ActionListener{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void init(){
-		
-		mntmOpenRepo.addActionListener(this);
-		
+	public void init(){	
+		mntmOpenRepo.addActionListener(this);		
 	}
 
 	public void actionPerformed(ActionEvent e) {
