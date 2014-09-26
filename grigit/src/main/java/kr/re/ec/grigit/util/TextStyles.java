@@ -29,6 +29,7 @@ public class TextStyles {
 	public final Style ALERT;
 	public final Style LOG;
 	public final Style COMMAND;
+	public final Style PROGRESS;
 	protected Logger logger;
 	protected StyleContext context;
 	
@@ -43,6 +44,11 @@ public class TextStyles {
 		configureAlertStyle();
 		configureLogStyle();
 		configureCommandStyle();
+		
+		//Progress
+		PROGRESS = context.addStyle("progress", null);
+		configureProgressStyle();
+		
 	}
 	
 	protected void configureAlertStyle(){
@@ -56,6 +62,10 @@ public class TextStyles {
 	protected void configureCommandStyle(){
 		StyleConstants.setForeground(COMMAND, Color.magenta);
 		StyleConstants.setBold(COMMAND, true);
+	}
+	protected void configureProgressStyle(){
+		StyleConstants.setForeground(PROGRESS, Color.cyan);
+		StyleConstants.setItalic(PROGRESS, true);
 	}
 	// for singleton
 	/**

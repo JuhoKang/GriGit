@@ -17,8 +17,5 @@ public class AlertDialog extends AlertDialogFrame implements ActionListener{
 			this.dispose();
 		}
 		
-	}
-	
-	
-
+	}	
 }
