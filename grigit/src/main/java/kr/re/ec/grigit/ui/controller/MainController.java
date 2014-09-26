@@ -157,7 +157,7 @@ public class MainController extends MainFrame implements ActionListener {
 		if (e.getSource() == btnOpen) {
 			new OpenRepoSwing(this);
 		}else if(e.getSource() == btnUser_Setting){
-			new UserSettingController();
+			UserSettingController.getInstance().init();
 		}
 		
 	}

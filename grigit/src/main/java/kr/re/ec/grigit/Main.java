@@ -1,6 +1,7 @@
 package kr.re.ec.grigit;
 
 import kr.re.ec.grigit.ui.controller.MainController;
+import kr.re.ec.grigit.ui.controller.UserSettingController;
 
 /**
  * Hello world!
@@ -17,5 +18,8 @@ public class Main
     public static void main( String[] args )
     {
        MainController.getInstance().init();
+
+		// Rising UserSetting when client open
+		UserSettingController.getInstance().init();
     }
 }

@@ -262,9 +262,5 @@ public abstract class MainFrame extends JFrame{
 		setJMenuBar(menubar);
 		
 		setVisible(true);
-		
-		
-		// Rising UserSetting when client open
-		new UserSettingController();
 	}
 }

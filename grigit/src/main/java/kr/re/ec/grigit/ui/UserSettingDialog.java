@@ -33,6 +33,7 @@ public class UserSettingDialog extends JDialog {
 
 	protected JButton btnCancel;
 	protected JButton btnOk;
+	protected UserSettingDialog dialog;
 	/**
 	 * Launch the application.
 	 */
@@ -82,13 +83,14 @@ public class UserSettingDialog extends JDialog {
 				btnCancel = new JButton("취소");
 				btnCancel.setActionCommand("Cancel");
 				buttonPane.add(btnCancel);
+				
 			}
 		}
 	}
 	public void init(){
 		try {
-			UserSettingDialog dialog = new UserSettingDialog();
-			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			dialog = new UserSettingDialog();
+			//dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
