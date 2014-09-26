@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 public class TextStyles {
 
 	public final Style ALERT;
+	public final Style PROGRESS;
 	protected Logger logger;
 	protected StyleContext context;
 	
@@ -35,11 +36,20 @@ public class TextStyles {
 		ALERT = context.addStyle("alert", null);
 		configureAlertStyle();
 		
+		//Progress
+		PROGRESS = context.addStyle("progress", null);
+		configureProgressStyle();
+		
 	}
 	
 	protected void configureAlertStyle(){
 		StyleConstants.setForeground(ALERT, Color.red);
 		StyleConstants.setBold(ALERT, true);
+	}
+	
+	protected void configureProgressStyle(){
+		StyleConstants.setForeground(PROGRESS, Color.cyan);
+		StyleConstants.setItalic(PROGRESS, true);
 	}
 
 	// for singleton

@@ -10,10 +10,10 @@ import kr.re.ec.grigit.CurrentRepository;
 
 public class CreateBranch {
 	
-	CreateBranch(String name){
+	CreateBranch(String name,String startPoint){
 		
 		try {
-			core(name);
+			core(name, startPoint);
 		} catch (RefAlreadyExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,11 +30,12 @@ public class CreateBranch {
 		
 	}
 	
-	private void core(String name) throws RefAlreadyExistsException, RefNotFoundException, InvalidRefNameException, GitAPIException{
+	private void core(String name, String startPoint) throws RefAlreadyExistsException, RefNotFoundException, InvalidRefNameException, GitAPIException{
 		
 		Git git = new Git(CurrentRepository.getInstance().getRepository());
 		
 		git.branchCreate()
+		.setStartPoint(startPoint)
 			.setName(name)
 			.call();
 		

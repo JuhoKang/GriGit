@@ -164,7 +164,7 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-	//Object cell = graphComponent.getCellAt(e.getX(), e.getY());
+	    Object cell = graphComponent.getCellAt(e.getX(), e.getY());
 		// System.out.println("x: "+e.getX()+" y:"+e.getY());
 		mxCell tempcell = new mxCell();
 		Object added = null;
@@ -174,17 +174,17 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 				NodeCommit nodeC = (NodeCommit) cell;
 
 				if (!nodeC.isHasContentCell()) {
-					logger.info("making some");
+				//	logger.info("making some");
 					graphComponent.getGraph().getModel().beginUpdate();
 					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
 							.getX() + 20, nodeC.getGeometry().getY(), 300, 300));
 					tempcell.setValue(nodeC.getCommit().getFullMessage());
 					tempcell.setVisible(true);
 					tempcell.setVertex(true);
-					logger.info("made");
+				//	logger.info("made");
 
 					added = graphComponent.getGraph().addCell(tempcell);
-					logger.info("added is made in : " + added);
+				//	logger.info("added is made in : " + added);
 					graphComponent.getGraph().getModel().endUpdate();
 					nodeC.setHasContentCell(true);
 					nodeC.setContentCell(added);
@@ -195,9 +195,9 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 			} else {
 				if (nodeHasTemp != null) {
 					Object[] removecell = { nodeHasTemp.getContentCell() };
-					logger.info("added is " + nodeHasTemp.getContentCell());
+				//	logger.info("added is " + nodeHasTemp.getContentCell());
 					graphComponent.getGraph().getModel().beginUpdate();
-					logger.info("erasing");
+				//	logger.info("erasing");
 					graphComponent.getGraph().resizeCell(
 							nodeHasTemp.getContentCell(),
 							new mxRectangle(0, 0, 0, 0));
@@ -213,9 +213,9 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 
 			if (nodeHasTemp != null) {
 				Object[] removecell = { nodeHasTemp.getContentCell() };
-				logger.info("added is " + nodeHasTemp.getContentCell());
+			//	logger.info("added is " + nodeHasTemp.getContentCell());
 				graphComponent.getGraph().getModel().beginUpdate();
-				logger.info("erasing");
+			//	logger.info("erasing");
 				graphComponent.getGraph().resizeCell(
 						nodeHasTemp.getContentCell(),
 						new mxRectangle(0, 0, 0, 0));

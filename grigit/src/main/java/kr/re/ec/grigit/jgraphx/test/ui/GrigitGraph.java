@@ -50,6 +50,7 @@ package kr.re.ec.grigit.jgraphx.test.ui;
 //was Glog
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -237,7 +238,8 @@ public class GrigitGraph extends RevWalker {
 		// graph);
 
 		graphComponent.setEnabled(true);
-
+		graphComponent.setOpaque(true);
+		graphComponent.getViewport().setBackground(Color.WHITE);
 		graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
 
 			public void mouseReleased(MouseEvent e) {

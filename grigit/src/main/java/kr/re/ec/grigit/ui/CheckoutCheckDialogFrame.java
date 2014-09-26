@@ -20,20 +20,13 @@ import javax.swing.border.EmptyBorder;
 public class CheckoutCheckDialogFrame extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	protected JButton okButton;
+	protected JButton cancelButton;
+	protected JLabel DeleteMessage;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			CheckoutCheckDialogFrame dialog = new CheckoutCheckDialogFrame();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */
@@ -44,7 +37,7 @@ public class CheckoutCheckDialogFrame extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
 		{
-			JLabel DeleteMessage = new JLabel("체크아웃 하시겠습니까?");
+			DeleteMessage = new JLabel("");
 			DeleteMessage.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 			contentPanel.add(DeleteMessage);
 		}
@@ -53,17 +46,21 @@ public class CheckoutCheckDialogFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("확인");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("취소");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	public void init(){
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
 
 }

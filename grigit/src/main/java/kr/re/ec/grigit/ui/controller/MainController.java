@@ -65,6 +65,13 @@ public class MainController extends MainFrame implements ActionListener {
 				logger.info("checkout");
 			}
 		});
+		
+		btnMerge.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				GitController.getInstance().merge();				
+			}
+		});
 
 		btnOpen.addActionListener(this);
 		// when you hit ENTER at jtfCommandLine
