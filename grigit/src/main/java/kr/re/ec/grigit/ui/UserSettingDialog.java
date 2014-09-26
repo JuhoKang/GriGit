@@ -21,7 +21,7 @@ import net.miginfocom.swing.MigLayout;
  * @version 1.0.0
  * @author Hyeonseok Ju
  *
- * Remove Main.
+ * Remove Main. Make init method.
  * @author Parker
  */
 
@@ -31,6 +31,8 @@ public class UserSettingDialog extends JDialog {
 	private JTextField UserEmailInput;
 	private JTextField UserNameInput;
 
+	protected JButton btnCancel;
+	protected JButton btnOk;
 	/**
 	 * Launch the application.
 	 */
@@ -71,16 +73,25 @@ public class UserSettingDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("확인");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnOk = new JButton("확인");
+				btnOk.setActionCommand("OK");
+				buttonPane.add(btnOk);
+				getRootPane().setDefaultButton(btnOk);
 			}
 			{
-				JButton cancelButton = new JButton("취소");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btnCancel = new JButton("취소");
+				btnCancel.setActionCommand("Cancel");
+				buttonPane.add(btnCancel);
 			}
+		}
+	}
+	public void init(){
+		try {
+			UserSettingDialog dialog = new UserSettingDialog();
+			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -2,6 +2,7 @@ package kr.re.ec.grigit.ui.controller;
 
 
 
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,19 +22,26 @@ import org.slf4j.LoggerFactory;
  * @author Parker
  *
  */
-public class UserSettingController extends UserSettingDialog {
+public class UserSettingController extends UserSettingDialog implements ActionListener{
 @SuppressWarnings("serial") 
 	Logger logger;
 	
 	public UserSettingController() {
 		logger = LoggerFactory.getLogger(UserSettingController.class);
 		// TODO Auto-generated constructor stub
-		try {
-			UserSettingDialog dialog = new UserSettingDialog();
-			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		init();	
+	}
+	public void init(){
+		super.init();
+		
+		btnCancel.addActionListener(this);
+	}
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == btnOk) {
+			
+			}else if(e.getSource() == btnCancel){
+				Dialog.class;
+				}		
 	}
 }
