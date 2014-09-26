@@ -172,16 +172,17 @@ public class GitController {
 				
 			}else if(commitList.isEmpty() && refList.size()==2){
 				
-			}else{
-				WriteToPane.getInstance().write(
-						"You should select two nodes of the graph commit or branch\n",
-						TextStyles.getInstance().ALERT);
 			}
-			
 			logger.info("repaint all begin");
 			GrigitGraph.getInstance().repaintAll();
 			logger.info("repaint all end");
 			MainController.getInstance().repaint();
+		} else {
+			
+			WriteToPane.getInstance().write(
+					"You should select two nodes of the graph commit or branch\n",
+					TextStyles.getInstance().ALERT);
+			
 		}
 		
 		
