@@ -10,7 +10,7 @@ import kr.re.ec.grigit.CurrentRepository;
 
 public class CreateBranch {
 	
-	CreateBranch(String name,String startPoint){
+	public CreateBranch(String name,String startPoint){
 		
 		try {
 			core(name, startPoint);

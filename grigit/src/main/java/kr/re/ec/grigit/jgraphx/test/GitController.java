@@ -4,14 +4,20 @@ import java.util.ArrayList;
 
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.Checkout;
+import kr.re.ec.grigit.git.CreateBranch;
+import kr.re.ec.grigit.git.GetModifiedFiles;
+import kr.re.ec.grigit.git.GitCommit;
 import kr.re.ec.grigit.git.Merge;
 import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
 import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.ui.CheckoutCheckDialogFrame;
+import kr.re.ec.grigit.ui.CommitDialogFrame;
 import kr.re.ec.grigit.ui.MergeDialogFrame;
 import kr.re.ec.grigit.ui.controller.CheckoutCheckDialogController;
+import kr.re.ec.grigit.ui.controller.CommitDialog;
+import kr.re.ec.grigit.ui.controller.CreateBranchDialog;
 import kr.re.ec.grigit.ui.controller.MainController;
 import kr.re.ec.grigit.ui.controller.MergeDialog;
 import kr.re.ec.grigit.util.TextStyles;
@@ -71,6 +77,33 @@ public class GitController {
 	public void setCommitList(ArrayList<NodeCommit> commitList) {
 		this.commitList = commitList;
 	}
+	
+	public int cherryPick(){
+		
+		
+		
+		return 1;
+	}
+	
+	
+	public int commit(){
+		
+		GetModifiedFiles gmf = new GetModifiedFiles();
+		CommitDialog cd = new CommitDialog(gmf.getAddedFiles(),gmf.getChangedFiles(),
+				gmf.getMissingFiles(),gmf.getModifiedFiles(),gmf.getRemovedFiles(),gmf.getUntrackedFiles());
+		if(!cd.isCancel()){
+			
+			new GitCommit(cd.getCheckedFileList(),cd.getCommitMessage());
+			logger.info("repaint all begin");
+			GrigitGraph.getInstance().repaintAll();
+			logger.info("repaint all end");
+			MainController.getInstance().repaint();
+		}else{
+
+		}
+		
+		return 1;
+	}
 
 	public int checkOut() {
 
@@ -97,7 +130,6 @@ public class GitController {
 					logger.info("repaint all end");
 					MainController.getInstance().repaint();
 				} else {
-					System.out.println("here");
 				}
 
 			} else if ((refList.size() == 1) && (commitList.isEmpty())) {
@@ -142,6 +174,35 @@ public class GitController {
 	}
 
 	public int createBranch() {
+		
+		if (!(commitList.isEmpty() && refList.isEmpty())) {
+			if(commitList.size()==1 && refList.isEmpty()){
+				CreateBranchDialog cbd = new CreateBranchDialog("commit:"+commitList.get(0).getCommit().getName());
+				if(!cbd.isCancel()){
+					new CreateBranch(cbd.getBranchName(),commitList.get(0).getCommit().getName());	
+					
+				}
+			} else if(refList.size()==1 && commitList.isEmpty()){
+				CreateBranchDialog cbd = new CreateBranchDialog("branch:"+refList.get(0).getRef().getName());
+				if(!cbd.isCancel()){
+					new CreateBranch(cbd.getBranchName(),refList.get(0).getRef().getName());	
+				}
+			} else {
+				WriteToPane.getInstance().write(
+						"You should select one commit or a branch\n",
+						TextStyles.getInstance().ALERT);
+			}
+			logger.info("repaint all begin");
+			GrigitGraph.getInstance().repaintAll();
+			logger.info("repaint all end");
+			MainController.getInstance().repaint();
+			
+		} else {
+			WriteToPane.getInstance().write(
+					"You should select one commit or a branch\n",
+					TextStyles.getInstance().ALERT);
+		}
+		
 
 		// for test
 		return 1;
