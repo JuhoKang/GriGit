@@ -32,6 +32,7 @@ public class UserSettingController extends UserSettingDialog implements
 		this.setModal(true);
 		btnOk.addActionListener(this);
 		btnCancel.addActionListener(this);
+		bufferReader();
 		this.setVisible(true);
 	}
 
@@ -57,8 +58,8 @@ public class UserSettingController extends UserSettingDialog implements
 	private void bgnOkActionPerformed(ActionEvent e) {
 		String UserName = txtUserName.getText();
 		String UserEmail = txtUserEmail.getText();
-		
-		bufferWriter(UserName,UserEmail);
+
+		bufferWriter(UserName, UserEmail);
 		dispose();
 	}
 
@@ -71,25 +72,23 @@ public class UserSettingController extends UserSettingDialog implements
 			buf_writer = new BufferedWriter(file_writer);
 			logger.info(name);
 			logger.info(mail);
-			
-			
-			buf_writer.write(name);	
+
+			buf_writer.write(name);
 			buf_writer.newLine();
 			buf_writer.write(mail);
-			
+
 			buf_writer.flush();
 			file_writer.flush();
-			
+
 			/*
-			 * file_writer.write(name);
-			 * file_writer.write("");
+			 * file_writer.write(name); file_writer.write("");
 			 * file_writer.write(mail);
-			*/
-			
+			 */
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (file_writer!= null)
+			if (file_writer != null)
 				try {
 					file_writer.close();
 				} catch (IOException e) {
@@ -97,6 +96,32 @@ public class UserSettingController extends UserSettingDialog implements
 			if (buf_writer != null)
 				try {
 					buf_writer.close();
+				} catch (IOException e) {
+				}
+
+		}
+	}
+
+	private void bufferReader() {
+		FileReader file_reader = null;
+		BufferedReader buf_reader = null;
+
+		try {
+			file_reader = new FileReader("resources/UserSetting.txt");
+			buf_reader = new BufferedReader(file_reader);
+			txtUserName.setText(buf_reader.readLine());
+			txtUserEmail.setText(buf_reader.readLine());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (buf_reader != null)
+				try {
+					buf_reader.close();
+				} catch (IOException e) {
+				}
+			if (buf_reader != null)
+				try {
+					buf_reader.close();
 				} catch (IOException e) {
 				}
 
