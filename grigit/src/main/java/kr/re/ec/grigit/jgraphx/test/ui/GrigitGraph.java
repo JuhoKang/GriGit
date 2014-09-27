@@ -159,6 +159,7 @@ public class GrigitGraph extends RevWalker {
 		graph.setCellsEditable(false);
 		graph.setEdgeLabelsMovable(false);
 		graph.setAllowDanglingEdges(false);
+		graph.setHtmlLabels(true);
 
 		try {
 			ArrayList<NodeCommit> nodeList = new ArrayList<NodeCommit>();
@@ -187,7 +188,6 @@ public class GrigitGraph extends RevWalker {
 						Ref ref = node.getCommit().getRef(k);
 						NodeRef rnode = new NodeRef();
 						rnode.setRef(ref);
-
 						rnode.setVertex(true);
 						rnode.setVisible(true);
 						rnode.setGeometry(new mxGeometry(100
