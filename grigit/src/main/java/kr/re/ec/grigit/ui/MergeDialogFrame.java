@@ -16,11 +16,13 @@ public class MergeDialogFrame extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	protected JRadioButton rdbtnInOrder;
 	protected JRadioButton rdbtnNotInOrder;
-	protected JLabel lblInOrder;
-	protected JLabel lblNotInOrder;
+	protected JLabel lblInOrderMessage;
+	protected JLabel lblNotInOrderMessage;
 	protected JLabel lblMessage;
 	protected JButton okButton;
 	protected JButton cancelButton;
+	protected JLabel lblInOrderName;
+	protected JLabel lblNotInOrderName;
 
 	/**
 	 * Create the dialog.
@@ -48,8 +50,12 @@ public class MergeDialogFrame extends JDialog {
 				panel.add(panel_1, BorderLayout.CENTER);
 				panel_1.setLayout(new BorderLayout(0, 0));
 				{
-					lblInOrder = new JLabel("New label");
-					panel_1.add(lblInOrder);
+					lblInOrderMessage = new JLabel("New label");
+					panel_1.add(lblInOrderMessage);
+				}
+				{
+					lblInOrderName = new JLabel("New label");
+					panel_1.add(lblInOrderName, BorderLayout.NORTH);
 				}
 			}
 		}
@@ -70,8 +76,12 @@ public class MergeDialogFrame extends JDialog {
 				panel.add(panel_1, BorderLayout.CENTER);
 				panel_1.setLayout(new BorderLayout(0, 0));
 				{
-					lblNotInOrder = new JLabel("New label");
-					panel_1.add(lblNotInOrder);
+					lblNotInOrderMessage = new JLabel("New label");
+					panel_1.add(lblNotInOrderMessage);
+				}
+				{
+					lblNotInOrderName = new JLabel("New label");
+					panel_1.add(lblNotInOrderName, BorderLayout.NORTH);
 				}
 			}
 		}

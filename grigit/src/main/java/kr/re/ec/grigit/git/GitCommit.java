@@ -2,6 +2,9 @@ package kr.re.ec.grigit.git;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import kr.re.ec.grigit.CurrentRepository;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -12,8 +15,19 @@ import org.eclipse.jgit.lib.Repository;
  */
 public class GitCommit {
 	
-	public GitCommit(){
-		
+	public GitCommit(ArrayList<String> fileList, String message){
+		try {
+			core(fileList, message);
+		} catch (NoFilepatternException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (GitAPIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -23,29 +37,24 @@ public class GitCommit {
 	 * @throws NoFilepatternException
 	 * @throws GitAPIException
 	 */
-	private void core(Repository repository) throws IOException, NoFilepatternException, GitAPIException{
+	private void core(ArrayList<String> fileList,String message) throws IOException, NoFilepatternException, GitAPIException{
 		
 		
 
-	        Git git = new Git(repository);
+	        Git git = new Git(CurrentRepository.getInstance().getRepository());
 
-	        // create the file
-	        File myfile = new File(repository.getDirectory().getParent(), "testfile");
-	        myfile.createNewFile();
-
-	        // run the add
-	        git.add()
-	                .addFilepattern("testfile")
-	                .call();
+	        
+	        for(String file : fileList){
+	        	git.add()
+                .addFilepattern(file)
+                .call();
+	        }
+	        
 
 	        // and then commit the changes
 	        git.commit()
-	                .setMessage("Added testfile")
+	                .setMessage(message)
 	                .call();
-
-	        System.out.println("Committed file " + myfile + " to repository at " + repository.getDirectory());
-
-	        repository.close();
 		
 	}
 }

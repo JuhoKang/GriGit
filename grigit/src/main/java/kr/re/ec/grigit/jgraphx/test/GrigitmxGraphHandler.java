@@ -6,7 +6,10 @@ import java.awt.event.MouseEvent;
 
 import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
+import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
 
+import org.eclipse.jgit.revplot.PlotCommit;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -177,9 +180,12 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 				if (!nodeC.isHasContentCell()) {
 				//	logger.info("making some");
 					graphComponent.getGraph().getModel().beginUpdate();
+					PlotCommit<SwingLane> commit = nodeC.getCommit();
 					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
 							.getX() + 20, nodeC.getGeometry().getY(), 300, 300));
-					tempcell.setValue(nodeC.getCommit().getFullMessage());
+					tempcell.setValue("<html>"+"Author : "+commit.getAuthorIdent()+"<br><hr>"
+							+"Message : <br>"+
+							commit.getFullMessage());
 					tempcell.setVisible(true);
 					tempcell.setVertex(true);
 				//	logger.info("made");

@@ -9,24 +9,42 @@ import javax.swing.event.ChangeListener;
 
 import kr.re.ec.grigit.ui.MergeDialogFrame;
 
-public class MergeDialog extends MergeDialogFrame implements ActionListener{
+public class MergeDialog extends MergeDialogFrame implements ActionListener {
 
 	private boolean inOrder = false;
-	
-	public MergeDialog(String first, String second) {
+	private boolean isCancel = true;
+
+	public boolean isCancel() {
+		return isCancel;
+	}
+
+	public void setCancel(boolean isCancel) {
+		this.isCancel = isCancel;
+	}
+
+	public MergeDialog(String firstName, String firstMessage,
+			String secondName, String secondMessage) {
 		this.setModal(true);
 		lblMessage.setText("Choose the way you are going to merge");
-		lblInOrder.setText("merge \"  "+first+"\"into\"  "+second);
-		lblNotInOrder.setText("merge \"  "+second+"\"into\"  "+first);
+		lblInOrderName
+				.setText("<html><b>CHECKOUT</b> \"" + firstName
+						+ "\"<br><br><b>MERGE</b><br>\"  " + secondName
+						+ "<hr></html>");
+		lblInOrderMessage.setText("<html>MERGE<br>" + secondMessage
+				+ "<br><br>INTO<br><br>" + firstMessage + "</html>");
+		lblNotInOrderName.setText("<html><b>CHECKOUT</b> \"  " + secondName
+				+ "\"<br><b>MERGE</b><br>\"  " + firstName + "<hr></html>");
+		lblNotInOrderMessage.setText("<html>MERGE<br> " + firstMessage
+				+ "<br><br>INTO<br><br>" + secondMessage + "</html>");
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnInOrder);
 		bg.add(rdbtnNotInOrder);
-		
+
 		rdbtnInOrder.addActionListener(this);
 		rdbtnNotInOrder.addActionListener(this);
 		okButton.addActionListener(this);
 		cancelButton.addActionListener(this);
-		
+
 		this.pack();
 		this.setVisible(true);
 	}
@@ -41,24 +59,25 @@ public class MergeDialog extends MergeDialogFrame implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == rdbtnInOrder){
-			
-		}else if (e.getSource() == rdbtnNotInOrder){
-			
+		if (e.getSource() == rdbtnInOrder) {
+
+		} else if (e.getSource() == rdbtnNotInOrder) {
+
 		}
-		if(e.getSource() == okButton){
-			if(rdbtnInOrder.isEnabled()){
-				inOrder = true;
-				this.dispose();
+		if (e.getSource() == okButton) {
+			if (rdbtnInOrder.isEnabled()) {
+				inOrder = true;				
 			} else {
 				inOrder = false;
-				this.dispose();
 			}
-		}if(e.getSource() == cancelButton){
+			this.isCancel = false;
 			this.dispose();
 		}
-		
+		if (e.getSource() == cancelButton) {
+			this.isCancel = true;
+			this.dispose();
+		}
+
 	}
-	
-	
+
 }

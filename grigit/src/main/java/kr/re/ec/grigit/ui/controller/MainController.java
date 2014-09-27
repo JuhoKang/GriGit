@@ -66,10 +66,27 @@ public class MainController extends MainFrame implements ActionListener {
 			}
 		});
 		
+		btnBranch.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				GitController.getInstance().createBranch();
+				logger.info("createbranch");
+			}
+		});
+		
+		btnCommit.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				GitController.getInstance().commit();
+				logger.info("commit");
+			}
+		});
+		
 		btnMerge.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				GitController.getInstance().merge();				
+				GitController.getInstance().merge();
+				logger.info("merge");
 			}
 		});
 
