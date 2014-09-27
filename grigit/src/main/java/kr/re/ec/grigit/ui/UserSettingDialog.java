@@ -28,8 +28,8 @@ import net.miginfocom.swing.MigLayout;
 public class UserSettingDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField UserEmailInput;
-	private JTextField UserNameInput;
+	protected JTextField txtUserEmail;
+	protected JTextField txtUserName;
 
 	protected JButton btnCancel;
 	protected JButton btnOk;
@@ -53,10 +53,10 @@ public class UserSettingDialog extends JDialog {
 			contentPanel.add(UserNameLabel, "cell 0 0,alignx left,aligny top");
 		}
 		{
-			UserNameInput = new JTextField();
-			UserNameInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
-			UserNameInput.setColumns(10);
-			contentPanel.add(UserNameInput, "cell 0 2,growx");
+			txtUserName = new JTextField();
+			txtUserName.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
+			txtUserName.setColumns(10);
+			contentPanel.add(txtUserName, "cell 0 2,growx");
 		}
 		{
 			JLabel UserEmailLabel = new JLabel("Email");
@@ -64,10 +64,10 @@ public class UserSettingDialog extends JDialog {
 			contentPanel.add(UserEmailLabel, "cell 0 4");
 		}
 		{
-			UserEmailInput = new JTextField();
-			UserEmailInput.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
-			contentPanel.add(UserEmailInput, "cell 0 6,grow");
-			UserEmailInput.setColumns(10);
+			txtUserEmail = new JTextField();
+			txtUserEmail.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
+			contentPanel.add(txtUserEmail, "cell 0 6,grow");
+			txtUserEmail.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
