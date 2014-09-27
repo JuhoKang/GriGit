@@ -1,5 +1,11 @@
 package kr.re.ec.grigit.ui.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,18 +38,68 @@ public class UserSettingController extends UserSettingDialog implements
 	public void actionPerformed(ActionEvent e) {
 		logger.info("Check actionperforme");
 		// TODO Auto-generated method stub
-		if (e.getSource() == btnOk) {	
+		if (e.getSource() == btnOk) {
+			logger.info("Check ok button");
+			bgnOkActionPerformed(e);
 
 		} else if (e.getSource() == btnCancel) {
 
-			logger.info("Check button");
+			logger.info("Check cancel button");
 			btnCancelActionPerformed(e);
 			// dialog.setVisible(false);
-			logger.info("Check set visible");
 		}
 	}
 
 	private void btnCancelActionPerformed(ActionEvent e) {
 		dispose();
+	}
+
+	private void bgnOkActionPerformed(ActionEvent e) {
+		String UserName = txtUserName.getText();
+		String UserEmail = txtUserEmail.getText();
+		
+		bufferWriter(UserName,UserEmail);
+		dispose();
+	}
+
+	private void bufferWriter(String name, String mail) {
+		FileWriter file_writer = null;
+		BufferedWriter buf_writer = null;
+
+		try {
+			file_writer = new FileWriter("resources/UserSetting.txt", false);
+			buf_writer = new BufferedWriter(file_writer);
+			logger.info(name);
+			logger.info(mail);
+			
+			
+			buf_writer.write(name);	
+			buf_writer.newLine();
+			buf_writer.write(mail);
+			
+			buf_writer.flush();
+			file_writer.flush();
+			
+			/*
+			 * file_writer.write(name);
+			 * file_writer.write("");
+			 * file_writer.write(mail);
+			*/
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (file_writer!= null)
+				try {
+					file_writer.close();
+				} catch (IOException e) {
+				}
+			if (buf_writer != null)
+				try {
+					buf_writer.close();
+				} catch (IOException e) {
+				}
+
+		}
 	}
 }
