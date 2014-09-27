@@ -89,6 +89,14 @@ public class MainController extends MainFrame implements ActionListener {
 				logger.info("merge");
 			}
 		});
+		
+		btnCherry_Pick.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				GitController.getInstance().cherryPick();
+				logger.info("cherrypick");				
+			}
+		});
 
 		btnOpen.addActionListener(this);
 		btnUser_Setting.addActionListener(this);

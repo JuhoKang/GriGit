@@ -25,7 +25,16 @@ import org.slf4j.LoggerFactory;
 public class UserSettingController extends UserSettingDialog implements
 		ActionListener {
 
-	Logger logger;
+	private Logger logger;
+	public boolean isOk() {
+		return isOk;
+	}
+
+	public void setOk(boolean isOk) {
+		this.isOk = isOk;
+	}
+
+	private boolean isOk;
 
 	public UserSettingController() {
 		logger = LoggerFactory.getLogger(UserSettingController.class);
@@ -41,11 +50,14 @@ public class UserSettingController extends UserSettingDialog implements
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnOk) {
 			logger.info("Check ok button");
+			isOk = true;
 			bgnOkActionPerformed(e);
 
 		} else if (e.getSource() == btnCancel) {
 
+			
 			logger.info("Check cancel button");
+			isOk = false;
 			btnCancelActionPerformed(e);
 			// dialog.setVisible(false);
 		}

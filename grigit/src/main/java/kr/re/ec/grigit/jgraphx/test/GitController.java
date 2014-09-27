@@ -1,9 +1,13 @@
 package kr.re.ec.grigit.jgraphx.test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.Checkout;
+import kr.re.ec.grigit.git.CherryPick;
 import kr.re.ec.grigit.git.CreateBranch;
 import kr.re.ec.grigit.git.GetModifiedFiles;
 import kr.re.ec.grigit.git.GitCommit;
@@ -16,6 +20,7 @@ import kr.re.ec.grigit.ui.CheckoutCheckDialogFrame;
 import kr.re.ec.grigit.ui.CommitDialogFrame;
 import kr.re.ec.grigit.ui.MergeDialogFrame;
 import kr.re.ec.grigit.ui.controller.CheckoutCheckDialogController;
+import kr.re.ec.grigit.ui.controller.CherryPickDialog;
 import kr.re.ec.grigit.ui.controller.CommitDialog;
 import kr.re.ec.grigit.ui.controller.CreateBranchDialog;
 import kr.re.ec.grigit.ui.controller.MainController;
@@ -23,6 +28,7 @@ import kr.re.ec.grigit.ui.controller.MergeDialog;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 
+import org.eclipse.jgit.lib.AnyObjectId;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revplot.PlotCommit;
 import org.slf4j.Logger;
@@ -80,6 +86,36 @@ public class GitController {
 	
 	public int cherryPick(){
 		
+		if (!(commitList.isEmpty() && refList.isEmpty())) {
+			
+			CherryPickDialog cpd = new CherryPickDialog();
+			if(cpd.isOk()){
+				ArrayList<AnyObjectId> idList = new ArrayList<AnyObjectId>();
+				
+				for(NodeRef ref : refList){
+					idList.add(ref.getRef().getObjectId());
+				}
+
+				for(NodeCommit commit : commitList){
+					idList.add(commit.getCommit().getId());
+				}
+				new CherryPick(idList);
+				logger.info("repaint all begin");
+				GrigitGraph.getInstance().repaintAll();
+				logger.info("repaint all end");
+				MainController.getInstance().repaint();
+			}else {
+				
+			}
+			
+			
+			
+		} else {
+			WriteToPane.getInstance().write(
+					"Select the commits you want to cherry-pick\n",
+					TextStyles.getInstance().ALERT);
+		}
+		
 		
 		
 		return 1;
@@ -92,8 +128,8 @@ public class GitController {
 		CommitDialog cd = new CommitDialog(gmf.getAddedFiles(),gmf.getChangedFiles(),
 				gmf.getMissingFiles(),gmf.getModifiedFiles(),gmf.getRemovedFiles(),gmf.getUntrackedFiles());
 		if(!cd.isCancel()){
-			
-			new GitCommit(cd.getCheckedFileList(),cd.getCommitMessage());
+			ArrayList<String> author = userInfoReader();
+			new GitCommit(cd.getCheckedFileList(),cd.getCommitMessage(),author.get(0),author.get(1));
 			logger.info("repaint all begin");
 			GrigitGraph.getInstance().repaintAll();
 			logger.info("repaint all end");
@@ -303,6 +339,35 @@ public class GitController {
 		}
 
 		return 1;
+	}
+	
+	private ArrayList<String> userInfoReader() {
+		FileReader file_reader = null;
+		BufferedReader buf_reader = null;
+		
+		ArrayList<String> result = new ArrayList<String>();
+
+		try {
+			file_reader = new FileReader("resources/UserSetting.txt");
+			buf_reader = new BufferedReader(file_reader);
+			result.add(buf_reader.readLine());
+			result.add(buf_reader.readLine());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (buf_reader != null)
+				try {
+					buf_reader.close();
+				} catch (IOException e) {
+				}
+			if (buf_reader != null)
+				try {
+					buf_reader.close();
+				} catch (IOException e) {
+				}
+
+		}
+		return result;
 	}
 
 }

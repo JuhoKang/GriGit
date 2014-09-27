@@ -15,9 +15,9 @@ import org.eclipse.jgit.lib.Repository;
  */
 public class GitCommit {
 	
-	public GitCommit(ArrayList<String> fileList, String message){
+	public GitCommit(ArrayList<String> fileList, String message, String author, String email){
 		try {
-			core(fileList, message);
+			core(fileList, message, author, email);
 		} catch (NoFilepatternException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class GitCommit {
 	 * @throws NoFilepatternException
 	 * @throws GitAPIException
 	 */
-	private void core(ArrayList<String> fileList,String message) throws IOException, NoFilepatternException, GitAPIException{
+	private void core(ArrayList<String> fileList,String message,String author, String email) throws IOException, NoFilepatternException, GitAPIException{
 		
 		
 
@@ -53,6 +53,7 @@ public class GitCommit {
 
 	        // and then commit the changes
 	        git.commit()
+	        .setAuthor(author, email)
 	                .setMessage(message)
 	                .call();
 		

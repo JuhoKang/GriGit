@@ -86,6 +86,7 @@ public class UserSettingDialog extends JDialog {
 				
 			}
 		}
+		this.setAlwaysOnTop(true);
 	}
 
 }
