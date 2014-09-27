@@ -90,6 +90,16 @@ public class MainController extends MainFrame implements ActionListener {
 			}
 		});
 		
+		btnTag.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				GitController.getInstance().createTag();
+				logger.info("tag");
+				
+			}
+		});
+		
 		btnCherry_Pick.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

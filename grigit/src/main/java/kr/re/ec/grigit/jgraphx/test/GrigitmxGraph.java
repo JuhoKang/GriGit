@@ -61,7 +61,7 @@ public class GrigitmxGraph extends mxGraph {
 		if (cell instanceof NodeRef) {
 			NodeRef nodeR = (NodeRef) cell;
 			if(nodeR.isSelected()){
-				return "☆"+nodeR.getRef().getName();
+				return "★"+nodeR.getRef().getName();
 			}else{
 				return nodeR.getRef().getName();
 			}

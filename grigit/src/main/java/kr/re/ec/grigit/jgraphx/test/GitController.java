@@ -9,6 +9,7 @@ import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.Checkout;
 import kr.re.ec.grigit.git.CherryPick;
 import kr.re.ec.grigit.git.CreateBranch;
+import kr.re.ec.grigit.git.CreateTag;
 import kr.re.ec.grigit.git.GetModifiedFiles;
 import kr.re.ec.grigit.git.GitCommit;
 import kr.re.ec.grigit.git.Merge;
@@ -25,6 +26,7 @@ import kr.re.ec.grigit.ui.controller.CommitDialog;
 import kr.re.ec.grigit.ui.controller.CreateBranchDialog;
 import kr.re.ec.grigit.ui.controller.MainController;
 import kr.re.ec.grigit.ui.controller.MergeDialog;
+import kr.re.ec.grigit.ui.controller.TagInputDialog;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 
@@ -120,6 +122,41 @@ public class GitController {
 		
 		return 1;
 	}
+	
+	public int createTag(){
+		
+		ArrayList<String> author = userInfoReader();
+		
+		if (!(commitList.isEmpty() && refList.isEmpty())) {
+			if(commitList.size() == 1 && refList.isEmpty()){
+				TagInputDialog tid = new TagInputDialog();
+				if(tid.isOk()){
+					new CreateTag(commitList.get(0).getCommit(), tid.getName(), author.get(0), author.get(1));
+					logger.info("repaint all begin");
+					GrigitGraph.getInstance().repaintAll();
+					logger.info("repaint all end");
+					MainController.getInstance().repaint();
+				} else {
+					
+				}
+				
+			} else {
+				WriteToPane.getInstance().write(
+						"Select a commit you want to tag\n",
+						TextStyles.getInstance().ALERT);
+			}
+		} else {
+			WriteToPane.getInstance().write(
+					"Select a commit you want to tag\n",
+					TextStyles.getInstance().ALERT);
+		}
+		
+		
+	//	new CreateTag(commit, name, author, email)
+		
+		return 1;
+	}
+	
 	
 	
 	public int commit(){
