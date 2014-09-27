@@ -183,9 +183,37 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 					PlotCommit<SwingLane> commit = nodeC.getCommit();
 					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
 							.getX() + 20, nodeC.getGeometry().getY(), 300, 300));
-					tempcell.setValue("<html>"+"Author : "+commit.getAuthorIdent()+"<br><hr>"
-							+"Message : <br>"+
-							commit.getFullMessage());
+					
+					
+					commit.name();
+					
+					commit.getParentCount();
+					
+					
+					commit.getAuthorIdent().getName();
+					commit.getAuthorIdent().getEmailAddress();
+					commit.getAuthorIdent().getTimeZone();
+					
+					
+					commit.getRefCount();
+										
+					
+					tempcell.setValue("<html>"+"Commit name : "+commit.name()+"<br><hr>"
+							+ "</html>");
+					
+					tempcell.setValue("<html>" + "Parents : " + commit.getParent(0) + "</html>");
+					
+					for(int i=1; i<=commit.getParentCount(); ++i)
+					{
+						tempcell.setValue("<html>" + ", " + commit.getParent(i) + "</html>");
+					}
+					
+					tempcell.setValue("<html>" + "<br>" 
+					+ "Author's name : " + commit.getAuthorIdent().getName() + "<br>"
+					+ "Author's Email : " + commit.getAuthorIdent().getEmailAddress() + "<br>"
+					+ "Author's " + commit.getAuthorIdent().getTimeZoneOffset() + "<br>");
+					
+					
 					tempcell.setVisible(true);
 					tempcell.setVertex(true);
 				//	logger.info("made");
