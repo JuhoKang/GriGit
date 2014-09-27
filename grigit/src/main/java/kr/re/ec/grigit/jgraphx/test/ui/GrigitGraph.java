@@ -190,6 +190,7 @@ public class GrigitGraph extends RevWalker {
 						rnode.setRef(ref);
 						rnode.setVertex(true);
 						rnode.setVisible(true);
+						rnode.setStyle(getRefNodeStyle());
 						rnode.setGeometry(new mxGeometry(100
 								+ node.getCommit().getLane().getPosition() * 50
 								+ 40 + 150 * k, 0 + i * 50 + 10, 100, 15));
@@ -323,6 +324,10 @@ public class GrigitGraph extends RevWalker {
 				+ "="
 				+ mxConstants.SHAPE_ELLIPSE
 				+ ";"
+				+ mxConstants.STYLE_FONTCOLOR +
+				"=white;"
+				+ mxConstants.FONT_SHADOW +
+				"=true;"
 				+ mxConstants.STYLE_FILLCOLOR
 				+ "="
 				+ String.format("#%02x%02x%02x",
@@ -331,6 +336,18 @@ public class GrigitGraph extends RevWalker {
 								.getCommit().getLane().color.getBlue());
 
 	}
+	
+	private String getRefNodeStyle() {
+		return mxConstants.STYLE_FILLCOLOR
+				+"=white;"
+				+mxConstants.STYLE_FONTCOLOR
+				+"=black;"
+				+mxConstants.STYLE_STROKECOLOR
+				+"=black;"
+				+mxConstants.STYLE_ROUNDED
+				+"=true";
+	}
+	
 
 	private String getEdgeColor(NodeCommit node,
 			ArrayList<NodeCommit> nodeList, NodeCommit parent) {

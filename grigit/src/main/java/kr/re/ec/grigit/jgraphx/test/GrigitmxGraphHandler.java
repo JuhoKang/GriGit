@@ -18,6 +18,7 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxGraphHandler;
 import com.mxgraph.swing.handler.mxMovePreview;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxRectangle;
 
 /**
@@ -289,7 +290,7 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 					
 					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
 							.getX() + 20, nodeC.getGeometry().getY(), maxLength*4>300 ? maxLength*4 : 300, countLine*20));
-					
+					tempcell.setStyle(getTempCellStyle());
 					
 					tempcell.setVisible(true);
 					tempcell.setVertex(true);
@@ -348,6 +349,16 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 				graphComponent.getGraphControl().setCursor(DEFAULT_CURSOR);
 			}
 		}
+	}
+	
+	private String getTempCellStyle(){
+		return mxConstants.STYLE_FILLCOLOR+
+				"="+
+				String.format("#%02x%02x%02x",
+						255, 255,128)
+			+";"+mxConstants.STYLE_FONTCOLOR
+			+"="+String.format("#%02x%02x%02x",
+					0, 64,128);
 	}
 
 }
