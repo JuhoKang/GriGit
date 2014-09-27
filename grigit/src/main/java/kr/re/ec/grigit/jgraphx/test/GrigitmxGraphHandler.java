@@ -48,7 +48,29 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 	public void mouseDragged(MouseEvent e) {
 
 	}
-
+	
+	private static int countLines(String str){
+		   String[] lines = str.split("\r\n|\r|\n");
+		   return  lines.length;
+		}
+	
+	private static int maxLengthCount(String str){
+		
+		int max=0;
+		String[] lines = str.split("\r\n|\r|\n");
+		
+		for(int i=0; i<lines.length; i++)
+		{
+			
+			
+			if(max<lines[i].length())
+				max=lines[i].length();
+		}
+		
+		return max;
+	}
+	
+	
 
 
 	protected void installDragGestureHandler() {/*
@@ -179,39 +201,94 @@ public class GrigitmxGraphHandler extends mxGraphHandler {
 
 				if (!nodeC.isHasContentCell()) {
 				//	logger.info("making some");
+					
+					int countLine, maxLength; 
+					String tempValue;
+					
+					countLine=1;
+					
 					graphComponent.getGraph().getModel().beginUpdate();
 					PlotCommit<SwingLane> commit = nodeC.getCommit();
-					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
-							.getX() + 20, nodeC.getGeometry().getY(), 300, 300));
 					
 					
-					commit.name();
 					
-					commit.getParentCount();
+	
+					
+					tempValue="<html><div style=\"text-align:center\">"+"Commit name : "+commit.name().substring(0, 13)+"\n<hr></div>";
+					
+					tempValue+="<div style=\"text-align:left\">";
+					
+					countLine+=1;
 					
 					
-					commit.getAuthorIdent().getName();
-					commit.getAuthorIdent().getEmailAddress();
-					commit.getAuthorIdent().getTimeZone();
-					
-					
-					commit.getRefCount();
-										
-					
-					tempcell.setValue("<html>"+"Commit name : "+commit.name()+"<br><hr>"
-							+ "</html>");
-					
-					tempcell.setValue("<html>" + "Parents : " + commit.getParent(0) + "</html>");
-					
-					for(int i=1; i<=commit.getParentCount(); ++i)
+						
+						
+					if(commit.getParentCount()>0)
 					{
-						tempcell.setValue("<html>" + ", " + commit.getParent(i) + "</html>");
+						tempValue+="Parents : " + commit.getParent(0).getName().substring(0, 13) + "\n";
+						countLine+=1;
+					
+						if(commit.getParentCount()>1)
+						{
+					
+							for(int i=1; i<commit.getParentCount(); i++)
+							{
+								for(int j=1; j<=14; j++)
+									tempValue+="&nbsp;";
+								tempValue+=commit.getParent(i).getName().substring(0, 13) + "\n";
+								countLine+=1;
+							}
+						}
+					
+					
 					}
 					
-					tempcell.setValue("<html>" + "<br>" 
-					+ "Author's name : " + commit.getAuthorIdent().getName() + "<br>"
-					+ "Author's Email : " + commit.getAuthorIdent().getEmailAddress() + "<br>"
-					+ "Author's " + commit.getAuthorIdent().getTimeZoneOffset() + "<br>");
+					
+					if(commit.getRefCount()>0)
+					{
+						tempValue+="Ref : " + commit.getRef(0).getName() + "\n";
+						countLine+=1;
+						
+						
+						if(commit.getRefCount()>1)
+						{
+					
+							for(int i=1; i<commit.getRefCount(); i++)
+							{
+								for(int j=1; j<=9; j++)
+									tempValue+="&nbsp;";
+								tempValue+=commit.getRef(i).getName() + "\n";
+								countLine+=1;
+							}
+						}
+						
+					}
+
+					tempValue+=
+							"Author's name : " + commit.getAuthorIdent().getName() + "\n"
+							+ "Author's Email : " + commit.getAuthorIdent().getEmailAddress() + "\n"
+							+ "Date : " + commit.getAuthorIdent().getWhen() + "\n"
+							+ "<hr>" + commit.getFullMessage();
+						
+					countLine+=3;
+					
+					
+					
+					countLine+=countLines(commit.getFullMessage());
+					
+					maxLength=maxLengthCount(tempValue);
+					
+					
+					
+	
+					
+					
+					tempValue+="</div></html>";
+					
+					tempcell.setValue(tempValue);
+					
+					tempcell.setGeometry(new mxGeometry(nodeC.getGeometry()
+							.getX() + 20, nodeC.getGeometry().getY(), maxLength*4>300 ? maxLength*4 : 300, countLine*20));
 					
 					
 					tempcell.setVisible(true);
