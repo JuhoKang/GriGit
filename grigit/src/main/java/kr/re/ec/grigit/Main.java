@@ -22,37 +22,12 @@ public class Main
      */
     public static void main( String[] args )
     {
-       if(checkIsFirst()){
-    	  UserSettingController usc =  new UserSettingController();
-    	  if(usc.isOk()){
-    		  MainController.getInstance().init();
-    	  } else{
-    		 System.exit(0);
-    	  }
-       } else {
-    	   MainController.getInstance().init();
-       }
-      
-    }
-    
-    public static boolean checkIsFirst(){
-    	boolean result = false;
-    	boolean exist = false;
-    	File file = new File("resources/UserSetting.txt");
-    	
-    	try{
-    		exist = file.exists();
-    		if(exist){
-    			result = false;
-    		} else {
-    			result = true;
-    		}
-    	} catch (FileSystemNotFoundException e){
-    		System.out.println("file doesn't exist");
-    		    result = true;		
+    	UserSettingController usc =  new UserSettingController();
+    	if(usc.isOk()){
+    		MainController.getInstance().init();
+    	} else {
+    		System.exit(1);
     	}
-    	 
     	
-    	return result;
     }
 }

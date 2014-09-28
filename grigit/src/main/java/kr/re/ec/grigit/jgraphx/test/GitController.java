@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.UserInfo;
 import kr.re.ec.grigit.git.Checkout;
 import kr.re.ec.grigit.git.CherryPick;
 import kr.re.ec.grigit.git.CreateBranch;
@@ -511,32 +512,12 @@ public class GitController {
 	}
 
 	private ArrayList<String> userInfoReader() {
-		FileReader file_reader = null;
-		BufferedReader buf_reader = null;
-
-		ArrayList<String> result = new ArrayList<String>();
-
-		try {
-			file_reader = new FileReader("resources/UserSetting.txt");
-			buf_reader = new BufferedReader(file_reader);
-			result.add(buf_reader.readLine());
-			result.add(buf_reader.readLine());
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (buf_reader != null)
-				try {
-					buf_reader.close();
-				} catch (IOException e) {
-				}
-			if (buf_reader != null)
-				try {
-					buf_reader.close();
-				} catch (IOException e) {
-				}
-
-		}
-		return result;
+		
+		ArrayList<String> userInfo = new ArrayList<String>();
+		userInfo.add(UserInfo.getInstance().getAuthor());
+		userInfo.add(UserInfo.getInstance().getEmail());
+		
+		return userInfo;
 	}
 
 }

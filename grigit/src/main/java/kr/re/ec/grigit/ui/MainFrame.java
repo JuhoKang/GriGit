@@ -6,8 +6,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -83,16 +85,19 @@ public abstract class MainFrame extends JFrame{
 		
 		
 		//Get img resources
-		ImageIcon imgicOpen = new ImageIcon("target/classes/Open.png");
-		ImageIcon imgicCommit = new ImageIcon("target/classes/Commit.png");
-		ImageIcon imgicCheckout = new ImageIcon("target/classes/Checkout.png");
-		ImageIcon imgicBranch = new ImageIcon("target/classes/Branch.png");
-		ImageIcon imgicMerge = new ImageIcon("target/classes/Merge.png");
-		ImageIcon imgicRebase = new ImageIcon("target/classes/Rebase.png");
-		ImageIcon imgicCherry_Pick = new ImageIcon("target/classes/Cherry_Pick.png");
-		ImageIcon imgicTag = new ImageIcon("target/classes/Tag.png");
-		ImageIcon imgicUser_Setting= new ImageIcon("target/classes/UserSetting.png");
-		ImageIcon imgicDelete = new ImageIcon("target/classes/Delete.png");
+		
+		this.setIconImage(getImage("mainIcon.png"));
+		
+		ImageIcon imgicOpen = new ImageIcon(getImage("Open.png"));
+		ImageIcon imgicCommit = new ImageIcon(getImage("Commit.png"));
+		ImageIcon imgicCheckout = new ImageIcon(getImage("Checkout.png"));
+		ImageIcon imgicBranch = new ImageIcon(getImage("Branch.png"));
+		ImageIcon imgicMerge = new ImageIcon(getImage("Merge.png"));
+		ImageIcon imgicRebase = new ImageIcon(getImage("Rebase.png"));
+		ImageIcon imgicCherry_Pick = new ImageIcon(getImage("Cherry_Pick.png"));
+		ImageIcon imgicTag = new ImageIcon(getImage("Tag.png"));
+		ImageIcon imgicUser_Setting= new ImageIcon(getImage("UserSetting.png"));
+		ImageIcon imgicDelete = new ImageIcon(getImage("Delete.png"));
 		
 		jpToolBar.setBackground(Color.white);
 		
@@ -280,5 +285,9 @@ public abstract class MainFrame extends JFrame{
 		setJMenuBar(menubar);
 		
 		
+	}
+	public static Image getImage(final String pathAndFileName) {
+	    final URL url = Thread.currentThread().getContextClassLoader().getResource(pathAndFileName);
+	    return Toolkit.getDefaultToolkit().getImage(url);
 	}
 }

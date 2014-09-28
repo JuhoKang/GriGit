@@ -19,6 +19,10 @@ public class MenuBarFrame extends JMenuBar{
 	protected JMenu mnFile;
 	protected JMenu mnHelp;
 	protected JMenu mnRepository;
+	protected JMenuItem mntmUserSetting;
+	protected JMenuItem mntmAbout;
+	protected JMenuItem mntmTag;
+	protected JMenuItem mntmDelete;
 	
 	public MenuBarFrame() {
 		
@@ -53,6 +57,18 @@ public class MenuBarFrame extends JMenuBar{
 		mnRepository.add(mntmRebase);
 		mnRepository.add(mntmCherry_Pick);
 		
+		mntmTag = new JMenuItem("Tag");
+		mnRepository.add(mntmTag);
+		
+		mntmDelete = new JMenuItem("Delete");
+		mnRepository.add(mntmDelete);
+		
 		mnHelp.add(mntmHowtoUseCommand);
+		
+		mntmUserSetting = new JMenuItem("User Setting");
+		mnHelp.add(mntmUserSetting);
+		
+		mntmAbout = new JMenuItem("about Grigit....");
+		mnHelp.add(mntmAbout);
 	}
 }
