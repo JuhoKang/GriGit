@@ -1,28 +1,19 @@
 package kr.re.ec.grigit.ui.controller;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import javax.swing.JFileChooser;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
 
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.jgraphx.test.GitController;
 import kr.re.ec.grigit.ui.MainFrame;
-import kr.re.ec.grigit.ui.UserSettingDialog;
 import kr.re.ec.grigit.util.PgmMain;
-import kr.re.ec.grigit.util.PrintToArea;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 
-import org.eclipse.jgit.pgm.Die;
-import org.eclipse.jgit.pgm.Main;
 import org.eclipse.jgit.pgm.TextBuiltin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +47,8 @@ public class MainController extends MainFrame implements ActionListener {
 	@Override
 	public void init() {
 		super.init();
+		
+		WriteToPane.getInstance().write("To Start Open a Repository!",TextStyles.getInstance().ALERT);
 
 		btnCheckout.addActionListener(new ActionListener() {
 
@@ -87,6 +80,24 @@ public class MainController extends MainFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				GitController.getInstance().merge();
 				logger.info("merge");
+			}
+		});
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				GitController.getInstance().delete();
+				logger.info("delete");
+			}
+		});
+		
+		btnRebase.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				GitController.getInstance().rebase();
+				logger.info("rebase");
 			}
 		});
 		
@@ -190,6 +201,7 @@ public class MainController extends MainFrame implements ActionListener {
 										.getLength());
 			}
 		});
+		setVisible(true);
 	}
 /**
  * Add event btnUser_Setting and call User setting when hit the button

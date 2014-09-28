@@ -185,18 +185,38 @@ public class GrigitGraph extends RevWalker {
 				graph.addCell(node);
 
 				if (node.getCommit().getRefCount() != 0) {
+					NodeRef prevnode = null;
 					for (int k = 0; k < node.getCommit().getRefCount(); k++) {
 						Ref ref = node.getCommit().getRef(k);
 						NodeRef rnode = new NodeRef();
 						rnode.setRef(ref);
 						rnode.setVertex(true);
 						rnode.setVisible(true);
+						
+						String tokens[] = rnode.getRef().getName().split("/");
+						String refName = null;
 						rnode.setStyle(getRefNodeStyle());
-						rnode.setGeometry(new mxGeometry(100
-								+ node.getCommit().getLane().getPosition() * 50
-								+ 40 + 150 * k, 0 + i * 50 + 10, 100, 15));
-						rnode.setValue(rnode.getRef().getName());
+						if (rnode.getRef().getName().contains("/remotes/")) {
+							refName = tokens[tokens.length-2]+"/"+tokens[tokens.length-1];
+						} else {
+							refName = tokens[tokens.length-1];
+						}
+
+						if (rnode.getRef().getName().contains("/tags/")) {
+							refName = "tag:"+refName;
+							rnode.setStyle(getTagNodeStyle());
+						}
+						if(prevnode == null){
+							rnode.setGeometry(new mxGeometry(100
+									+ node.getCommit().getLane().getPosition() * 50+30, 0 + i * 50 + 5, refName.length()*7+7, 15));
+							
+						} else {
+							rnode.setGeometry(new mxGeometry(prevnode.getGeometry().getWidth()+prevnode.getGeometry().getX()
+									+10, prevnode.getGeometry().getY(), refName.length()*7+7, 15));
+						}
+						rnode.setValue(refName);
 						graph.addCell(rnode);
+						prevnode = rnode;
 					}
 				}
 
@@ -341,6 +361,18 @@ public class GrigitGraph extends RevWalker {
 	private String getRefNodeStyle() {
 		return mxConstants.STYLE_FILLCOLOR
 				+"=white;"
+				+mxConstants.STYLE_FONTCOLOR
+				+"=black;"
+				+mxConstants.STYLE_STROKECOLOR
+				+"=black;"
+				+mxConstants.STYLE_ROUNDED
+				+"=true";
+	} 
+	private String getTagNodeStyle() {
+		return mxConstants.STYLE_FILLCOLOR
+				+"="+
+				String.format("#%02x%02x%02x",
+						128,255,128)+";"
 				+mxConstants.STYLE_FONTCOLOR
 				+"=black;"
 				+mxConstants.STYLE_STROKECOLOR

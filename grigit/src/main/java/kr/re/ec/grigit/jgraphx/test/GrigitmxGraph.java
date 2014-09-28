@@ -1,6 +1,7 @@
 package kr.re.ec.grigit.jgraphx.test;
 
 import java.awt.Point;
+import java.util.StringTokenizer;
 
 import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
 import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
@@ -60,10 +61,24 @@ public class GrigitmxGraph extends mxGraph {
 
 		if (cell instanceof NodeRef) {
 			NodeRef nodeR = (NodeRef) cell;
+			
+			String tokens[] = nodeR.getRef().getName().split("/");
+			String refName = null;
+			if (nodeR.getRef().getName().contains("/remotes/")) {
+				refName = tokens[tokens.length-2]+"/"+tokens[tokens.length-1];
+			} else {
+				refName = tokens[tokens.length-1];
+			}
+
+			if (nodeR.getRef().getName().contains("/tags/")) {
+				refName = "tag:"+refName;
+			}
+		
+
 			if(nodeR.isSelected()){
-				return "★"+nodeR.getRef().getName();
+				return "★"+refName;
 			}else{
-				return nodeR.getRef().getName();
+				return refName;
 			}
 			
 		}
