@@ -39,7 +39,7 @@ public class Delete {
 			System.out.println("delete tag");
 			git.tagDelete().setTags(refName).call();
 		} else {
-			git.branchDelete().setBranchNames(refName).call();
+			git.branchDelete().setBranchNames(name).setForce(true).call();
 		}
 		System.out.println("deleted " + refName);
 
