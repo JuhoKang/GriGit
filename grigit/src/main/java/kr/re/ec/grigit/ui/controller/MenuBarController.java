@@ -3,8 +3,9 @@ package kr.re.ec.grigit.ui.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kr.re.ec.grigit.jgraphx.test.GitController;
+import kr.re.ec.grigit.graph.handler.GitController;
 import kr.re.ec.grigit.ui.AboutDialog;
+import kr.re.ec.grigit.ui.HowToFrame;
 import kr.re.ec.grigit.ui.MenuBarFrame;
 import kr.re.ec.grigit.ui.UserSettingDialog;
 
@@ -47,6 +48,7 @@ public class MenuBarController extends MenuBarFrame implements ActionListener{
 		} else if(e.getSource() == mntmCherry_Pick){
 			GitController.getInstance().cherryPick();
 		} else if(e.getSource() == mntmHowtoUseCommand){
+			new HowToFrame();
 		} else if(e.getSource() == mntmDelete){
 			GitController.getInstance().delete();
 		} else if(e.getSource() == mntmAbout){

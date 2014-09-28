@@ -1,10 +1,10 @@
-package kr.re.ec.grigit.jgraphx.test;
+package kr.re.ec.grigit.graph.handler;
 
 import java.awt.Point;
 import java.util.StringTokenizer;
 
-import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
+import kr.re.ec.grigit.graph.ui.NodeCommit;
+import kr.re.ec.grigit.graph.ui.NodeRef;
 
 import com.mxgraph.view.mxGraph;
 

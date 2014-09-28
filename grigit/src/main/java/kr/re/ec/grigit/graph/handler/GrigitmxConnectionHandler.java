@@ -1,4 +1,4 @@
-package kr.re.ec.grigit.jgraphx.test;
+package kr.re.ec.grigit.graph.handler;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;

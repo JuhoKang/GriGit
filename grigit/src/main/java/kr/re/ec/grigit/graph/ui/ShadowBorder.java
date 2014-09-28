@@ -9,7 +9,7 @@
  * installation directory. If you are unable to locate this file please
  * contact JGraph sales for another copy.
  */
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 import java.awt.Color;
 import java.awt.Component;

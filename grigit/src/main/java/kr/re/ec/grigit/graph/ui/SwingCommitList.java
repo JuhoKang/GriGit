@@ -43,7 +43,7 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 import java.awt.Color;
 import java.util.LinkedList;

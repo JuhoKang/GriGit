@@ -41,7 +41,7 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Component;
@@ -60,7 +60,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 
 import org.eclipse.jgit.awtui.UIText;
 import org.eclipse.jgit.lib.PersonIdent;

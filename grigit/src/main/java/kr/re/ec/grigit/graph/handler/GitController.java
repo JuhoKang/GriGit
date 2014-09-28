@@ -1,4 +1,4 @@
-package kr.re.ec.grigit.jgraphx.test;
+package kr.re.ec.grigit.graph.handler;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,10 +16,10 @@ import kr.re.ec.grigit.git.GetModifiedFiles;
 import kr.re.ec.grigit.git.GitCommit;
 import kr.re.ec.grigit.git.Merge;
 import kr.re.ec.grigit.git.Rebase;
-import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.ui.GrigitGraph;
+import kr.re.ec.grigit.graph.ui.NodeCommit;
+import kr.re.ec.grigit.graph.ui.NodeRef;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.ui.controller.CheckoutCheckDialogController;
 import kr.re.ec.grigit.ui.controller.CherryPickDialog;
 import kr.re.ec.grigit.ui.controller.CommitDialog;

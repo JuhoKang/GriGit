@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.git.OpenRepository;
-import kr.re.ec.grigit.jgraphx.test.ui.GrigitGraph;
+import kr.re.ec.grigit.graph.ui.GrigitGraph;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 

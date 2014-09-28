@@ -1,4 +1,4 @@
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 import org.eclipse.jgit.lib.Ref;
 

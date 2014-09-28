@@ -1,0 +1,13 @@
+본 프로젝트는 maven 프로젝트이며 
+GitHub에 올라가있습니다.
+GitHub url : https://github.com/rjduakcjs/GriGit
+
+Eclipse로 소스코드를 빌드하기위해서는 m2e 가 필요하며 (eclipse plugin)
+
+폴더에 같이있는 runconfiguraion.png를 참고해주십시오
+
+또한 maven repository에 jgraphx가 없기때문에
+lib/com.mxgrpah/jgraphx/2.8.2.0/jgraphx-2.8.2.0을
+
+maven repository의
+com/mxgraph/jgraphx/2.8.2.0 디렉토리 안으로 복사해주십시오

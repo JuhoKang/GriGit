@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 

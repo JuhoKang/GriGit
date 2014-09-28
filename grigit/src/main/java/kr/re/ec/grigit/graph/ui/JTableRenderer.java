@@ -7,7 +7,7 @@
  * See LICENSE file for license details. If you are unable to locate
  * this file please contact info (at) jgraph (dot) com.
  */
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

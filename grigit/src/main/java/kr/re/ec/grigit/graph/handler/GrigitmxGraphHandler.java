@@ -1,12 +1,12 @@
-package kr.re.ec.grigit.jgraphx.test;
+package kr.re.ec.grigit.graph.handler;
 
 import java.awt.Cursor;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.event.MouseEvent;
 
-import kr.re.ec.grigit.jgraphx.test.ui.NodeCommit;
-import kr.re.ec.grigit.jgraphx.test.ui.NodeRef;
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.ui.NodeCommit;
+import kr.re.ec.grigit.graph.ui.NodeRef;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 
 import org.eclipse.jgit.revplot.PlotCommit;
 import org.eclipse.jgit.revwalk.RevCommit;

@@ -3,7 +3,7 @@ package kr.re.ec.grigit.ui.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kr.re.ec.grigit.jgraphx.test.GitController;
+import kr.re.ec.grigit.graph.handler.GitController;
 import kr.re.ec.grigit.ui.CheckoutCheckDialogFrame;
 
 public class CheckoutCheckDialogController extends CheckoutCheckDialogFrame implements ActionListener{

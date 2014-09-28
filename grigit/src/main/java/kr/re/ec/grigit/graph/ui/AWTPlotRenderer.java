@@ -47,7 +47,7 @@
 /*
  * 
  */
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 
 
@@ -57,8 +57,8 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.io.Serializable;
 
-import kr.re.ec.grigit.jgraphx.test.ui.GriGitGraphPane.GraphCellRender;
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.ui.GriGitGraphPane.GraphCellRender;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Ref;
@@ -75,7 +75,7 @@ final class AWTPlotRenderer extends AbstractPlotRenderer<SwingLane, Color>
 		implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	final kr.re.ec.grigit.jgraphx.test.ui.GriGitGraphPane.GraphCellRender cell;
+	final kr.re.ec.grigit.graph.ui.GriGitGraphPane.GraphCellRender cell;
 
 	transient Graphics2D g;
 

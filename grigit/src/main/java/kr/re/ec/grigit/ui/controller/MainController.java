@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 import javax.swing.text.BadLocationException;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.jgraphx.test.GitController;
+import kr.re.ec.grigit.graph.handler.GitController;
 import kr.re.ec.grigit.ui.MainFrame;
 import kr.re.ec.grigit.util.PgmMain;
 import kr.re.ec.grigit.util.TextStyles;
@@ -48,7 +48,7 @@ public class MainController extends MainFrame implements ActionListener {
 	public void init() {
 		super.init();
 		
-		WriteToPane.getInstance().write("To Start Open a Repository!",TextStyles.getInstance().ALERT);
+		WriteToPane.getInstance().write("To Start Open a Repository!\n",TextStyles.getInstance().ALERT);
 
 		btnCheckout.addActionListener(new ActionListener() {
 

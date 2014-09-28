@@ -44,7 +44,7 @@
 //this is 
 
 //this is 
-package kr.re.ec.grigit.jgraphx.test.ui;
+package kr.re.ec.grigit.graph.ui;
 
 //this is a class tweaked by Juho Kang..
 //was Glog
@@ -59,10 +59,10 @@ import java.util.StringTokenizer;
 
 import javax.swing.JPanel;
 
-import kr.re.ec.grigit.jgraphx.test.GitController;
-import kr.re.ec.grigit.jgraphx.test.GrigitGraphComponent;
-import kr.re.ec.grigit.jgraphx.test.GrigitmxGraph;
-import kr.re.ec.grigit.jgraphx.test.ui.SwingCommitList.SwingLane;
+import kr.re.ec.grigit.graph.handler.GitController;
+import kr.re.ec.grigit.graph.handler.GrigitGraphComponent;
+import kr.re.ec.grigit.graph.handler.GrigitmxGraph;
+import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 import kr.re.ec.grigit.ui.controller.MainController;
 
 import org.eclipse.jgit.lib.Ref;
