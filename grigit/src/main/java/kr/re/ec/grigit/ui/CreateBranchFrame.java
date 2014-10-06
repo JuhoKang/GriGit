@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
+import javax.swing.UIManager;
 
 
 /**
@@ -47,13 +48,13 @@ public class CreateBranchFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("확인");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				cancelButton = new JButton("취소");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -76,7 +77,7 @@ public class CreateBranchFrame extends JDialog {
 			contentPanel.setLayout(new MigLayout("", "[405px]", "[21px][25px]"));
 			{
 				lblBranchName = new JLabel("branch name");
-				lblBranchName.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+				lblBranchName.setFont(UIManager.getFont("Label.font"));
 				contentPanel.add(lblBranchName, "cell 0 0,alignx left,aligny top");
 			}
 			{

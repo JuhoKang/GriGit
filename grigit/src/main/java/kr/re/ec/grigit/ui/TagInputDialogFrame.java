@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.UIManager;
 
 
 /**
@@ -44,7 +45,7 @@ public class TagInputDialogFrame extends JDialog {
 		contentPanel.setLayout(new MigLayout("", "[405px]", "[21px][25px]"));
 		{
 			TagNameLabel = new JLabel("Tag Name");
-			TagNameLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+			TagNameLabel.setFont(UIManager.getFont("Label.font"));
 			contentPanel.add(TagNameLabel, "cell 0 0,alignx left,aligny top");
 		}
 		{
@@ -58,13 +59,13 @@ public class TagInputDialogFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("확인");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				cancelButton = new JButton("취소");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.UIManager;
 
 
 /**
@@ -49,7 +50,7 @@ public class UserSettingDialog extends JDialog {
 		contentPanel.setLayout(new MigLayout("", "[405px,grow]", "[][21px][25px][17.00][][][]"));
 		{
 			JLabel UserNameLabel = new JLabel("Name");
-			UserNameLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+			UserNameLabel.setFont(UIManager.getFont("Label.font"));
 			contentPanel.add(UserNameLabel, "cell 0 0,alignx left,aligny top");
 		}
 		{
@@ -60,7 +61,7 @@ public class UserSettingDialog extends JDialog {
 		}
 		{
 			JLabel UserEmailLabel = new JLabel("Email");
-			UserEmailLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+			UserEmailLabel.setFont(UIManager.getFont("Label.font"));
 			contentPanel.add(UserEmailLabel, "cell 0 4");
 		}
 		{
@@ -74,13 +75,13 @@ public class UserSettingDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnOk = new JButton("확인");
+				btnOk = new JButton("OK");
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				//getRootPane().setDefaultButton(btnOk);
 			}
 			{
-				btnCancel = new JButton("취소");
+				btnCancel = new JButton("Cancel");
 				btnCancel.setActionCommand("Cancel");
 				buttonPane.add(btnCancel);
 				
