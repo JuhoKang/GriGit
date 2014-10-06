@@ -2,6 +2,8 @@ package kr.re.ec.grigit.git;
 
 import java.util.ArrayList;
 
+import kr.re.ec.grigit.util.WriteToPane;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -27,10 +29,10 @@ public class GitStatus {
 		try {
 			core(repository);
 		} catch (NoWorkTreeException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

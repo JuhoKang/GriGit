@@ -1,6 +1,7 @@
 package kr.re.ec.grigit.git;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -25,13 +26,13 @@ public class Rebase {
 		try {
 			rebaseUpstream(git, upstream);
 		} catch (NoHeadException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (WrongRepositoryStateException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

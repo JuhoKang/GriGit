@@ -47,7 +47,7 @@ public class OpenRepository {
 		try {
 			core(repositorydirectory);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

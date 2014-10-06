@@ -6,6 +6,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 public class Delete {
 
@@ -14,7 +15,7 @@ public class Delete {
 		try {
 			core(name);
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 

@@ -3,6 +3,8 @@ package kr.re.ec.grigit.git;
 import java.io.File;
 import java.io.IOException;
 
+import kr.re.ec.grigit.util.WriteToPane;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
@@ -55,10 +57,10 @@ public class GitInit {
 		try {
 			core(path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

@@ -3,6 +3,7 @@ package kr.re.ec.grigit.git;
 import java.util.ArrayList;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.CherryPickCommand;
 import org.eclipse.jgit.api.Git;
@@ -29,22 +30,22 @@ public class CherryPick {
 		try {
 			core(commits);
 		} catch (NoMessageException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (UnmergedPathsException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (ConcurrentRefUpdateException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (WrongRepositoryStateException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (NoHeadException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

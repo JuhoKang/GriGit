@@ -1,6 +1,8 @@
 package kr.re.ec.grigit.git;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
@@ -16,17 +18,8 @@ public class CreateTag {
 		
 		try {
 			core(commit, name, author, email);
-		} catch (ConcurrentRefUpdateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidTagNameException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoHeadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e){
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

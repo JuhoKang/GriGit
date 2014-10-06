@@ -45,6 +45,17 @@ public class WriteToPane {
 			e.printStackTrace();
 		}
 	}
+	
+	public void writeErr(String s){
+		update();
+		try {
+			doc.insertString(doc.getLength(), "Error : "+s, TextStyles.getInstance().ALERT);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			logger.info("Doc Bad Location Exception");
+			e.printStackTrace();
+		}
+	}
 
 	private void update() {
 		doc = MainController.getInstance().getDoc();

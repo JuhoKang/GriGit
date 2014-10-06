@@ -3,6 +3,7 @@ package kr.re.ec.grigit.git;
 import java.io.IOException;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -24,13 +25,13 @@ public class GitShowAllCommits {
 		try {
 			core();
 		} catch (NoHeadException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		

@@ -32,50 +32,50 @@ public class Merge {
 				logger.info("This is a PlotCommit");
 				core((AnyObjectId)id);
 			} catch (NoHeadException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (ConcurrentRefUpdateException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (CheckoutConflictException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (InvalidMergeHeadsException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (WrongRepositoryStateException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (NoMessageException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (GitAPIException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			}
 		} else if (id instanceof Ref){
 			try {
 				core((Ref)id);
 			} catch (NoHeadException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (ConcurrentRefUpdateException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (CheckoutConflictException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (InvalidMergeHeadsException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (WrongRepositoryStateException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (NoMessageException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			} catch (GitAPIException e) {
-				// TODO Auto-generated catch block
+				WriteToPane.getInstance().writeErr(e.getMessage());
 				e.printStackTrace();
 			}
 		}

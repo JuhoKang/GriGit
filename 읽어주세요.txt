@@ -1,13 +1,30 @@
 본 프로젝트는 maven 프로젝트이며 
+
+그리깃! 프로그램 실행은
+
+grigit-1.0-SNAPSHOT-jar-with-dependencies.jar 파일을 java로 실행하면됩니다.
+
+java -jar grigit-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+로 실행 가능합니다.
+
+소스코드는
+
 GitHub에 올라가있습니다.
 GitHub url : https://github.com/rjduakcjs/GriGit
 
 Eclipse로 소스코드를 빌드하기위해서는 m2e 가 필요하며 (eclipse plugin)
+maven 단독으로 해도되겠지만 maven 단독으로 빌드 해본적이 없습니다.
 
+eclipse에서 grigit 프로젝트 우클릭 maven/update project 의 과정이 필요합니다.
+
+빌드할때 환경설정은
 폴더에 같이있는 runconfiguraion.png를 참고해주십시오
 
 또한 maven repository에 jgraphx가 없기때문에
-lib/com.mxgrpah/jgraphx/2.8.2.0/jgraphx-2.8.2.0을
+프로젝트 안의 lib/com.mxgrpah/jgraphx/2.8.2.0/jgraphx-2.8.2.0을
 
-maven repository의
+컴퓨터의 maven repository의
 com/mxgraph/jgraphx/2.8.2.0 디렉토리 안으로 복사해주십시오
+
+감사합니다.

@@ -4,6 +4,8 @@ package kr.re.ec.grigit.git;
 import java.io.File;
 import java.io.IOException;
 
+import kr.re.ec.grigit.util.WriteToPane;
+
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
@@ -44,9 +46,11 @@ public class CreateNewRepository {
 			core(reponame);
 		} catch (IOException e) {
 			logger.info("I/O exception");
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			logger.info("There is already a repository with that name or it might be a another problem");
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 

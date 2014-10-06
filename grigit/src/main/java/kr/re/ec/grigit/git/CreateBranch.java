@@ -7,6 +7,7 @@ import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
 
 import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 public class CreateBranch {
 	
@@ -15,16 +16,16 @@ public class CreateBranch {
 		try {
 			core(name, startPoint);
 		} catch (RefAlreadyExistsException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (RefNotFoundException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (InvalidRefNameException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		} catch (GitAPIException e) {
-			// TODO Auto-generated catch block
+			WriteToPane.getInstance().writeErr(e.getMessage());
 			e.printStackTrace();
 		}
 		
