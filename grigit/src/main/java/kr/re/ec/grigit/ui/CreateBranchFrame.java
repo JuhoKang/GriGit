@@ -4,18 +4,17 @@ package kr.re.ec.grigit.ui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import javax.swing.UIManager;
 
 
 /**
@@ -25,6 +24,7 @@ import javax.swing.UIManager;
  *
  */
 
+@SuppressWarnings("serial")
 public class CreateBranchFrame extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

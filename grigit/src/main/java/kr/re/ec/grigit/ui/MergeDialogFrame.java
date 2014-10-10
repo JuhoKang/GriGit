@@ -7,10 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
+@SuppressWarnings("serial")
 public class MergeDialogFrame extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

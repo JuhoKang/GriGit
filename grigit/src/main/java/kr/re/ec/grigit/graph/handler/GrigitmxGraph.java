@@ -1,7 +1,6 @@
 package kr.re.ec.grigit.graph.handler;
 
 import java.awt.Point;
-import java.util.StringTokenizer;
 
 import kr.re.ec.grigit.graph.ui.NodeCommit;
 import kr.re.ec.grigit.graph.ui.NodeRef;
@@ -115,7 +114,7 @@ public class GrigitmxGraph extends mxGraph {
 	public void cellLabelChanged(Object cell){
 	
 		Object newValue = null;
-		boolean autoSize;
+//		boolean autoSize;
 		
 		if(cell instanceof NodeRef){
 			NodeRef nodeR = (NodeRef)cell;

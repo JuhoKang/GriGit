@@ -10,11 +10,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.UIManager;
 
 
 /**
@@ -26,6 +25,7 @@ import javax.swing.UIManager;
  * @author Parker
  */
 
+@SuppressWarnings("serial")
 public class UserSettingDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

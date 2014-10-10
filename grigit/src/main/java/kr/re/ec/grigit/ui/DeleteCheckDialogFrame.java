@@ -6,10 +6,9 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 
 /**
@@ -19,6 +18,7 @@ import javax.swing.JLabel;
  *
  */
 
+@SuppressWarnings("serial")
 public class DeleteCheckDialogFrame extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

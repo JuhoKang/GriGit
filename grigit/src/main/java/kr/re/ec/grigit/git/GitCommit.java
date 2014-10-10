@@ -1,6 +1,5 @@
 package kr.re.ec.grigit.git;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,7 +9,6 @@ import kr.re.ec.grigit.util.WriteToPane;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoFilepatternException;
-import org.eclipse.jgit.lib.Repository;
 
 /**
  */

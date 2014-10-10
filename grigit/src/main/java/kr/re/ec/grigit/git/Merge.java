@@ -1,5 +1,9 @@
 package kr.re.ec.grigit.git;
 
+import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.CheckoutConflictException;
 import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
@@ -13,11 +17,6 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revplot.PlotCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
-import kr.re.ec.grigit.util.TextStyles;
-import kr.re.ec.grigit.util.WriteToPane;
 
 public class Merge {
 	Logger logger;

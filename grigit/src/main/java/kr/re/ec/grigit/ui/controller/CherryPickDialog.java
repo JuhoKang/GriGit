@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import org.eclipse.jgit.api.Git;
-
 import kr.re.ec.grigit.CurrentRepository;
 import kr.re.ec.grigit.ui.CherryPickFrame;
 

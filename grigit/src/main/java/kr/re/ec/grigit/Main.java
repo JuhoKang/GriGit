@@ -1,10 +1,5 @@
 package kr.re.ec.grigit;
 
-import java.io.File;
-import java.nio.file.FileSystemNotFoundException;
-
-import org.apache.http.client.UserTokenHandler;
-
 import kr.re.ec.grigit.ui.controller.MainController;
 import kr.re.ec.grigit.ui.controller.UserSettingController;
 

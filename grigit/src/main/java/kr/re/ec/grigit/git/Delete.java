@@ -1,12 +1,10 @@
 package kr.re.ec.grigit.git;
 
-import java.util.StringTokenizer;
+import kr.re.ec.grigit.CurrentRepository;
+import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
-
-import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.util.WriteToPane;
 
 public class Delete {
 
@@ -26,7 +24,7 @@ public class Delete {
 
 		System.out.println("deleting");
 
-		StringTokenizer st = new StringTokenizer(name, "/");
+	//	StringTokenizer st = new StringTokenizer(name, "/");
 
 		String tokens[] = name.split("/");
 		String refName = null;

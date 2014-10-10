@@ -200,12 +200,12 @@ abstract public class RevWalker{
 				walk.markStart(real);
 		}
 
-		final long start = System.currentTimeMillis();
-		logger.info("i'm here1");
+		//final long start = System.currentTimeMillis();
+		//logger.info("i'm here1");
 		final int n = walkLoop();
-		logger.info("i'm here2");
+		//logger.info("i'm here2");
 		if (count) {
-			final long end = System.currentTimeMillis();
+			//final long end = System.currentTimeMillis();
 			logger.info(""+n);
 			logger.info(" ");
 		//	logger.info(MessageFormat.format(CLIText.get().timeInMilliSeconds,

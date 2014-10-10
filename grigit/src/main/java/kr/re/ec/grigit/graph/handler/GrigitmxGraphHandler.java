@@ -9,7 +9,6 @@ import kr.re.ec.grigit.graph.ui.NodeRef;
 import kr.re.ec.grigit.graph.ui.SwingCommitList.SwingLane;
 
 import org.eclipse.jgit.revplot.PlotCommit;
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

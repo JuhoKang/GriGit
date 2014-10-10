@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import kr.re.ec.grigit.ui.DeleteCheckDialogFrame;
 
+@SuppressWarnings("serial")
 public class DeleteCheckDialog extends DeleteCheckDialogFrame implements ActionListener{
 	
 	private boolean isOk = false;

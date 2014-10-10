@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import kr.re.ec.grigit.ui.TagInputDialogFrame;
 
+@SuppressWarnings("serial")
 public class TagInputDialog extends TagInputDialogFrame implements ActionListener{
 
 	

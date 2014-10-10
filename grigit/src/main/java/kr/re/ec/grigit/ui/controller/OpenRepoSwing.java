@@ -40,7 +40,7 @@ public class OpenRepoSwing {
 	public File chooseFile(Component parent) {
 		final JFileChooser fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int returnVal = fc.showDialog(parent, "Select");
+		fc.showDialog(parent, "Select");
 		File file = fc.getSelectedFile();
 		if (!isDotGitDir(file)) {
 			file = formToGitDir(file);

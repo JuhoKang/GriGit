@@ -83,6 +83,7 @@ public class SwingCommitList extends PlotCommitList<SwingCommitList.SwingLane> {
 		colors.add(lane.color);
 	}
 
+	@SuppressWarnings("serial")
 	static public class SwingLane extends PlotLane {
 		Color color;
 	}

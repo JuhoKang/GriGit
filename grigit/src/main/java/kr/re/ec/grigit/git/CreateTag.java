@@ -1,7 +1,6 @@
 package kr.re.ec.grigit.git;
 
 import kr.re.ec.grigit.CurrentRepository;
-import kr.re.ec.grigit.util.TextStyles;
 import kr.re.ec.grigit.util.WriteToPane;
 
 import org.eclipse.jgit.api.Git;

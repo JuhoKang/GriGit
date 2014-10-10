@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import kr.re.ec.grigit.ui.AlertDialogFrame;
 
+@SuppressWarnings("serial")
 public class AlertDialog extends AlertDialogFrame implements ActionListener{
 	
 	public AlertDialog(String message) {

@@ -4,11 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-import javax.swing.event.ChangeListener;
 
 import kr.re.ec.grigit.ui.MergeDialogFrame;
 
+@SuppressWarnings("serial")
 public class MergeDialog extends MergeDialogFrame implements ActionListener {
 
 	private boolean inOrder = false;
