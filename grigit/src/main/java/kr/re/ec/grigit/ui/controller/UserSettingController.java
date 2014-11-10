@@ -21,6 +21,7 @@ public class UserSettingController extends UserSettingDialog implements
 		ActionListener {
 
 	private Logger logger;
+
 	public boolean isOk() {
 		return isOk;
 	}
@@ -36,9 +37,32 @@ public class UserSettingController extends UserSettingDialog implements
 		this.setModal(true);
 		txtUserName.setText(UserInfo.getInstance().getAuthor());
 		txtUserEmail.setText(UserInfo.getInstance().getEmail());
+
+		txtUserEmail.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logger.info("this is enter at email");
+				isOk = true;
+				bgnOkActionPerformed(e);
+
+			}
+		});
+
+		txtUserName.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logger.info("this is enter at name");
+				isOk = true;
+				bgnOkActionPerformed(e);
+			}
+		});
+
 		btnOk.addActionListener(this);
 		btnCancel.addActionListener(this);
 		this.setVisible(true);
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -51,7 +75,6 @@ public class UserSettingController extends UserSettingDialog implements
 
 		} else if (e.getSource() == btnCancel) {
 
-			
 			logger.info("Check cancel button");
 			isOk = false;
 			btnCancelActionPerformed(e);
@@ -67,7 +90,7 @@ public class UserSettingController extends UserSettingDialog implements
 
 		UserInfo.getInstance().setAuthor(txtUserName.getText());
 		UserInfo.getInstance().setEmail(txtUserEmail.getText());
-		
+
 		dispose();
 	}
 }

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kr.re.ec.grigit.ui.TagInputDialogFrame;
+import kr.re.ec.grigit.util.TextStyles;
+import kr.re.ec.grigit.util.WriteToPane;
 
 @SuppressWarnings("serial")
 public class TagInputDialog extends TagInputDialogFrame implements ActionListener{
@@ -46,6 +48,8 @@ public class TagInputDialog extends TagInputDialogFrame implements ActionListene
 			this.dispose();
 		} else if(e.getSource() == cancelButton) {
 			isOk = false;
+			WriteToPane.getInstance().write("Create Tag Canceled\n",
+					TextStyles.getInstance().PROGRESS);
 			this.dispose();
 		}
 		

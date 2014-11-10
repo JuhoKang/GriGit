@@ -26,15 +26,15 @@ public class MergeDialog extends MergeDialogFrame implements ActionListener {
 		this.setModal(true);
 		lblMessage.setText("Choose the way you are going to merge");
 		lblInOrderName
-				.setText("<html><b>CHECKOUT</b> \"" + firstName
-						+ "\"<br><br><b>MERGE</b><br>\"  " + secondName
+				.setText("<html><font color = blue><b>CHECKOUT</b></font> <br>\"" + firstName
+						+ "\"<br><br><font color = red><b>MERGE</b></font><br>\"  " + secondName
 						+ "<hr></html>");
-		lblInOrderMessage.setText("<html>MERGE<br>" + secondMessage
-				+ "<br><br>INTO<br><br>" + firstMessage + "</html>");
-		lblNotInOrderName.setText("<html><b>CHECKOUT</b> \"  " + secondName
-				+ "\"<br><b>MERGE</b><br>\"  " + firstName + "<hr></html>");
-		lblNotInOrderMessage.setText("<html>MERGE<br> " + firstMessage
-				+ "<br><br>INTO<br><br>" + secondMessage + "</html>");
+		lblInOrderMessage.setText("<html><font color = red><b>MERGE</b></font><br>" + secondMessage
+				+ "<br><br><font color = red><b>INTO</b></font><br><br>" + firstMessage + "</html>");
+		lblNotInOrderName.setText("<html><font color = blue><b>CHECKOUT</b></font> <br>\"" + secondName
+				+ "\"<br><br><font color = red><b>MERGE</b></font><br>\"  " + firstName + "<hr></html>");
+		lblNotInOrderMessage.setText("<html><font color = red><b>MERGE</b></font><br> " + firstMessage
+				+ "<br><br><font color = red><b>INTO</b></font><br><br>" + secondMessage + "</html>");
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnInOrder);
 		bg.add(rdbtnNotInOrder);
